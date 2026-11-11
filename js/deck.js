@@ -372,6 +372,21 @@
     lens.style.backgroundPosition = (130 - x * Z) + "px " + (130 - y * Z) + "px";
   });
 
+  /* ---------------- videos ---------------- */
+  $$("video").forEach(function (v) {
+    var box = v.closest(".vidframe");
+    v.addEventListener("play", function () { box && box.classList.add("playing"); });
+    v.addEventListener("pause", function () { box && box.classList.remove("playing"); });
+    v.addEventListener("error", function () {          // no video file yet: show the still frame
+      if (!box) return; box.classList.add("novid");
+      var img = document.createElement("img"); img.src = v.getAttribute("poster"); img.alt = "";
+      img.style.cssText = "width:100%;border-radius:8px;display:block"; v.replaceWith(img);
+    }, true);
+  });
+  Reveal.on("slidechanged", function (e) {
+    if (e.previousSlide) $$("video", e.previousSlide).forEach(function (v) { v.pause(); });
+  });
+
   /* ---------------- hotspots ---------------- */
   $$(".hot").forEach(function (h) {
     h.addEventListener("click", function (e) { e.stopPropagation(); h.classList.toggle("open"); });

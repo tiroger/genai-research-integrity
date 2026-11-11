@@ -45,7 +45,8 @@ def main():
     def asset(m):
         p = os.path.join(ROOT, m.group(2))
         return '%s="%s"' % (m.group(1), data_uri(p)) if os.path.exists(p) else m.group(0)
-    html = re.sub(r'(src|data-background-image)="(assets/[^"]+)"', asset, html)
+    # videos stay as files next to the HTML (too large to inline)
+    html = re.sub(r'(src|data-background-image|poster)="(assets/(?![^"]+\.mp4)[^"]+)"', asset, html)
     # rounds.js references images by path; rewrite them too
     html = re.sub(r'"(assets/[^"]+\.webp)"',
                   lambda m: '"%s"' % data_uri(os.path.join(ROOT, m.group(1))), html)

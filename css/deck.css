@@ -346,3 +346,9 @@ section.present .panic .curve{animation:draw 2.2s ease-out .2s forwards}
 section.present .rise{opacity:1;transform:none}
 section.present .d1{transition-delay:.12s}section.present .d2{transition-delay:.24s}section.present .d3{transition-delay:.36s}section.present .d4{transition-delay:.48s}section.present .d5{transition-delay:.6s}section.present .d6{transition-delay:.72s}section.present .d7{transition-delay:.84s}section.present .d8{transition-delay:.96s}
 .print-pdf .rise{opacity:1!important;transform:none!important}
+
+/* video */
+.vidframe{position:relative;flex:none;width:620px;background:var(--navy2);border:1px solid #24477F;border-radius:14px;padding:14px}
+.vidframe video{display:block;width:100%;max-height:760px;border-radius:8px;background:#000;object-fit:contain}
+.vidhint{position:absolute;left:50%;bottom:34px;transform:translateX(-50%);background:rgba(11,31,68,.85);color:#fff;font:700 18px var(--sans);letter-spacing:.08em;text-transform:uppercase;padding:8px 14px;border-radius:999px;pointer-events:none;transition:opacity .3s}
+.vidframe.playing .vidhint,.vidframe.novid .vidhint{opacity:0}
