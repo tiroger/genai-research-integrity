@@ -55,12 +55,21 @@
     });
   }
 
-  /* tech panic: one stage lit per click */
+  /* tech panic: one stage lit per click, then the "today?" marker */
+  function placeNow(slide) {
+    var path = $("#pc-curve", slide), g = $("#pc-now", slide);
+    if (!path || !g || g.dataset.placed) return;
+    var L = path.getTotalLength(), best = null, tx = 1070;
+    for (var l = 0; l <= L; l += 4) { var p = path.getPointAtLength(l); if (!best || Math.abs(p.x - tx) < Math.abs(best.x - tx)) best = p; }
+    g.setAttribute("transform", "translate(" + best.x + "," + best.y + ")"); g.dataset.placed = 1;
+  }
   function panicStep(slide) {
     if (!slide || slide.id !== "panic") return;
-    var n = $$(".fragment.step.visible", slide).length;
-    $$(".beat", slide).forEach(function (b) { var i = +b.dataset.i; b.classList.toggle("on", i === n); b.style.opacity = (n === 0 || i <= n) ? 1 : .35; });
+    placeNow(slide);
+    var n = $$(".fragment.step.visible", slide).length, all = n === 0 || n > 5;
+    $$(".pc-card", slide).forEach(function (b) { var i = +b.dataset.i; b.classList.toggle("on", i === n); b.classList.toggle("dim", !all && i !== n); });
     $$(".pt", slide).forEach(function (p) { p.classList.toggle("on", +p.dataset.i === n); });
+    var now = $("#pc-now", slide); if (now) now.classList.toggle("show", n > 5);
   }
 
   /* ---------------- counters ---------------- */
@@ -126,6 +135,14 @@
         return '<div class="vrow popt" data-id="' + o.id + '"><button class="vbtn" style="--c:#B9D9EB"><span class="vlabel">' + o.label + '</span></button><div class="vbar"><div class="vfill" style="--c:#B9D9EB"></div></div><span class="vcount">0</span></div>';
       }).join("") + '<div class="vtotal">Total: <b data-total>0</b></div></div>';
   }
+  function renderCompare(el, def) {
+    var nat = {}; el.dataset.compare.split(",").forEach(function (kv) { kv = kv.split(":"); nat[kv[0]] = +kv[1]; });
+    el.innerHTML = def.options.map(function (o) {
+      return '<div class="crow popt' + (o.id === el.dataset.key ? " key" : "") + '" data-id="' + o.id + '"><div class="l">' + o.label + '</div>' +
+        '<div class="b me"><i></i></div><div class="v me">–</div>' +
+        '<div class="b nat"><i style="width:' + nat[o.id] + '%"></i></div><div class="v nat">' + nat[o.id] + '%</div></div>';
+    }).join("");
+  }
   function renderTiles(el, def) {
     el.classList.add("spot");
     el.innerHTML = def.items.map(function (it) {
@@ -157,7 +174,7 @@
   $$(".game").forEach(function (el) {
     var round = el.dataset.round, def = R[round]; if (!def) return;
     var st = games[round] = { round: round, def: def, el: el, slide: el.closest("section"), answer: el.dataset.answer || "", revealed: false, local: {}, votes: {} };
-    if (def.type === "multi") renderPoll(el, def);
+    if (def.type === "multi") { if (el.dataset.compare) { st.compare = true; renderCompare(el, def); } else renderPoll(el, def); }
     if (def.type === "tiles") renderTiles(el, def);
     if (def.type === "columns") renderCols(el, def);
     if (def.type === "ab") renderAB(el, def);
@@ -197,6 +214,19 @@
     var vc = $("[data-vcount]", st.slide);
     if (vc) vc.textContent = Live.on ? (T.n + (T.n === 1 ? " vote" : " votes")) : "";
     var pct = function (k) { return T.n ? Math.round(100 * (T.c[k] || 0) / T.n) : 0; };
+    if (t === "multi" && st.compare) {
+      var base = Live.on ? T.n : 0, loc = 0;
+      if (!Live.on) Object.keys(st.local).forEach(function (k) { loc = Math.max(loc, st.local[k]); });
+      $$(".crow", el).forEach(function (row) {
+        var k = row.dataset.id, cnt = (T.c[k] || 0) + (st.local[k] || 0), pc;
+        if (Live.on) pc = base ? Math.round(100 * cnt / base) : 0;
+        var bar = $(".b.me i", row), v = $(".v.me", row);
+        if (Live.on) { bar.style.width = pc + "%"; v.textContent = base ? pc + "%" : "–"; }
+        else { bar.style.width = (loc ? 100 * cnt / loc : 0) + "%"; v.textContent = cnt ? cnt + (cnt === 1 ? " hand" : " hands") : "–"; v.style.fontSize = "22px"; }
+      });
+      if (st.revealed) score(st);
+      return;
+    }
     if (t === "multi") {
       var counts = {}, max = 1;
       st.def.options.forEach(function (o) { counts[o.id] = (st.local[o.id] || 0) + (T.c[o.id] || 0); max = Math.max(max, counts[o.id]); });
@@ -220,6 +250,10 @@
   function score(st) {
     var t = st.def.type, el = st.el, out = $("[data-score]", st.slide); if (!out) return;
     var ans = parseAnswer(t, st.answer), T = tally(st), msg = "";
+    if (t === "multi" && st.compare) {
+      if (Live.on && T.n) msg = "This room: " + Math.round(100 * (T.c.fraud || 0) / T.n) + "% picked “makes fraud easier”. Nature’s survey: 55%.";
+      else msg = "Nature’s survey: 55% said AI makes fraud easier.";
+    }
     if (t === "tiles") {
       var picks = $$(".tile.pick", el).map(function (x) { return x.dataset.id; });
       var hit = picks.filter(function (p) { return ans.indexOf(p) >= 0; }).length, fa = picks.length - hit;
@@ -278,6 +312,10 @@
       var frag = $(".game-reveal", b.closest("section"));
       if (frag) frag.classList.toggle("visible", games[r].revealed);
     });
+  });
+  $$("[data-poll-reset]").forEach(function (b) {
+    if (b.closest(".game")) return;
+    b.addEventListener("click", function () { var r = b.closest("section").dataset.round; games[r].local = {}; update(games[r]); });
   });
   $$("[data-act-reset]").forEach(function (b) {
     b.addEventListener("click", function () {

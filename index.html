@@ -104,59 +104,75 @@
 </section>
 
 <!-- 7 · TECH PANIC CYCLE -->
-<section id="panic">
+<section id="panic" class="pc">
   <div class="eyebrow">A familiar pattern</div>
   <h2>Stages of the tech panic cycle</h2>
-  <div class="panic">
-    <svg viewBox="0 0 1776 300" preserveAspectRatio="none">
-      <line class="ax" x1="0" y1="290" x2="1776" y2="290"/>
-      <text class="axl" x="0" y="20">PUBLIC CONCERN ↑</text><text class="axl" x="1690" y="280">TIME →</text>
-      <path class="curve" d="M10 282 C 90 282, 120 272, 170 266 S 430 230, 529 172 S 790 34, 888 34 S 1120 110, 1247 168 S 1480 248, 1606 256 S 1720 262, 1770 262"/>
-      <g class="pt" data-i="1"><circle cx="170" cy="266" r="24"/><text x="170" y="266">1</text></g>
-      <g class="pt" data-i="2"><circle cx="529" cy="172" r="24"/><text x="529" y="172">2</text></g>
-      <g class="pt" data-i="3"><circle cx="888" cy="34" r="24"/><text x="888" y="34">3</text></g>
-      <g class="pt" data-i="4"><circle cx="1247" cy="168" r="24"/><text x="1247" y="168">4</text></g>
-      <g class="pt" data-i="5"><circle cx="1606" cy="256" r="24"/><text x="1606" y="256">5</text></g>
+  <div class="pc-chart">
+    <svg viewBox="0 0 1776 440">
+      <defs>
+        <linearGradient id="pcfill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1D4F91" stop-opacity=".22"/><stop offset="1" stop-color="#1D4F91" stop-opacity="0"/></linearGradient>
+      </defs>
+      <text class="axl" x="0" y="18">PUBLIC CONCERN ↑</text>
+      <text class="axl" x="1776" y="470" text-anchor="end">TIME →</text>
+      <line class="ax" x1="0" y1="440" x2="1776" y2="440"/>
+      <path class="area" d="M0 430 C 90 428, 120 412, 170 404 S 430 330, 529 262 S 790 70, 888 70 S 1120 180, 1247 252 S 1480 382, 1606 398 S 1720 410, 1776 412 L 1776 440 L 0 440 Z"/>
+      <path class="curve" id="pc-curve" d="M0 430 C 90 428, 120 412, 170 404 S 430 330, 529 262 S 790 70, 888 70 S 1120 180, 1247 252 S 1480 382, 1606 398 S 1720 410, 1776 412"/>
+      <g class="drops"><line x1="170" y1="430" x2="170" y2="440"/><line x1="529" y1="288" x2="529" y2="440"/><line x1="888" y1="96" x2="888" y2="440"/><line x1="1247" y1="278" x2="1247" y2="440"/><line x1="1606" y1="424" x2="1606" y2="440"/></g>
+      <g class="pt" data-i="1" style="--c:#7FB2DB"><circle cx="170" cy="404" r="26"/><text x="170" y="404">1</text></g>
+      <g class="pt" data-i="2" style="--c:#F2B33D"><circle cx="529" cy="262" r="26"/><text x="529" y="262">2</text></g>
+      <g class="pt" data-i="3" style="--c:#E0663F"><circle cx="888" cy="70" r="26"/><text x="888" y="70">3</text></g>
+      <g class="pt" data-i="4" style="--c:#1D4F91"><circle cx="1247" cy="252" r="26"/><text x="1247" y="252">4</text></g>
+      <g class="pt" data-i="5" style="--c:#8A9AB0"><circle cx="1606" cy="398" r="26"/><text x="1606" y="398">5</text></g>
+      <g id="pc-now" class="now"><circle r="15"/><circle class="ring" r="15"/><g class="pin"><rect x="-128" y="-92" width="256" height="54" rx="27"/><text x="0" y="-65">Gen AI, today?</text><path d="M-10 -38 L0 -24 L10 -38 Z"/></g></g>
     </svg>
   </div>
-  <div class="beats">
-    <div class="beat" data-i="1"><div class="bn">1</div><h3>Innovation &amp; adoption</h3><p>New technology arrives, with real benefits and rapid uptake.</p></div>
-    <div class="beat" data-i="2"><div class="bn">2</div><h3>Early skepticism &amp; fear</h3><p>Worries about harm, job loss and ethics.</p></div>
-    <div class="beat peak" data-i="3"><div class="bn">3</div><h3>Peak panic &amp; moral outcry</h3><p>Media frenzy and public alarm, often exaggerated.</p></div>
-    <div class="beat" data-i="4"><div class="bn">4</div><h3>Normalization &amp; adaptation</h3><p>Society adjusts, rules are proposed, the technology is absorbed.</p></div>
-    <div class="beat" data-i="5"><div class="bn">5</div><h3>Obsolescence &amp; next cycle</h3><p>Attention moves to the next new thing.</p></div>
+  <div class="pc-cards">
+    <div class="pc-card" data-i="1" style="--c:#7FB2DB"><span class="n">1</span><h3>Innovation &amp; adoption</h3><p>New technology arrives, with real benefits and rapid uptake.</p></div>
+    <div class="pc-card" data-i="2" style="--c:#F2B33D"><span class="n">2</span><h3>Early skepticism &amp; fear</h3><p>Worries about harm, job loss and ethics.</p></div>
+    <div class="pc-card" data-i="3" style="--c:#E0663F"><span class="n">3</span><h3>Peak panic &amp; moral outcry</h3><p>Media frenzy and public alarm, often exaggerated.</p></div>
+    <div class="pc-card" data-i="4" style="--c:#1D4F91"><span class="n">4</span><h3>Normalization &amp; adaptation</h3><p>Society adjusts, rules are proposed, the technology is absorbed.</p></div>
+    <div class="pc-card" data-i="5" style="--c:#8A9AB0"><span class="n">5</span><h3>Obsolescence &amp; next cycle</h3><p>Attention moves to the next new thing.</p></div>
   </div>
-  <span class="fragment step" data-step="1"></span><span class="fragment step" data-step="2"></span><span class="fragment step" data-step="3"></span><span class="fragment step" data-step="4"></span><span class="fragment step" data-step="5"></span>
+  <span class="fragment step"></span><span class="fragment step"></span><span class="fragment step"></span><span class="fragment step"></span><span class="fragment step"></span><span class="fragment step"></span>
   <p class="foot">Adapted from Grady &amp; Castro, “Tech Panics, Generative AI, and the Need for Regulatory Caution,” Center for Data Innovation, May 2023.</p>
-  <aside class="notes">Click through the stages; each click lights one up. Then ask: where are we with generative AI right now? Most people say between 3 and 4.</aside>
+  <aside class="notes">Click through the five stages; each click lights one up. Then ask: where are we with generative AI right now? Let a few people answer, then click once more to drop the "Gen AI, today?" marker between peak panic and normalization.</aside>
 </section>
 
 <!-- 8 · HISTORY -->
-<section class="hist">
+<section class="hx">
   <div class="eyebrow">History rhymes</div>
   <h2>No new technology is immune from tech panic</h2>
-  <svg viewBox="0 0 1776 140" preserveAspectRatio="none" class="rise">
-    <path d="M0 128 C 110 126, 160 110, 214 100 S 560 14, 663 14 S 990 112, 1112 112 S 1440 78, 1561 58 S 1700 36, 1776 26" fill="none" stroke="#B9D9EB" stroke-width="6" stroke-linecap="round"/>
-    <circle cx="214" cy="100" r="13" fill="#1D4F91"/><circle cx="663" cy="14" r="13" fill="#1D4F91"/><circle cx="1112" cy="112" r="13" fill="#1D4F91"/><circle cx="1561" cy="58" r="15" fill="#F2B33D" stroke="#0B1F44" stroke-width="4"/>
-  </svg>
-  <div class="cards four">
-    <div class="card rise d1"><div class="era">1600s</div><h3>The microscope</h3><p class="fear">“Delusion &amp; artifact”</p><p>Lenses were thought to create optical illusions, detaching scientists from “true” naked-eye observation.</p></div>
-    <div class="card rise d2"><div class="era">1800s</div><h3>Photography</h3><p class="fear">“Loss of objectivity”</p><p>“Mindless” mechanical images were said to lack the intellectual synthesis of hand-drawn sketches.</p></div>
-    <div class="card rise d3"><div class="era">2000s</div><h3>Big data</h3><p class="fear">“The end of theory”</p><p>Fear that massive datasets would replace hypothesis-driven science with correlation hunting.</p></div>
-    <div class="card now rise d4"><div class="era" style="color:var(--blue)">Today</div><h3>Generative AI</h3><p class="fear">“Atrophy of synthesis”</p><p>Panic that AI will automate writing, analysis and the scientific method itself.</p></div>
+  <div class="hx-line">
+    <div class="hx-node rise d1"><div class="ic"><svg viewBox="0 0 48 48"><path d="M10 42h28M16 42v-4h16M30 38a12 12 0 0 0-2-21"/><path d="M19 5l7 3-7 17-7-3z"/><path d="M14 19l9 4"/><path d="M17 31h12"/></svg></div><span>1600s</span></div>
+    <div class="hx-node rise d2"><div class="ic"><svg viewBox="0 0 48 48"><rect x="5" y="14" width="38" height="26" rx="4"/><path d="M16 14l3-6h10l3 6"/><circle cx="24" cy="27" r="8"/><circle cx="24" cy="27" r="3"/><path d="M36 20h2"/></svg></div><span>1800s</span></div>
+    <div class="hx-node rise d3"><div class="ic"><svg viewBox="0 0 48 48"><ellipse cx="24" cy="10" rx="15" ry="5"/><path d="M9 10v28c0 2.8 6.7 5 15 5s15-2.2 15-5V10"/><path d="M9 19c0 2.8 6.7 5 15 5s15-2.2 15-5M9 28.5c0 2.8 6.7 5 15 5s15-2.2 15-5"/></svg></div><span>2000s</span></div>
+    <div class="hx-node now rise d4"><div class="ic"><svg viewBox="0 0 48 48"><path d="M22 6c1.5 9 4 11.5 13 13-9 1.5-11.5 4-13 13-1.5-9-4-11.5-13-13 9-1.5 11.5-4 13-13z"/><path d="M37 30c.7 4 1.8 5.3 6 6-4.2.7-5.3 2-6 6-.7-4-1.8-5.3-6-6 4.2-.7 5.3-2 6-6z"/></svg></div><span>Today</span></div>
   </div>
-  <aside class="notes">Each time, the fear was partly right and science adapted with new norms. The norms are the point of this talk.</aside>
+  <div class="hx-cards">
+    <div class="hx-card rise d1"><h3>The microscope</h3><p class="fear">“Delusion &amp; artifact”</p><p>Lenses were thought to create optical illusions, detaching scientists from “true” naked-eye observation.</p>
+      <div class="then fragment fade-up" data-fragment-index="1"><b>Then</b>Replication became the test: Hooke confirmed Leeuwenhoek’s “little animals” for the Royal Society.</div></div>
+    <div class="hx-card rise d2"><h3>Photography</h3><p class="fear">“Loss of objectivity”</p><p>“Mindless” mechanical images were said to lack the intellectual synthesis of hand-drawn sketches.</p>
+      <div class="then fragment fade-up" data-fragment-index="1"><b>Then</b>Photographs became standard evidence, and rules for handling images followed.</div></div>
+    <div class="hx-card rise d3"><h3>Big data</h3><p class="fear">“The end of theory”</p><p>Fear that massive datasets would replace hypothesis-driven science with correlation hunting.</p>
+      <div class="then fragment fade-up" data-fragment-index="1"><b>Then</b>Theory survived; data-sharing and reproducibility standards grew up around it.</div></div>
+    <div class="hx-card now rise d4"><h3>Generative AI</h3><p class="fear">“Atrophy of synthesis”</p><p>Panic that AI will automate writing, analysis and the scientific method itself.</p>
+      <div class="then fragment fade-up" data-fragment-index="1"><b>Now</b>The norms are being written right now. That’s the rest of this talk.</div></div>
+  </div>
+  <aside class="notes">Each time, the fear was partly right, and science adapted by building new norms. Click: what happened next for each. For generative AI, those norms are still being written, which is what the rest of the talk is about.</aside>
 </section>
 
-<!-- 9 · NATURE SURVEY -->
-<section>
-  <div class="eyebrow">What researchers think</div>
-  <h2>The negative impacts of AI in research</h2>
-  <p class="hint" style="margin:-10px 0 26px">Nature asked about 1,600 researchers which negative impacts of AI in research worried them.</p>
-  <div class="hbars" id="survey"></div>
-  <div class="hscale"><span></span><div><span>0%</span><span>25%</span><span>50%</span><span>75%</span><span>100%</span></div><span></span></div>
-  <p class="foot">Van Noorden &amp; Perkel, “AI and science: what 1,600 researchers think,” Nature 621, 672–675 (2023). Values read from Nature’s chart.</p>
-  <aside class="notes">Before the bars fill, ask: what share said AI "makes fraud easier"? More than half. That's our question for the rest of the talk.</aside>
+<!-- 9 · NATURE SURVEY (poll, then reveal) -->
+<section data-round="worries">
+  <div class="row2" style="justify-content:space-between;align-items:flex-start;gap:40px">
+    <div><div class="eyebrow">Poll · then the big survey</div><h2 style="margin-bottom:10px">Which negative impacts of AI in research worry you?</h2>
+      <div class="cmp-legend"><span class="me">This room</span><span class="nat">Nature survey of ~1,600 researchers</span></div></div>
+    <div class="qrbox sm" data-qr style="flex:none"><div class="qr"></div><div class="t"><b>Vote on your phone</b><code data-url></code><span class="live off">Not connected yet</span></div></div>
+  </div>
+  <div class="game cmpgame" data-round="worries" data-compare="pattern:69,bias:58,fraud:55,irrepro:53,power:43,energy:26,other:3" data-key="fraud"></div>
+  <div class="gbar"><span class="gcount" data-vcount></span><span class="score" data-score></span><span class="fill"></span><button class="pill" data-poll-reset>Reset</button><button class="pill solid" data-act-reveal>Show the survey</button></div>
+  <span class="fragment game-reveal" data-round="worries"></span>
+  <p class="foot">Van Noorden &amp; Perkel, “AI and science: what 1,600 researchers think,” Nature 621, 672–675 (2023). Survey values read from Nature’s chart.</p>
+  <aside class="notes">Ask the room to vote first (phones, or a show of hands you click in). Watch the amber bars fill. Then press next: Nature’s results slide in under each row. Point at "Makes fraud easier": more than half of researchers said so. How does this room compare? That's our question for the rest of the talk.</aside>
 </section>
 
 <!-- 10 · THE QUESTION -->

@@ -354,3 +354,78 @@ section.present .d1{transition-delay:.12s}section.present .d2{transition-delay:.
 .vidframe video{display:block;width:100%;max-height:760px;border-radius:8px;background:#000;object-fit:contain}
 .vidhint{position:absolute;left:50%;bottom:34px;transform:translateX(-50%);background:rgba(11,31,68,.85);color:#fff;font:700 18px var(--sans);letter-spacing:.08em;text-transform:uppercase;padding:8px 14px;border-radius:999px;pointer-events:none;transition:opacity .3s}
 .vidframe.playing .vidhint,.vidframe.novid .vidhint{opacity:0}
+
+/* ===== slide 7: panic cycle v2 ===== */
+.pc-chart{height:440px;margin:6px 0 0}
+.pc-chart svg{width:100%;height:100%;overflow:visible;display:block}
+.pc .axl{font:700 18px var(--sans);fill:var(--muted);letter-spacing:.12em}
+.pc .ax{stroke:#9AABC2;stroke-width:2}
+.pc .area{fill:url(#pcfill);opacity:0;transition:opacity 1s .9s}
+section.present.pc .area{opacity:1}
+.pc .curve{fill:none;stroke:var(--navy);stroke-width:6;stroke-linecap:round;stroke-dasharray:2600;stroke-dashoffset:2600}
+section.present.pc .curve{animation:draw 2s ease-out .2s forwards}
+.pc .drops line{stroke:#B9C9DC;stroke-width:2;stroke-dasharray:4 7}
+.pc .pt circle{fill:#fff;stroke:var(--c);stroke-width:6;transition:fill .3s,transform .3s;transform-box:fill-box;transform-origin:center}
+.pc .pt text{font:800 24px var(--sans);fill:var(--navy);text-anchor:middle;dominant-baseline:central;pointer-events:none}
+.pc .pt.on circle{fill:var(--c);transform:scale(1.25)}
+.pc .pt.on text{fill:#fff}
+.pc .pt[data-i="2"].on text{fill:var(--navy)}
+.pc .now{opacity:0;transition:opacity .5s}
+.pc .now.show{opacity:1}
+.pc .now>circle{fill:var(--amber);stroke:var(--navy);stroke-width:4}
+.pc .now .ring{fill:none;stroke:var(--amber);stroke-width:3;animation:nowring 1.8s infinite;transform-box:fill-box;transform-origin:center}
+@keyframes nowring{0%{transform:scale(1);opacity:.9}100%{transform:scale(3);opacity:0}}
+.pc .now .pin rect{fill:var(--navy)}
+.pc .now .pin path{fill:var(--navy)}
+.pc .now .pin text{font:700 24px var(--sans);fill:#fff;text-anchor:middle;dominant-baseline:central}
+.pc-cards{display:grid;grid-template-columns:repeat(5,1fr);gap:18px;margin-top:44px}
+.pc-card{background:#fff;border:1px solid var(--line);border-top:8px solid var(--c);border-radius:12px;padding:20px 22px 22px;transition:opacity .35s,transform .35s,box-shadow .35s}
+.pc-card .n{display:inline-grid;place-items:center;width:40px;height:40px;border-radius:50%;background:var(--c);color:#fff;font:800 20px var(--sans)}
+.pc-card[data-i="2"] .n{color:var(--navy)}
+.pc-card h3{font-size:29px;color:var(--navy);margin:12px 0 6px;line-height:1.15}
+.pc-card p{margin:0;font-size:23px;color:var(--muted);line-height:1.35}
+.pc-card.on{transform:translateY(-8px);box-shadow:0 14px 30px rgba(11,31,68,.14)}
+.pc-card.dim{opacity:.38}
+
+/* ===== slide 8: history v2 ===== */
+.hx-line{display:grid;grid-template-columns:repeat(4,1fr);gap:28px;position:relative;margin:8px 0 22px}
+.hx-line::before{content:"";position:absolute;left:12.5%;right:12.5%;top:52px;height:4px;background:linear-gradient(90deg,#B9D9EB,#B9D9EB 80%,var(--amber));border-radius:2px}
+.hx-node{display:flex;flex-direction:column;align-items:center;gap:10px;position:relative}
+.hx-node .ic{width:104px;height:104px;border-radius:50%;background:#fff;border:4px solid var(--blue);display:grid;place-items:center}
+.hx-node .ic svg{width:54px;height:54px;fill:none;stroke:var(--navy);stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+.hx-node span{font:800 22px var(--sans);letter-spacing:.14em;text-transform:uppercase;color:#B7801A}
+.hx-node.now .ic{background:var(--amber);border-color:var(--navy)}
+.hx-node.now span{color:var(--blue)}
+.hx-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:28px}
+.hx-card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:28px 30px;position:relative;display:flex;flex-direction:column}
+.hx-card::before{content:"";position:absolute;left:50%;top:-11px;width:20px;height:20px;background:#fff;border-left:1px solid var(--line);border-top:1px solid var(--line);transform:translateX(-50%) rotate(45deg)}
+.hx-card h3{font-size:34px;color:var(--navy);margin:0 0 10px}
+.hx-card .fear{font:600 italic 38px/1.15 var(--serif);color:var(--blue);margin:0 0 14px}
+.hx-card p{font-size:24px;color:var(--muted);margin:0;line-height:1.38}
+.hx-card .then{margin-top:auto;padding-top:18px;border-top:2px solid var(--line);font-size:23px;line-height:1.35;color:var(--ink)}
+.hx-card>p:last-of-type{margin-bottom:22px}
+.hx-card .then b{display:block;font-size:17px;letter-spacing:.14em;text-transform:uppercase;color:#2E7D5B;margin-bottom:4px}
+.hx-card.now{border:2px solid var(--blue);box-shadow:0 10px 26px rgba(29,79,145,.14)}
+.hx-card.now::before{border-color:var(--blue);border-width:2px}
+.hx-card.now .then{background:#FFF6E0;margin:auto -30px -28px;padding:18px 30px 24px;border-radius:0 0 12px 12px;border-top:2px solid var(--amber)}
+.hx-card.now .then b{color:#B7801A}
+
+/* ===== slide 9: room vs Nature ===== */
+.cmp-legend{display:flex;gap:30px;font-size:22px;color:var(--muted)}
+.cmp-legend span::before{content:"";display:inline-block;width:28px;height:14px;border-radius:4px;margin-right:10px;vertical-align:0}
+.cmp-legend .me::before{background:var(--amber)}
+.cmp-legend .nat::before{background:var(--blue)}
+.cmpgame{margin-top:22px}
+.crow{display:grid;grid-template-columns:600px 1fr 120px;gap:8px 26px;align-items:center;padding:9px 12px;border-radius:10px;cursor:pointer;transition:background .2s}
+.crow:hover{background:#fff}
+.crow .l{font-size:25px;line-height:1.25;grid-row:span 2}
+.crow .b{position:relative;height:24px;background:var(--track);border-radius:6px;overflow:hidden}
+.crow .b i{position:absolute;inset:0 auto 0 0;width:0;border-radius:6px;transition:width .9s cubic-bezier(.2,.8,.2,1)}
+.crow .b.me i{background:var(--amber)}
+.crow .b.nat i{background:var(--blue)}
+.crow .v{font:800 26px var(--sans);text-align:right;line-height:24px}
+.crow .v.me{color:#9A6A12}.crow .v.nat{color:var(--blue)}
+.crow .b.nat,.crow .v.nat{opacity:0;transition:opacity .4s}
+.cmpgame.revealed .crow .b.nat,.cmpgame.revealed .crow .v.nat{opacity:1}
+.cmpgame.revealed .crow.key{background:#FFF6E0;outline:2px solid var(--amber)}
+.cmpgame.revealed .crow.key .l{font-weight:800}

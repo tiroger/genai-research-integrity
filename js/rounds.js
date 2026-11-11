@@ -14,6 +14,20 @@ window.ROUNDS = {
       { id: "none",  label: "None of these" }
     ]
   },
+  worries: {
+    type: "multi",
+    title: "Which negative impacts of AI in research worry you?",
+    hint: "Pick all that apply.",
+    options: [
+      { id: "pattern", label: "More reliance on pattern recognition without understanding" },
+      { id: "bias",    label: "Results can entrench bias or discrimination" },
+      { id: "fraud",   label: "Makes fraud easier" },
+      { id: "irrepro", label: "Ill-considered use leads to irreproducible research" },
+      { id: "power",   label: "Only well-resourced scientists can keep up" },
+      { id: "energy",  label: "Expensive or energy-intensive" },
+      { id: "other",   label: "Other" }
+    ]
+  },
   micro: {
     type: "tiles",
     title: "Which of these images are AI-generated?",
