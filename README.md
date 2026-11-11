@@ -19,7 +19,7 @@ Each game slide also has **Reveal** and **Reset** buttons. Pressing → on a gam
 
 ## Live voting
 
-Voting uses a free Firebase Realtime Database. If `js/config.js` has no Firebase config, or the connection fails, the deck runs in **click mode**: everything still works on the presenter's screen, and the QR codes are hidden.
+Voting uses a free Firebase Realtime Database. If `js/config.js` has no Firebase config, or the connection fails, the deck runs in **click mode**: everything still works on the presenter's screen. The QR codes still show, labelled "Not connected yet", so you can rehearse the layout.
 
 How it works:
 

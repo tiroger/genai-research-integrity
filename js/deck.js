@@ -16,25 +16,37 @@
   /* ---------------- charts ---------------- */
   var market = [[2023, 4.5], [2024, 5.4], [2025, 6.4], [2026, 7.6], [2027, 9.1], [2028, 10.9], [2029, 13.0], [2030, 15.5], [2031, 18.5], [2032, 22.0], [2033, 26.3]];
   var m = $("#market");
-  if (m) m.innerHTML = market.map(function (d) {
-    return '<div class="vbar' + (d[0] === 2026 ? " hi" : "") + '" data-h="' + (d[1] / 30 * 100).toFixed(1) + '"><div class="v">' + d[1].toFixed(1) + '</div><div class="b"></div><div class="y">' + d[0] + (d[0] === 2026 ? " · now" : "") + "</div></div>";
-  }).join("");
+  if (m) {
+    var ticks = [0, 5, 10, 15, 20, 25, 30], ya = "", gl = "";
+    ticks.forEach(function (t) { var p = (t / 30 * 100).toFixed(2); ya += '<span style="bottom:' + p + '%">$' + t + "B</span>"; if (t) gl += '<div class="gl" style="bottom:' + p + '%"></div>'; });
+    m.innerHTML = '<div class="ya">' + ya + '</div><div class="plot">' + gl + '<div class="bars">' +
+      market.map(function (d) { return '<div class="bar' + (d[0] === 2026 ? " now" : "") + '" data-h="' + (d[1] / 30 * 100).toFixed(2) + '"><b>' + d[1].toFixed(1) + "</b></div>"; }).join("") +
+      '</div></div><div class="xa">' + market.map(function (d) { return '<span' + (d[0] === 2026 ? ' class="now"' : "") + ">" + d[0] + "</span>"; }).join("") + "</div>";
+  }
 
-  var survey = [["Leads to more reliance on pattern recognition without understanding", 69], ["Results can entrench bias or discrimination in data", 58], ["Makes fraud easier", 55, 1], ["Ill-considered use leads to irreproducible research", 53], ["Exacerbates power imbalances: only well-resourced scientists can be at the cutting edge", 43], ["Expensive or energy-intensive tool", 26], ["Other", 3]];
+  var survey = [["More reliance on pattern recognition without understanding", 69], ["Results can entrench bias or discrimination", 58], ["Makes fraud easier", 55, 1], ["Ill-considered use leads to irreproducible research", 53], ["Only well-resourced scientists can keep up", 43], ["Expensive or energy-intensive", 26], ["Other", 3]];
   var sv = $("#survey");
   if (sv) sv.innerHTML = survey.map(function (d) {
-    return '<div class="hbar' + (d[2] ? " hi" : "") + '" data-w="' + d[1] + '"><div class="l">' + d[0] + '</div><div class="t"><i></i></div><div class="n">' + d[1] + "%</div></div>";
+    return '<div class="hrow' + (d[2] ? " key" : "") + '" data-w="' + d[1] + '"><div class="l">' + d[0] + '</div><div class="t"><i></i></div><div class="n">' + d[1] + "%</div></div>";
   }).join("");
 
   function playCharts(slide) {
-    $$(".vbar", slide).forEach(function (b, i) {
-      var bar = $(".b", b); bar.style.height = "0";
-      setTimeout(function () { bar.style.height = b.dataset.h + "%"; }, 120 + i * 70);
+    $$(".vchart .bar", slide).forEach(function (b, i) {
+      b.style.transition = "none"; b.style.height = "0"; void b.offsetHeight; b.style.transition = "";
+      setTimeout(function () { b.style.height = b.dataset.h + "%"; }, 150 + i * 70);
     });
-    $$(".hbar", slide).forEach(function (b, i) {
-      var bar = $(".t i", b); bar.style.width = "0";
-      setTimeout(function () { bar.style.width = (b.dataset.w / 70 * 100) + "%"; }, 200 + i * 120);
+    $$(".hrow", slide).forEach(function (b, i) {
+      var bar = $(".t i", b); bar.style.transition = "none"; bar.style.width = "0"; void bar.offsetWidth; bar.style.transition = "";
+      setTimeout(function () { bar.style.width = b.dataset.w + "%"; }, 250 + i * 120);
     });
+  }
+
+  /* tech panic: one stage lit per click */
+  function panicStep(slide) {
+    if (!slide || slide.id !== "panic") return;
+    var n = $$(".fragment.step.visible", slide).length;
+    $$(".beat", slide).forEach(function (b) { var i = +b.dataset.i; b.classList.toggle("on", i === n); b.style.opacity = (n === 0 || i <= n) ? 1 : .35; });
+    $$(".pt", slide).forEach(function (p) { p.classList.toggle("on", +p.dataset.i === n); });
   }
 
   /* ---------------- counters ---------------- */
@@ -55,8 +67,8 @@
     var g = c.getContext("2d"), W = c.width, H = c.height, img = g.createImageData(W, H);
     var target = new Float32Array(W * H);
     // western-blot-like bands on the right
-    var lanes = 7, x0 = 92, x1 = 156, lw = (x1 - x0) / lanes;
-    var rows = [[26, 1.0], [44, 0.55], [63, 0.8]];
+    var lanes = 6, x0 = 18, x1 = 84, lw = (x1 - x0) / lanes;
+    var rows = [[36, 1.0], [55, 0.55], [74, 0.8]];
     for (var y = 0; y < H; y++) for (var x = 0; x < W; x++) {
       var v = 0;
       if (x >= x0 && x < x1) {
@@ -78,9 +90,9 @@
       for (var i = 0; i < W * H; i++) {
         noise[i] = noise[i] * 0.6 + Math.random() * 0.4;
         var v = target[i] * a + noise[i] * (1 - a) * 0.55;
-        var px = i % W, fade = Math.min(1, Math.max(0.15, (px - 40) / 60));
+        var px = i % W, fade = Math.min(1, Math.max(0, (px + 2) / 22));
         v *= fade;
-        img.data[i * 4] = 11 + v * (185 - 11);
+        img.data[i * 4] = 11 + v * (185 - 11) * .9;
         img.data[i * 4 + 1] = 31 + v * (217 - 31);
         img.data[i * 4 + 2] = 68 + v * (235 - 68);
         img.data[i * 4 + 3] = 255;
@@ -95,27 +107,28 @@
   var games = {}; // round -> state
 
   function renderPoll(el, def) {
-    el.innerHTML = '<div class="poll">' + def.options.map(function (o) {
-      return '<div class="popt" data-id="' + o.id + '"><div class="t"><i></i><span>' + o.label + '</span></div><div class="n">0</div></div>';
-    }).join("") + "</div>";
+    el.innerHTML = '<div class="vote"><div class="vhead"><span>Poll, pick all that apply</span><button class="vreset" data-poll-reset>reset</button></div>' +
+      def.options.map(function (o) {
+        return '<div class="vrow popt" data-id="' + o.id + '"><button class="vbtn" style="--c:#B9D9EB"><span class="vlabel">' + o.label + '</span></button><div class="vbar"><div class="vfill" style="--c:#B9D9EB"></div></div><span class="vcount">0</span></div>';
+      }).join("") + '<div class="vtotal">Total: <b data-total>0</b></div></div>';
   }
   function renderTiles(el, def) {
     el.classList.add("spot");
     el.innerHTML = def.items.map(function (it) {
-      return '<div class="tile" data-id="' + it.id + '"><img src="' + it.img + '" alt="Image ' + it.id + '"><span class="lbl">' + it.id + '</span><div class="verdict"><b></b></div><div class="meter"><i></i><span>0%</span></div></div>';
+      return '<div class="tile" data-id="' + it.id + '"><img src="' + it.img + '" alt="Image ' + it.id + '"><span class="lbl">' + it.id + '</span><span class="flag">My pick</span><div class="verdict"><b></b></div><div class="meter"><i></i><span>0%</span></div></div>';
     }).join("");
   }
   function renderCols(el, def) {
     var p = {}; def.panels.forEach(function (x) { p[x.id] = x; });
     function panel(x) {
       var z = ""; for (var i = 0; i < x.n; i++) z += '<div class="z" data-p="' + x.id + '" data-i="' + i + '"><span class="pct">0%</span></div>';
-      return '<div><div class="pl">' + x.label + '</div><div class="panel"><img src="' + x.img + '" alt="' + x.label + '"><div class="zones">' + z + "</div></div></div>";
+      return '<div><p class="pl">' + x.label + '</p><div class="panel"><img src="' + x.img + '" alt="' + x.label + '"><div class="zones">' + z + "</div></div></div>";
     }
-    el.innerHTML = '<div class="cgame"><div class="col" style="gap:18px">' + panel(p.red) + panel(p.tum) + '</div><div class="col" style="gap:18px">' + panel(p.plt) + panel(p.blt) + "</div></div>";
+    el.innerHTML = '<div class="cgame"><div class="colx" style="gap:16px">' + panel(p.red) + panel(p.tum) + '</div><div class="colx" style="gap:16px">' + panel(p.plt) + panel(p.blt) + "</div></div>";
   }
   function renderAB(el, def) {
     el.innerHTML = '<div class="ab">' + def.options.map(function (o) {
-      return '<div class="abopt" data-id="' + o.id + '"><div class="k">' + o.id + '<span class="tag"></span></div><img src="' + o.img + '" alt="Option ' + o.id + '"><div class="bar"><i></i></div><div class="pc">0%</div></div>';
+      return '<div class="abopt" data-id="' + o.id + '"><div class="k"><span class="vkey">' + o.id + '</span><span class="res"></span></div><img src="' + o.img + '" alt="Option ' + o.id + '"><div class="vbar"><div class="vfill"></div></div></div>';
     }).join("") + "</div>";
   }
 
@@ -137,6 +150,7 @@
 
     el.addEventListener("click", function (e) {
       if (def.type === "multi") {
+        if (e.target.closest("[data-poll-reset]")) { st.local = {}; update(st); return; }
         var o = e.target.closest(".popt"); if (!o) return;
         var id = o.dataset.id; st.local[id] = Math.max(0, (st.local[id] || 0) + (e.shiftKey ? -1 : 1));
         update(st); return;
@@ -172,17 +186,19 @@
     if (t === "multi") {
       var counts = {}, max = 1;
       st.def.options.forEach(function (o) { counts[o.id] = (st.local[o.id] || 0) + (T.c[o.id] || 0); max = Math.max(max, counts[o.id]); });
+      var tot = 0;
       $$(".popt", el).forEach(function (row) {
-        var k = row.dataset.id; $(".n", row).textContent = counts[k];
-        $(".t i", row).style.width = (100 * counts[k] / max) + "%";
+        var k = row.dataset.id; $(".vcount", row).textContent = counts[k]; tot += counts[k];
+        $(".vfill", row).style.width = (100 * counts[k] / max) + "%";
       });
+      var tt = $("[data-total]", el); if (tt) tt.textContent = Live.on ? T.n + " people" : tot + " hands";
     }
     if (t === "tiles") $$(".tile", el).forEach(function (tile) {
       var p = pct(tile.dataset.id); $(".meter i", tile).style.width = p + "%"; $(".meter span", tile).textContent = p + "%";
     });
     if (t === "columns") $$(".z", el).forEach(function (z) { $(".pct", z).textContent = pct(z.dataset.p + ":" + z.dataset.i) + "%"; });
     if (t === "ab") $$(".abopt", el).forEach(function (o) {
-      var p = pct(o.dataset.id); $(".bar i", o).style.width = p + "%"; $(".pc", o).textContent = p + "% of votes";
+      var p = pct(o.dataset.id); $(".vfill", o).style.width = p + "%";
     });
     if (st.revealed) score(st);
   }
@@ -236,7 +252,7 @@
     if (st.def.type === "ab") $$(".abopt", st.el).forEach(function (o) {
       var real = o.dataset.id === ans[0];
       o.classList.toggle("real", on && real); o.classList.toggle("fake", on && !real);
-      $(".tag", o).textContent = real ? "Photographed" : "AI-generated";
+      $(".res", o).textContent = real ? "Photographed" : "AI-generated";
     });
     if (on) score(st); else { var o = $("[data-score]", st.slide); if (o) o.textContent = ""; }
     if (Live.on && Live.host) Live.setReveal(Live.session, round, on ? st.answer : null);
@@ -265,19 +281,23 @@
   var params = new URLSearchParams(location.search);
 
   function voteURL(s) { return (window.SITE_URL || (location.origin + location.pathname.replace(/[^/]*$/, ""))).replace(/\/?$/, "/") + "v/#" + s; }
-  function drawQR(s) {
+  function drawQR(s, live) {
     var url = voteURL(s);
     $$("[data-qr]").forEach(function (box) {
       var q = qrcode(0, "M"); q.addData(url); q.make();
       $(".qr", box).innerHTML = q.createSvgTag({ cellSize: 4, margin: 2, scalable: true });
       var u = $("[data-url]", box); if (u) u.textContent = url.replace(/^https?:\/\//, "");
-      var lv = $(".live", box); if (lv) { lv.classList.remove("off"); lv.textContent = "Live · session " + s; }
+      var lv = $(".live", box); if (lv) { lv.classList.toggle("off", live === false); lv.textContent = live === false ? "Not connected yet" : "Live · session " + s; }
     });
   }
 
   Live.init().then(function (ok) {
     if (!ok) {
-      $$("[data-qr]").forEach(function (b) { b.style.display = "none"; });
+      if (location.protocol === "file:") { $$("[data-qr]").forEach(function (b) { b.style.display = "none"; }); return; }
+      // Not connected yet: still show the QR so the layout can be rehearsed.
+      var s0 = Live.clean(params.get("s")) || Live.clean(localStorage.getItem("deck-session")) || (Live.newSession ? Live.newSession() : "demo");
+      localStorage.setItem("deck-session", s0);
+      drawQR(s0, false);
       return;
     }
     Live.on = true;
@@ -320,18 +340,20 @@
     var ln = document.getElementById("lens"); if (ln) ln.style.display = "none";
     playCharts(slide);
     $$("[data-count]", slide).forEach(function (el) { if (el.dataset.on !== "fragment") count(el); });
-    document.querySelector(".reveal-viewport").classList.toggle("nobrand", slide.classList.contains("cover") || slide.classList.contains("act"));
+    document.querySelector(".reveal-viewport").classList.toggle("nobrand", slide.classList.contains("cover") || slide.classList.contains("act") || /nobrand/.test(slide.dataset.state || ""));
+    panicStep(slide);
     syncRound(slide);
   }
   Reveal.on("ready", function (e) { onSlide(e.currentSlide); });
   Reveal.on("slidechanged", function (e) { onSlide(e.currentSlide); });
   Reveal.on("fragmentshown", function (e) {
-    var f = e.fragment;
+    var f = e.fragment; panicStep(Reveal.getCurrentSlide());
     if (f.classList.contains("game-reveal")) setRevealed(f.dataset.round, true);
     $$("[data-count][data-on=fragment]", f).forEach(count);
     if (f.matches && f.matches("[data-count][data-on=fragment]")) count(f);
   });
   Reveal.on("fragmenthidden", function (e) {
+    panicStep(Reveal.getCurrentSlide());
     if (e.fragment.classList.contains("game-reveal")) setRevealed(e.fragment.dataset.round, false);
   });
 
