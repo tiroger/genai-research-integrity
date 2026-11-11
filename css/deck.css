@@ -528,3 +528,21 @@ section.present.pc .curve{animation:draw 2s ease-out .2s forwards}
 .anum{font:700 54px/1 var(--serif);color:var(--blue)}
 .card[style*="amber"] .aic{background:var(--amber)}
 .card[style*="amber"] .anum{color:#B7801A}
+
+/* ===== guided zoom ===== */
+.zoomer{position:relative;width:100%;overflow:hidden;background:#fff;border:1px solid var(--line);border-radius:14px}
+.zoomer .zl{position:absolute;left:0;top:0;transform-origin:0 0;transition:transform .9s cubic-bezier(.3,.7,.2,1);will-change:transform}
+.zoomer img{display:block;max-width:none;cursor:zoom-in}
+.zspot{position:absolute;border-radius:10px;box-shadow:0 0 0 4000px rgba(244,247,250,.78);outline:3px solid var(--amber);outline-offset:6px;opacity:0;transition:opacity .5s,left .9s,top .9s,width .9s,height .9s;pointer-events:none}
+.zoomer.focus .zspot{opacity:1}
+.zcap{min-height:58px;display:block;font-size:27px;line-height:1.35;color:var(--ink);background:#fff;border:1px solid var(--line);border-left:6px solid var(--amber);border-radius:10px;padding:18px 20px;transition:opacity .3s}
+.zcap.swap{opacity:0}
+/* ===== click-to-zoom lightbox ===== */
+.frame img,.paper img{cursor:zoom-in}
+#lb{position:fixed;inset:0;z-index:100;background:rgba(6,16,36,.94);display:none}
+#lb.open{display:block}
+#lb .lb-stage{position:absolute;inset:0 0 56px 0;overflow:hidden;cursor:grab}
+#lb .lb-stage.drag{cursor:grabbing}
+#lb img{position:absolute;left:0;top:0;transform-origin:0 0;max-width:none;user-select:none;-webkit-user-drag:none;box-shadow:0 10px 40px rgba(0,0,0,.5);background:#fff}
+#lb .lb-bar{position:absolute;left:0;right:0;bottom:0;height:56px;display:flex;align-items:center;justify-content:space-between;padding:0 24px;color:#C7D7E8;font:500 15px var(--sans)}
+#lb .lb-x{font:700 22px var(--sans);color:#fff;background:transparent;border:1px solid rgba(255,255,255,.3);border-radius:999px;width:40px;height:40px;cursor:pointer}

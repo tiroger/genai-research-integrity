@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Scientific Research in the Age of Gen AI</title>
 <link rel="stylesheet" href="lib/reveal.css?v=f8e9b506">
-<link rel="stylesheet" href="css/deck.css?v=fa09c158">
+<link rel="stylesheet" href="css/deck.css?v=ef0c6f2f">
 </head>
 <body>
 <div class="reveal"><div class="slides">
@@ -327,19 +327,21 @@
 </section>
 
 <!-- 19 · KIM 2 -->
-<section>
-  <div class="eyebrow"><span class="tag t-cheat">Falsification</span></div>
+<section id="kim2">
+  <div class="eyebrow"><span class="tag t-cheat">Falsification</span> · the original table, step by step</div>
   <h2>…and qualitative data, too</h2>
-  <p class="hint" style="margin:-8px 0 22px">Real interviews with dialysis patients in an exercise program. GPT-4 was asked to rewrite the patient’s answers, and to fill in the parts that were inaudible.</p>
-  <div class="itab">
-    <div class="ih">Interviewer asked</div><div class="ih orig">What the patient said</div><div class="ih neg fragment fade-in" data-fragment-index="1">GPT-4: “make it negative”</div><div class="ih pos fragment fade-in" data-fragment-index="2">GPT-4: “make it positive”</div>
-    <div class="iq">When you were asked at first about this programme, what did you think about it?</div><div class="ia orig">Nothing. I am also a researcher and if this can help others I am happy about it.</div><div class="ia neg fragment fade-in" data-fragment-index="1">I felt a bit skeptical. I’m not one for these new-age treatments. I was unsure if this would even help.</div><div class="ia pos fragment fade-in" data-fragment-index="2">I was curious and hopeful. I thought it might help me feel healthier and more energetic during dialysis.</div>
-    <div class="iq">How did you feel at first when you started?</div><div class="ia orig">Normal! It was all normal!</div><div class="ia neg fragment fade-in" data-fragment-index="1">Uncomfortable. It felt like an added chore to an already tiring process.</div><div class="ia pos fragment fade-in" data-fragment-index="2">A bit excited actually! It felt good to be doing something active again.</div>
-    <div class="iq">Do you think you have been successful in cycling?</div><div class="ia orig">Yes, I am cycling in 20th gear and cycle for 45 min.</div><div class="ia neg fragment fade-in" data-fragment-index="1">I tried a few times, but I struggle to get past the first 10 min.</div><div class="ia pos fragment fade-in" data-fragment-index="2">Yes, I’m already seeing improvement. My stamina is getting better, and I am proud that I can cycle regularly.</div>
-    <div class="iq">How many times a week do you do cycling?</div><div class="ia orig">Three days a week.</div><div class="ia neg fragment fade-in" data-fragment-index="1">I tried it a couple of times but now barely once a week.</div><div class="ia pos fragment fade-in" data-fragment-index="2">Three days a week, and I look forward to it. It’s become a great routine for me.</div>
+  <div class="zcap" data-zcap="z19">Real interviews with dialysis patients (Young et al.). GPT-4 was told to make them <b>negative</b>, then <b>positive</b>, and to fill in inaudible parts “in the participant’s voice.” Bold is what it changed.</div>
+  <div class="r-stack" style="height:640px;width:100%;margin-top:14px">
+    <div class="zoomer" id="z19a" style="height:640px"><div class="zl"><img decoding="async" data-src="assets/kim-interview.webp" alt="Table 2: original vs GPT-4 negative interview" data-w="1504" data-h="1086"><div class="zspot"></div></div></div>
+    <div class="zoomer fragment fade-in" data-fragment-index="4" id="z19b" style="height:640px"><div class="zl"><img decoding="async" data-src="assets/kim-positive.webp" alt="Positive GPT-4 manipulated interview" data-w="1500" data-h="1089"><div class="zspot"></div></div></div>
   </div>
-  <p class="foot">Kim JH et al., “Generative AI can effectively manipulate data,” AI and Ethics (2024), using published interviews from Young et al. Excerpts.</p>
-  <aside class="notes">Start with the real patient: matter-of-fact, positive. Click: GPT-4 makes the same patient skeptical and struggling. Click: now enthusiastic. Same interview, any conclusion you want, and it reads as authentic. It even filled in inaudible portions "in the participant's voice."</aside>
+  <span class="fragment zstep" data-fragment-index="1" data-z="z19a" data-box="36,322,1440,210" data-cap="First reaction. Left: what the patient said. Right: GPT-4’s “negative” rewrite."></span>
+  <span class="fragment zstep" data-fragment-index="2" data-z="z19a" data-box="36,662,1440,92" data-cap="“Yes, I am cycling in 20th gear for 45 min” becomes “I struggle to get past the first 10 min.”"></span>
+  <span class="fragment zstep" data-fragment-index="3" data-z="z19a" data-box="36,882,1440,92" data-cap="“Three days a week” becomes “barely once a week.” The note about the participant’s English is kept, so it still reads as authentic."></span>
+  <span class="fragment zstep" data-fragment-index="5" data-z="z19b" data-box="36,358,1100,175" data-cap="Same interview, now “positive”: curious, hopeful, excited."></span>
+  <span class="fragment zstep" data-fragment-index="6" data-z="z19b" data-box="36,945,880,100" data-cap="“Three days a week, and I look forward to it.” Any conclusion you want."></span>
+  <p class="foot">Kim JH et al., “Generative AI can effectively manipulate data,” AI and Ethics (2024), Table 2, using interviews from Young et al. Click any image to zoom.</p>
+  <aside class="notes">Opens on the full table from the paper. Each click zooms into one exchange: first reaction, cycling success, frequency. Click 4 swaps to GPT-4's positive version; clicks 5 and 6 zoom into it. Same patient, any conclusion you want, and it reads as authentic.</aside>
 </section>
 
 <!-- 20 · UNTIL IT'S SIGNIFICANT -->
@@ -677,6 +679,7 @@
 
 <div id="brand"><img class="b" src="assets/logo-black.png" alt="Columbia Research, Office of Research Compliance and Training"><img class="w" src="assets/logo-white.png" alt=""></div>
 <div class="lens" id="lens"></div>
+<div id="lb" aria-hidden="true"><div class="lb-stage"><img alt=""></div><div class="lb-bar"><span>Scroll or double-click to zoom · drag to move · Esc to close</span><button class="lb-x" aria-label="Close">✕</button></div></div>
 
 <script src="lib/reveal.js?v=1726477b"></script>
 <script src="lib/notes.js?v=de1000bf"></script>
@@ -684,6 +687,6 @@
 <script src="js/config.js?v=22f5f014"></script>
 <script src="js/rounds.js?v=9b770cee"></script>
 <script src="js/live.js?v=5ad5d987"></script>
-<script src="js/deck.js?v=e1db7edc"></script>
+<script src="js/deck.js?v=41f10e7f"></script>
 </body>
 </html>
