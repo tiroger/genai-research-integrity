@@ -546,3 +546,35 @@ section.present.pc .curve{animation:draw 2s ease-out .2s forwards}
 #lb img{position:absolute;left:0;top:0;transform-origin:0 0;max-width:none;user-select:none;-webkit-user-drag:none;box-shadow:0 10px 40px rgba(0,0,0,.5);background:#fff}
 #lb .lb-bar{position:absolute;left:0;right:0;bottom:0;height:56px;display:flex;align-items:center;justify-content:space-between;padding:0 24px;color:#C7D7E8;font:500 15px var(--sans)}
 #lb .lb-x{font:700 22px var(--sans);color:#fff;background:transparent;border:1px solid rgba(255,255,255,.3);border-radius:999px;width:40px;height:40px;cursor:pointer}
+
+/* ===== QA pass ===== */
+/* one QR component, same size everywhere */
+.qrbox,.qrbox.sm,.qrbox.lg{flex-direction:column;align-items:flex-start;gap:14px;width:300px;flex:none;padding:20px;border-radius:14px}
+.qrbox .qr,.qrbox.sm .qr,.qrbox.lg .qr{width:200px;height:200px}
+.qrbox .t{font-size:19px}.qrbox .t b{font-size:24px}
+.qrbox code{font-size:16px;line-height:1.3}
+.dark .qrbox,.accent .qrbox{border-color:transparent}
+.cgame{grid-template-columns:700px 610px;gap:16px 36px}
+/* stamp clear of the counter */
+.stamp{top:96px;right:84px}
+/* act slides */
+section.act .credit{right:auto;left:calc(50% + 20px);bottom:18px}
+section.act h1 em{font-style:italic;color:var(--amber)}
+/* gray zones */
+.gzs{margin-top:10px;gap:22px}
+.card.gz{padding:30px 30px;min-height:290px}
+.card.gz .aic{margin-bottom:18px;background:rgba(185,217,235,.18)}
+.card.gz .aic svg{stroke:var(--cb)}
+.card.gz h3{font-size:34px;line-height:1.2;margin:0 0 10px}
+.card.gz p{font-size:25px}
+.on-dark .agree-hd .aic{background:rgba(242,179,61,.16)}
+.on-dark .agree-hd .aic svg{stroke:var(--amber)}
+.on-dark .agree-hd .anum{color:var(--amber)}
+/* warm-up poll fills the slide */
+.pollgame .vrow{margin:30px 0}.pollgame .vbtn{padding:20px 22px;font-size:32px}.pollgame .vbar{height:64px}.pollgame .vcount{font-size:42px}
+.pollgame .vote{padding:28px 30px}
+
+.ab.stack .abopt img{max-height:230px}
+.qrbox.wide{flex-direction:row;align-items:center;width:auto;gap:20px}
+.qrbox.wide .qr{width:200px;height:200px}
+.qrbox.wide .t{max-width:300px}
