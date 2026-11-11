@@ -134,7 +134,8 @@ section.present .stamp{animation:thump .5s cubic-bezier(.2,1.6,.4,1) .6s forward
 .vchart .plot{position:relative;border-bottom:2px solid var(--ink)}
 .vchart .gl{position:absolute;left:0;right:0;height:1px;background:var(--line)}
 .vchart .bars{position:absolute;inset:0;display:flex;gap:18px;align-items:flex-end;padding:0 10px}
-.vchart .bar{flex:1;position:relative;height:0;background:var(--blue);border-radius:6px 6px 0 0;transition:height 1s cubic-bezier(.2,.8,.2,1)}
+.vchart .bar{flex:1;position:relative;background:var(--blue);border-radius:6px 6px 0 0;transform:scaleY(0);transform-origin:bottom;transition:transform 1s cubic-bezier(.2,.8,.2,1)}
+.vchart .bar.go{transform:scaleY(1)}
 .vchart .bar.now{background:var(--amber)}
 .vchart .bar b{position:absolute;left:50%;top:-36px;transform:translateX(-50%);font-size:22px;font-weight:700;color:var(--navy);white-space:nowrap;opacity:0;transition:opacity .4s .8s}
 section.present .vchart .bar b{opacity:1}
@@ -327,7 +328,10 @@ section.present .panic .curve{animation:draw 2.2s ease-out .2s forwards}
 
 /* hotspots */
 .hots{position:relative}
-.hot{position:absolute;width:44px;height:44px;margin:-22px 0 0 -22px;border-radius:50%;background:var(--amber);border:3px solid var(--navy);cursor:pointer;display:grid;place-items:center;color:var(--navy);font:800 22px var(--sans);animation:ring 2s infinite}
+.hot{position:absolute;width:44px;height:44px;margin:-22px 0 0 -22px;border-radius:50%;background:var(--amber);border:3px solid var(--navy);cursor:pointer;display:grid;place-items:center;color:var(--navy);font:800 22px var(--sans)}
+.hot::after{content:"";position:absolute;inset:-3px;border-radius:50%;border:3px solid var(--amber);animation:ring2 2s infinite;pointer-events:none}
+.hot.open::after{display:none}
+@keyframes ring2{0%{transform:scale(1);opacity:.8}80%,100%{transform:scale(1.9);opacity:0}}
 @keyframes ring{0%{box-shadow:0 0 0 0 rgba(242,179,61,.7)}70%{box-shadow:0 0 0 20px rgba(242,179,61,0)}100%{box-shadow:0 0 0 0 rgba(242,179,61,0)}}
 .hot .tip{position:absolute;left:54px;top:-12px;width:380px;background:var(--navy);color:#fff;font:500 22px/1.3 var(--sans);padding:14px 18px;border-radius:10px;display:none;text-align:left;z-index:3}
 .hot.left .tip{left:auto;right:54px}
@@ -502,3 +506,25 @@ section.present.pc .curve{animation:draw 2s ease-out .2s forwards}
 .bh b{font:800 22px var(--sans);letter-spacing:.06em;color:var(--navy)}
 .bh.sm img{height:32px;width:32px}.bh.sm b{font-size:18px}
 .bot .ans{font:600 31px/1.25 var(--serif);color:var(--navy);margin-bottom:14px!important}
+
+/* interview comparison */
+.itab{display:grid;grid-template-columns:370px 1fr 1fr 1fr;gap:10px 14px}
+.itab .ih{font:800 18px var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);padding:4px 4px 6px}
+.itab .ih.orig{color:var(--blue)}.itab .ih.neg{color:#B4472A}.itab .ih.pos{color:#2E7D5B}
+.itab .iq{font:600 italic 24px/1.3 var(--serif);color:var(--navy);padding:16px 18px 16px 0;border-top:1px solid var(--line)}
+.itab .ia{font-size:24px;line-height:1.35;padding:16px 20px;border-radius:10px;background:#fff;border:1px solid var(--line)}
+.itab .ia.orig{border-left:6px solid var(--blue)}
+.itab .ia.neg{background:#FCEDE8;border-color:#F3C9BC;border-left:6px solid #D9603F;font-weight:600;color:#5A2416}
+.itab .ia.pos{background:#E7F4EC;border-color:#BFE0CC;border-left:6px solid #2E9E6B;font-weight:600;color:#17442D}
+
+/* ===== performance ===== */
+.reveal .slides section:not(.present) *,.reveal .slides section:not(.present) *::before,.reveal .slides section:not(.present) *::after{animation-play-state:paused!important}
+.flip .fi{will-change:transform}
+.reveal .slides>section{contain:layout paint}
+/* five things icons */
+.agree-hd{display:flex;align-items:center;gap:14px;margin-bottom:18px}
+.aic{width:72px;height:72px;border-radius:16px;background:var(--cb);display:grid;place-items:center}
+.aic svg{width:40px;height:40px;fill:none;stroke:var(--navy);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.anum{font:700 54px/1 var(--serif);color:var(--blue)}
+.card[style*="amber"] .aic{background:var(--amber)}
+.card[style*="amber"] .anum{color:#B7801A}

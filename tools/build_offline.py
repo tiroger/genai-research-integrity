@@ -52,7 +52,7 @@ def main():
         p = os.path.join(ROOT, m.group(2))
         if p.endswith(".mp4") and os.path.exists(p) and os.path.getsize(p) > 25e6: return m.group(0)
         return asset(m)
-    html = re.sub(r'(src|data-background-image|poster)="(assets/[^"]+)"', asset2, html)
+    html = re.sub(r'(data-src|src|data-background-image|poster)="(assets/[^"]+)"', asset2, html)
     # rounds.js references images by path; rewrite them too
     html = re.sub(r'"(assets/[^"]+\.webp)"',
                   lambda m: '"%s"' % data_uri(os.path.join(ROOT, m.group(1))), html)

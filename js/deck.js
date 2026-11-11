@@ -24,7 +24,7 @@
     width: 1920, height: 1080, margin: 0, minScale: 0.1, maxScale: 3,
     center: false, hash: true, controls: true, controlsTutorial: false, progress: true,
     slideNumber: function () { var t = Reveal.getTotalSlides(), i = Reveal.getIndices().h + 1; return [String(i).padStart(2, "0"), "/", t]; }, transition: "fade", backgroundTransition: "fade", transitionSpeed: "default",
-    pdfSeparateFragments: false, plugins: [window.RevealNotes].filter(Boolean)
+    pdfSeparateFragments: false, viewDistance: 2, mobileViewDistance: 1, preloadIframes: false, plugins: [window.RevealNotes].filter(Boolean)
   });
 
   /* ---------------- charts ---------------- */
@@ -46,11 +46,11 @@
 
   function playCharts(slide) {
     $$(".vchart .bar", slide).forEach(function (b, i) {
-      b.style.transition = "none"; b.style.height = "0"; void b.offsetHeight; b.style.transition = "";
-      setTimeout(function () { b.style.height = b.dataset.h + "%"; }, 150 + i * 70);
+      b.style.height = b.dataset.h + "%"; b.classList.remove("go");
+      setTimeout(function () { b.classList.add("go"); }, 150 + i * 70);
     });
     $$(".hrow", slide).forEach(function (b, i) {
-      var bar = $(".t i", b); bar.style.transition = "none"; bar.style.width = "0"; void bar.offsetWidth; bar.style.transition = "";
+      var bar = $(".t i", b); if (!bar) return; bar.style.transition = "none"; bar.style.width = "0"; void bar.offsetWidth; bar.style.transition = "";
       setTimeout(function () { bar.style.width = b.dataset.w + "%"; }, 250 + i * 120);
     });
   }
@@ -105,8 +105,11 @@
       target[y * W + x] = Math.min(1, v);
     }
     var noise = new Float32Array(W * H), T0 = performance.now(), period = 9000;
+    var cover = c.closest("section"), running = false;
+    function kick() { if (!running && cover.classList.contains("present")) { running = true; requestAnimationFrame(frame); } }
+    Reveal.on("slidechanged", kick); Reveal.on("ready", kick);
     function frame(now) {
-      if (!document.body.contains(c)) return;
+      if (!cover.classList.contains("present") || document.hidden) { running = false; return; }
       var ph = ((now - T0) % period) / period;          // 0..1
       var a = ph < 0.65 ? ph / 0.65 : ph < 0.85 ? 1 : 1 - (ph - 0.85) / 0.15; // denoise, hold, re-noise
       a = a * a * (3 - 2 * a);
@@ -123,7 +126,7 @@
       g.putImageData(img, 0, 0);
       setTimeout(function () { requestAnimationFrame(frame); }, 60);
     }
-    requestAnimationFrame(frame);
+    document.addEventListener("visibilitychange", kick);
   })();
 
   /* ---------------- games ---------------- */
@@ -396,7 +399,14 @@
     syncRound(slide);
   }
   Reveal.on("ready", function (e) { onSlide(e.currentSlide); });
-  Reveal.on("slidechanged", function (e) { onSlide(e.currentSlide); });
+  Reveal.on("slidechanged", function (e) { onSlide(e.currentSlide); predecode(e.indexh); });
+  function predecode(i) {
+    var all = Reveal.getSlides();
+    [i + 1, i + 2].forEach(function (k) {
+      var s = all[k]; if (!s) return;
+      $$("img[data-src]", s).forEach(function (im) { if (!im.src) { im.src = im.getAttribute("data-src"); } if (im.decode) im.decode().catch(function () {}); });
+    });
+  }
   Reveal.on("fragmentshown", function (e) {
     var f = e.fragment; panicStep(Reveal.getCurrentSlide());
     if (f.classList.contains("game-reveal")) setRevealed(f.dataset.round, true);
@@ -410,7 +420,9 @@
 
   /* ---------------- magnifier lens ---------------- */
   var lens = $("#lens"), Z = 2.6;
-  document.addEventListener("mousemove", function (e) {
+  var lensEv = null;
+  document.addEventListener("mousemove", function (e) { if (!lensEv) requestAnimationFrame(function () { lensMove(lensEv); lensEv = null; }); lensEv = e; });
+  function lensMove(e) {
     var img = e.target.closest && e.target.closest(".tile img, .panel img");
     if (!img && e.target.closest) { var z = e.target.closest(".tile, .panel"); if (z) img = $("img", z); }
     if (!img) { lens.style.display = "none"; return; }
@@ -421,7 +433,7 @@
     lens.style.backgroundImage = "url('" + img.currentSrc + "')";
     lens.style.backgroundSize = (r.width * Z) + "px " + (r.height * Z) + "px";
     lens.style.backgroundPosition = (130 - x * Z) + "px " + (130 - y * Z) + "px";
-  });
+  }
 
   /* ---------------- videos ---------------- */
   $$("video").forEach(function (v) {
