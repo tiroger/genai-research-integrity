@@ -34,6 +34,7 @@ def inline_css(rel):
 
 def main():
     html = read("index.html")
+    html = re.sub(r'\?v=[0-9a-f]+"', '"', html)
     html = re.sub(r'<link rel="stylesheet" href="([^"]+)">',
                   lambda m: "<style>\n%s\n</style>" % inline_css(m.group(1)), html)
 
