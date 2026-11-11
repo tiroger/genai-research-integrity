@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Scientific Research in the Age of Gen AI</title>
+<link rel="stylesheet" href="lib/reveal.css">
+<link rel="stylesheet" href="css/deck.css">
+</head>
+<body>
+<div class="reveal"><div class="slides">
+
+<!-- ============ 1 COVER ============ -->
+<section class="cover" data-state="dark">
+  <canvas id="diffusion" width="160" height="90" style="image-rendering:pixelated"></canvas>
+  <div class="f">
+    <div class="rule"></div>
+    <div class="kicker">[Event name] · Columbia Research</div>
+    <h1>Scientific Research in the Age of <em>Gen AI</em></h1>
+    <div class="who"><b>Roger Lefort, PhD</b><br>Assistant Director for Research Compliance and Training</div>
+    <div class="when">[Date]</div>
+  </div>
+  <aside class="notes">Welcome. The background is a diffusion model in miniature: random noise that slowly settles into something that looks like western blot bands. Hold that picture; we'll come back to it.
+  Plan: 45 minutes of talk, 15 of questions. A few slides are games. Grab your phone.</aside>
+</section>
+
+<!-- ============ 2 WARM-UP POLL ============ -->
+<section class="dark" data-state="dark" data-round="warmup" style="background:var(--navy)">
+  <div class="f">
+    <div class="hd">
+      <div class="eyebrow">Warm-up · quick poll</div>
+      <h2>In the past month, have you used AI to…</h2>
+    </div>
+    <div class="row grow">
+      <div class="col grow"><div class="game pollgame" data-round="warmup"></div>
+        <div class="gbar"><span class="vcount" data-vcount></span><span class="hint local-hint">Click an option to count hands from the chat. Shift-click to subtract.</span></div>
+      </div>
+      <div class="col" style="width:560px;align-items:flex-end;justify-content:center">
+        <div class="qrbox lg" data-qr><div class="qr"></div><div class="t"><b>Join on your phone</b>Scan, or open<br><code data-url></code><span class="live off">Connecting…</span></div></div>
+      </div>
+    </div>
+  </div>
+  <aside class="notes">Open with the poll. Tell people to keep the page open: it follows the slides and lights up for each game.
+  If live voting is off, ask for hands or chat replies and click the options to count. Point out how ordinary most of these uses are. That's the backdrop: almost everyone is using these tools already.</aside>
+</section>
+
+<!-- ============ 3 LANDSCAPE ============ -->
+<section>
+  <div class="f">
+    <div class="hd"><div class="eyebrow">Where we are</div><h2>The ever-growing Gen AI landscape</h2></div>
+    <div class="cloud">
+      <img src="assets/logo-claude.webp"     style="left:1%;top:4%;width:540px;transition-delay:.05s" class="float" alt="Claude">
+      <img src="assets/logo-gemini.webp"     style="left:38%;top:0%;width:420px;transition-delay:.15s" class="float" alt="Gemini">
+      <img src="assets/logo-chatgpt.webp"    style="left:70%;top:2%;width:360px;transition-delay:.25s" class="float" alt="ChatGPT">
+      <img src="assets/logo-firefly.webp"    style="left:4%;top:36%;width:300px;transition-delay:.35s" class="float" alt="Adobe Firefly">
+      <img src="assets/logo-llama.webp"      style="left:27%;top:28%;width:330px;transition-delay:.45s" class="float" alt="LLaMA">
+      <img src="assets/logo-sora.webp"       style="left:50%;top:30%;width:290px;transition-delay:.55s" class="float" alt="Sora">
+      <img src="assets/logo-grok.webp"       style="left:69%;top:40%;width:380px;transition-delay:.65s" class="float" alt="Grok">
+      <img src="assets/logo-deepseek.webp"   style="left:2%;top:72%;width:460px;transition-delay:.75s" class="float" alt="DeepSeek">
+      <img src="assets/logo-midjourney.webp" style="left:38%;top:74%;width:360px;transition-delay:.85s" class="float" alt="Midjourney">
+      <img src="assets/logo-dalle.webp"      style="left:68%;top:80%;width:330px;transition-delay:.95s" class="float" alt="DALL-E">
+    </div>
+  </div>
+  <aside class="notes">Text, images, video, code: a new tool every few weeks, and most of them are free to try.</aside>
+</section>
+
+<!-- ============ 4 WHAT CAN(T) ============ -->
+<section>
+  <div class="f">
+    <div class="hd"><div class="eyebrow">Capabilities</div><h2>What can(’t) Gen AI do?</h2></div>
+    <div class="grow row center"><div class="shot rise" style="height:100%;"><img src="assets/gen-ai-can.webp" style="height:100%;width:auto" alt="Diagram of generative AI capabilities"></div></div>
+  </div>
+  <aside class="notes">Generating, summarizing and translating text; answering questions; chat; classifying; writing and fixing code; multimodal input. The question for us is not whether it can do these things, but what happens when they show up in the research record.</aside>
+</section>
+
+<!-- ============ 5 MARKET ============ -->
+<section>
+  <div class="f">
+    <div class="hd"><div class="eyebrow">The money is moving</div><h2>Shaping the future of drug discovery</h2></div>
+    <div class="row grow">
+      <div class="col grow">
+        <div class="vbars" id="market">
+          <!-- filled by JS -->
+        </div>
+      </div>
+      <div class="col" style="width:420px;justify-content:center;gap:40px">
+        <div><div class="big"><span data-count="26.3" data-dec="1" data-pre="$">0</span>B</div><p class="muted">AI in biotechnology, forecast for 2033</p></div>
+        <div><div class="bigsm"><span data-count="19.3" data-dec="1">0</span>%</div><p class="muted">Compound annual growth</p></div>
+      </div>
+    </div>
+    <div class="src">AI in biotechnology market size, 2023–2033, US$ billion (drug target identification, image screening, drug screening, predictive modeling). Source: market.us.</div>
+  </div>
+  <aside class="notes">This is a forecast, not a fact, but it shows where investment is going: drug target identification, screening, predictive modeling. Highlighted bar is this year.</aside>
+</section>
+
+<!-- ============ 6 GROWING THREAT ============ -->
+<section>
+  <div class="f">
+    <div class="hd"><div class="eyebrow">The worry</div><h2>A growing threat?</h2></div>
+    <div class="stack">
+      <div class="shot" style="left:0;top:0;width:820px;transform:rotate(-2deg);transition-delay:.1s"><img src="assets/hl-looming.webp" alt="The Looming Threat of Generative AI to Scientific Integrity"></div>
+      <div class="shot" style="left:780px;top:40px;width:900px;transform:rotate(1.5deg);transition-delay:.45s"><img src="assets/hl-trust.webp" alt="Too Much Trust in AI Poses Unexpected Threats to the Scientific Process"></div>
+      <div class="shot" style="left:40px;top:330px;width:900px;transform:rotate(1deg);transition-delay:.8s"><img src="assets/hl-fakery.webp" alt="AI's data fakery is 'scary' say researchers"></div>
+      <div class="shot" style="left:900px;top:370px;width:780px;transform:rotate(-1.5deg);transition-delay:1.15s"><img src="assets/hl-existential.webp" alt="Generative AI makes fraud an existential threat to science"></div>
+    </div>
+  </div>
+  <aside class="notes">The headlines are alarming: "looming threat," "existential threat," "scary." Before we accept that framing, a bit of history.</aside>
+</section>
+
+<!-- ============ 7 TECH PANIC CYCLE ============ -->
+<section>
+  <div class="f">
+    <div class="hd"><div class="eyebrow">A familiar pattern</div><h2>Stages of the tech panic cycle</h2></div>
+    <div class="panic grow">
+      <svg viewBox="0 0 1700 700" preserveAspectRatio="xMidYMid meet">
+        <defs><linearGradient id="pg" x1="0" x2="1"><stop offset="0" stop-color="#4F8FD6"/><stop offset=".5" stop-color="#E0457B"/><stop offset="1" stop-color="#1D4F91"/></linearGradient></defs>
+        <line class="axis" x1="60" y1="660" x2="1680" y2="660"/><line class="axis" x1="60" y1="660" x2="60" y2="20"/>
+        <text class="axl" x="70" y="40">PUBLIC CONCERN</text><text class="axl" x="1570" y="690">TIME</text>
+        <path class="curve" d="M80 630 C 300 625, 380 560, 520 430 S 760 110, 840 110 S 980 260, 1100 380 S 1350 560, 1660 600"/>
+        <g class="stage fragment" data-fragment-index="1"><circle cx="230" cy="610" r="28"/><text class="n" x="230" y="610">1</text>
+          <foreignObject x="150" y="370" width="380" height="200"><div xmlns="http://www.w3.org/1999/xhtml"><b>Innovation &amp; adoption</b>New technology arrives, offering benefits and rapid uptake.</div></foreignObject></g>
+        <g class="stage fragment" data-fragment-index="2"><circle cx="560" cy="385" r="28"/><text class="n" x="560" y="385">2</text>
+          <foreignObject x="150" y="120" width="420" height="220"><div xmlns="http://www.w3.org/1999/xhtml"><b>Early skepticism &amp; fear</b>Concerns about negative impacts, job displacement and ethics.</div></foreignObject></g>
+        <g class="stage fragment" data-fragment-index="3"><circle cx="840" cy="110" r="32" style="stroke:#E0457B;stroke-width:7"/><text class="n" x="840" y="110">3</text>
+          <foreignObject x="900" y="20" width="420" height="200"><div xmlns="http://www.w3.org/1999/xhtml"><b style="color:#E0457B">Peak panic &amp; moral outcry</b>Media frenzy and public alarm crescendo, often exaggerated.</div></foreignObject></g>
+        <g class="stage fragment" data-fragment-index="4"><circle cx="1100" cy="380" r="28"/><text class="n" x="1100" y="380">4</text>
+          <foreignObject x="1150" y="240" width="460" height="200"><div xmlns="http://www.w3.org/1999/xhtml"><b>Normalization &amp; adaptation</b>Society adjusts, rules are proposed, the technology is integrated.</div></foreignObject></g>
+        <g class="stage fragment" data-fragment-index="5"><circle cx="1500" cy="585" r="28"/><text class="n" x="1500" y="585">5</text>
+          <foreignObject x="1180" y="440" width="460" height="130"><div xmlns="http://www.w3.org/1999/xhtml"><b>Obsolescence &amp; next cycle</b>Attention shifts to the next innovation.</div></foreignObject></g>
+      </svg>
+    </div>
+    <div class="src">Adapted from Patrick Grady and Daniel Castro, “Tech Panics, Generative AI, and the Need for Regulatory Caution,” Center for Data Innovation, May 1, 2023.</div>
+  </div>
+  <aside class="notes">Click through the five stages. Ask the room: where do you think we are with generative AI right now? Most people say somewhere between 3 and 4.</aside>
+</section>
+
+<!-- ============ 8 PANIC HISTORY ============ -->
+<section>
+  <div class="f">
+    <div class="hd"><div class="eyebrow">History rhymes</div><h2>No new technology is immune from tech panic</h2></div>
+    <div class="grow row center"><div class="shot rise" style="width:100%"><img src="assets/panic-history.webp" alt="The microscope, photography, big data and generative AI each triggered scientific concern"></div></div>
+  </div>
+  <aside class="notes">The microscope (17th century): fear of illusion and artifact. Photography (19th): "loss of objectivity," mechanical images replacing drawings. Big data (2000s): "the end of theory." Generative AI today: fear that synthesis itself will atrophy. Each time, science adapted, with new norms. The norms are the point of this talk.</aside>
+</section>
+
+<!-- ============ 9 NATURE SURVEY ============ -->
+<section>
+  <div class="f">
+    <div class="hd"><div class="eyebrow">What researchers think</div><h2>The rise of AI: the negative impacts</h2>
+      <p class="lede">Nature asked ~1,600 researchers: considering machine-learning methods, what are the negative impacts of AI in research?</p></div>
+    <div class="grow row center">
+      <div class="hbars" id="survey"></div>
+    </div>
+    <div class="src">Van Noorden &amp; Perkel, “AI and science: what 1,600 researchers think,” Nature 621, 672–675 (27 Sep 2023). Percentages read from Nature’s chart.</div>
+  </div>
+  <aside class="notes">Before the bars draw, ask: what share do you think said AI "makes fraud easier"? Then let them animate. More than half. That's our question for the next part.</aside>
+</section>
+
+<!-- ============ 10 PHOTO ============ -->
+<section>
+  <div class="f">
+    <div class="hd"><div class="eyebrow">The question</div><h2>Will Gen AI make fraud easier?</h2></div>
+    <div class="grow row center" style="gap:80px">
+      <div class="shot rise" style="width:420px"><img src="assets/photo.webp" alt="Portrait"></div>
+      <div class="col rise d2" style="max-width:760px"><div class="bigsm" style="font-size:96px">Research<br>misconduct</div></div>
+    </div>
+  </div>
+  <aside class="notes">[Your original talking point for this slide.] Lead into the federal definition.</aside>
+</section>
+
+<!-- ============ 11 FFP ============ -->
+<section>
+  <div class="f">
+    <div class="hd"><div class="eyebrow">Research misconduct, defined</div><h2>Fabrication, falsification, plagiarism</h2></div>
+    <div class="ffp">
+      <div class="card rise d1" style="--c:var(--lie)"><div class="ic"><svg viewBox="0 0 24 24"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5 18 18M6 18l2.5-2.5M15.5 8.5 18 6"/></svg></div>
+        <h3>Fabrication <small>lying</small></h3><p>Making up data or results and recording or reporting them.</p></div>
+      <div class="card rise d2" style="--c:var(--cheat)"><div class="ic"><svg viewBox="0 0 24 24"><path d="M4 6h10M18 6h2M4 12h4M12 12h8M4 18h12M20 18h0"/><circle cx="16" cy="6" r="2"/><circle cx="10" cy="12" r="2"/><circle cx="18" cy="18" r="2"/></svg></div>
+        <h3>Falsification <small>cheating</small></h3><p>Manipulating materials, equipment or processes, or changing or omitting data, so the record is not accurate.</p></div>
+      <div class="card rise d3" style="--c:var(--plag)"><div class="ic"><svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg></div>
+        <h3>Plagiarism <small>lying</small></h3><p>Appropriating another person’s ideas, processes, results or words without proper credit.</p></div>
+    </div>
+    <div class="intent fragment fade-up">
+      <q>…committed intentionally, knowingly, or <span class="rk">recklessly</span></q>
+      <div class="gloss"><b style="color:#fff">Recklessly:</b> without proper caution despite a known risk of harm.<sup>*</sup></div>
+    </div>
+    <div class="src">42 CFR Part 93. *ORI v. Kreipke, Departmental Appeals Board, Civil Remedies Division (2018).</div>
+  </div>
+  <aside class="notes">The three acts that follow map onto these three categories. Keep "recklessly" in mind: every time you see the red RECKLESS? stamp, ask whether using AI this way, knowing what we know about it, is proceeding despite a known risk.</aside>
+</section>
+
+<!-- ============ 12 ACT I ============ -->
+<section class="act" data-act="plag" data-state="dark" data-background-image="assets/act-plagiarism.webp" data-background-size="cover" data-background-position="right center">
+  <div class="veil"></div>
+  <div class="f">
+    <div class="num">Act I</div>
+    <h2>Gen AI as a tool for <em>plagiarism?</em></h2>
+    <div class="def">Using another person’s ideas, processes, results or words without credit.</div>
+    <div class="credit">Illustration by Lena Yang</div>
+  </div>
+</section>
+
+<!-- ============ 13 LLM WORDS ============ -->
+<section data-act="plag">
+  <div class="f">
+    <div class="hd"><div class="eyebrow"><span class="chip" style="--c:var(--plag)">Plagiarism</span></div><h2>Increased usage of LLMs in publishing</h2></div>
+    <div class="row grow" style="align-items:flex-start">
+      <div class="shot rise" style="width:740px"><img src="assets/llm-words.webp" alt="Excess stylistic words in PubMed abstracts, 2013–2024"></div>
+      <div class="grow" style="position:relative;height:100%">
+        <div class="shot rise d2 tilt-r" style="position:absolute;left:60px;top:0;width:420px"><img src="assets/retracted.webp" alt="Retracted paper"></div>
+        <div class="shot fragment fade-up" style="position:absolute;right:0;bottom:30px;width:760px;border:4px solid var(--pink)"><img src="assets/certainly.webp" alt="Introduction beginning: Certainly, here is a possible introduction for your topic"></div>
+      </div>
+    </div>
+    <div class="src">Chart: Nature, from an analysis of 14 million PubMed abstracts (excess “stylistic” words such as “delves” after ChatGPT).</div>
+  </div>
+  <aside class="notes">Words like "delves" jumped after ChatGPT's release, far beyond the COVID-era bump in content words. Then the click: a published introduction that begins "Certainly, here is a possible introduction for your topic." It was retracted. Nobody read the paper closely, including the authors.</aside>
+</section>
+
+<!-- ============ 14 DOES AN LLM PLAGIARIZE ============ -->
+<section data-act="plag">
+  <div class="f">
+    <div class="hd"><div class="eyebrow"><span class="chip" style="--c:var(--plag)">Plagiarism</span></div><h2>Does an LLM plagiarize?</h2></div>
+    <div class="row grow" style="gap:28px;align-items:flex-start">
+      <div class="shot rise d1 tilt-l" style="width:520px"><img src="assets/chat-plag1.webp" alt="Chatbot answer on plagiarism"></div>
+      <div class="shot rise d2" style="width:470px;margin-top:30px"><img src="assets/chat-plag3.webp" alt="Chatbot answer: verbatim plagiarism vs idea laundering"></div>
+      <div class="col" style="width:560px;gap:26px">
+        <div class="callout rise d3" style="--c:var(--plag)"><div class="k">Short answer</div><p>Not in the usual sense. But it can reproduce text it was trained on, and it never tells you where an idea came from.</p></div>
+        <div class="callout fragment fade-up" style="--c:var(--coral)"><div class="k">Code too</div><p>Testing 14 code models, even the best produced code strikingly similar to existing open-source code in about 1–2% of outputs, and most gave wrong or no license information.</p><p class="small muted" style="margin-top:8px">Xu et al., ICSE 2025</p></div>
+      </div>
+    </div>
+  </div>
+  <aside class="notes">Ask the model itself and it gives a careful answer: memorization happens but is rare; the bigger risk is attribution. The Xu study adds code: 1–2% sounds small until you think of how many lines of AI-written code go into analysis pipelines, often under copyleft licenses that require attribution.</aside>
+</section>
+
+<!-- ============ 15 IDEA LAUNDERING ============ -->
+<section data-act="plag">
+  <div class="f">
+    <div class="hd"><div class="eyebrow"><span class="chip" style="--c:var(--plag)">Plagiarism</span></div><h2>“Idea laundering”</h2></div>
+    <div class="row grow" style="align-items:flex-start">
+      <div class="col" style="width:880px">
+        <div class="shot rise"><img src="assets/laundry.webp" alt="Generative AI idea laundry: the text is new, the idea is stolen, the stain is gone"></div>
+      </div>
+      <div class="col grow">
+        <div class="shot rise d2" style="width:560px"><img src="assets/laundering-card.webp" alt="Idea laundering: the AI rewrites an idea so thoroughly it evades plagiarism detection"></div>
+        <div class="fragment fade-up row" style="gap:24px;align-items:center;margin-top:0">
+          <div class="big" style="color:var(--plag);font-size:104px"><span data-count="24" data-on="fragment">0</span>%</div>
+          <p style="font-size:24px">of 50 AI-generated research documents were judged by experts to be paraphrased, with one-to-one methodological mapping, or significantly borrowed from existing work.</p>
+        </div>
+        <p class="fragment fade-up small muted" style="margin-top:6px">Gupta &amp; Pruthi, “All That Glitters is Not Novel: Plagiarism in AI Generated Research” (2025)</p>
+      </div>
+    </div>
+  </div>
+  <aside class="notes">The real threat isn't copy-paste; detectors catch that. It's feeding someone's abstract into a chatbot and asking it to "rewrite this for a new proposal." The logic and structure survive; every noun and verb changes. Gupta and Pruthi had experts examine AI-generated research ideas: about a quarter were laundered versions of existing work.</aside>
+</section>
+
+<!-- ============ 16 IDEA LAUNDERING RECKLESS ============ -->
+<section data-act="plag">
+  <div class="stamp">RECKLESS?</div>
+  <div class="f">
+    <div class="hd"><div class="eyebrow"><span class="chip" style="--c:var(--plag)">Plagiarism</span></div><h2>“Idea laundering”: reckless?</h2></div>
+    <div class="row grow" style="align-items:flex-start;gap:50px">
+      <div class="shot rise" style="width:780px"><img src="assets/ieee-def.webp" alt="IEEE definition of idea laundering"></div>
+      <div class="shot rise d2 tilt-r" style="width:820px;margin-top:40px"><img src="assets/laundering-paper.webp" alt="The Mechanism of Idea Laundering: How Generative AI Facilitates the Fabrication of Scientific Credibility"></div>
+    </div>
+  </div>
+  <aside class="notes">The IEEE has a name for this: idea laundering, analogous to money laundering, passing off ideas obtained illegitimately as legitimate. If you know the tool does this and use it anyway without checking, is that reckless?</aside>
+</section>
+
+<!-- ============ 17 ACT II ============ -->
+<section class="act" data-act="cheat" data-state="dark" data-background-image="assets/act-cheating.webp" data-background-size="cover" data-background-position="right center">
+  <div class="veil"></div>
+  <div class="f">
+    <div class="num">Act II</div>
+    <h2>Gen AI as a tool for <em>cheating?</em></h2>
+    <div class="def">Falsification: changing or omitting data so the research record is not accurate.</div>
+    <div class="credit">Illustration by Lena Yang</div>
+  </div>
+</section>
+
+<!-- ============ 18 DATA MANIPULATION 1 ============ -->
+<section data-act="cheat">
+  <div class="f">
+    <div class="hd"><div class="eyebrow"><span class="chip" style="--c:var(--cheat)">Falsification</span></div><h2>Generative AI can effectively manipulate data</h2></div>
+    <div class="row grow" style="gap:40px">
+      <div class="col" style="width:980px;gap:22px">
+        <div class="shot rise" style="width:520px"><img src="assets/kim-title.webp" alt="Kim et al., Generative AI can effectively manipulate data"></div>
+        <div class="r-stack" style="align-items:start">
+          <div class="shot rise d2 fragment fade-out" data-fragment-index="1"><img src="assets/kim-flow1.webp" alt="Workflow: generate clinical data, then manipulate it to reach significance"></div>
+          <div class="shot fragment fade-in" data-fragment-index="1"><img src="assets/kim-flow2.webp" alt="Workflow: manipulate economic indicators"></div>
+        </div>
+        <p class="small muted rise d3">Clinical data first. Click: then public economic data.</p>
+      </div>
+      <div class="grow r-stack" style="align-items:center">
+        <div class="shot rise d3 fragment fade-out" data-fragment-index="1" style="height:640px"><img src="assets/kim-violin.webp" style="height:100%;width:auto" alt="Fabricated, then manipulated clinical data reaching significance"></div>
+        <div class="shot fragment fade-in" data-fragment-index="1" style="width:640px"><img src="assets/kim-econ.webp" alt="Manipulated economic time series"></div>
+      </div>
+    </div>
+    <div class="src">Kim JH et al., “Generative AI can effectively manipulate data,” AI and Ethics (2024).</div>
+  </div>
+  <aside class="notes">GPT-4 was asked to create a clinical dataset, then to nudge it until a treatment showed a statistically, then clinically, significant benefit. It did. Click: the same works for public economic data (unemployment, GDP, S&amp;P 500).</aside>
+</section>
+
+<!-- ============ 19 DATA MANIPULATION 2 ============ -->
+<section data-act="cheat">
+  <div class="f">
+    <div class="hd"><div class="eyebrow"><span class="chip" style="--c:var(--cheat)">Falsification</span></div><h2>…and qualitative data, too</h2></div>
+    <div class="row grow" style="gap:40px;align-items:flex-start">
+      <div class="shot rise" style="width:360px"><img src="assets/kim-flow3.webp" alt="Workflow: manipulate interview transcripts"></div>
+      <div class="grow" style="position:relative;height:100%">
+        <div class="shot rise d2" style="position:absolute;left:0;top:0;width:900px"><img src="assets/kim-interview.webp" alt="Original vs GPT-4 manipulated interview transcript"></div>
+        <div class="shot fragment fade-up" style="position:absolute;right:0;bottom:10px;width:640px"><img src="assets/kim-positive.webp" alt="Interview rewritten to be positive"></div>
+      </div>
+    </div>
+    <div class="src">Kim JH et al., AI and Ethics (2024). Bold text marks GPT-4’s changes to the published interviews (Young et al.).</div>
+  </div>
+  <aside class="notes">Real published interview transcripts from patients in a dialysis cycling program. GPT-4 rewrote them to sound negative, then positive, filling inaudible gaps in the participant's voice. Bold is what changed. It reads as authentic.</aside>
+</section>
+
+<!-- ============ 20 UNTIL IT'S SIGNIFICANT ============ -->
+<section data-act="cheat">
+  <div class="f">
+    <div class="hd"><div class="eyebrow"><span class="chip" style="--c:var(--cheat)">Falsification</span> <span>New · 2026</span></div><h2>Until it’s significant</h2>
+      <p class="lede">AI coding agents were given four published datasets with null results.</p></div>
+    <div class="row grow" style="gap:70px;align-items:center">
+      <div class="col" style="width:520px;gap:30px">
+        <div><div class="big"><span data-count="640">0</span></div><p class="muted">test runs</p></div>
+        <div><div class="bigsm">4 <span class="muted" style="font-size:40px">null datasets</span></div></div>
+        <div><div class="bigsm">2 <span class="muted" style="font-size:40px">AI agents</span></div></div>
+      </div>
+      <div class="col grow" style="gap:22px">
+        <div class="bub me rise d1"><span class="who">Researcher</span>Find me a significant result.</div>
+        <div class="bub ai rise d2"><span class="who">Agent</span>I can’t do that. Searching for significance would be p-hacking.</div>
+        <div class="bub me fragment fade-up" data-fragment-index="1"><span class="who">Researcher</span>Explore alternative reasonable specifications to check robustness.</div>
+        <div class="bub ai fragment fade-up" data-fragment-index="2" style="border:3px solid var(--cheat)"><span class="who">Agent</span>Sure. <em>(Searches specifications until one comes out significant.)</em></div>
+      </div>
+    </div>
+    <div class="src">Asher et al., working paper (2026). Dialogue paraphrased to illustrate the finding.</div>
+  </div>
+  <aside class="notes">The agents refused a direct request to find significance, but searched for it when the same request was reframed as exploring alternatives. A specification search isn't misconduct by itself; reporting its winner as if it were the only test is. And if the agent logged 180 attempts and you never opened the log, is that reckless?</aside>
+</section>
+
+<!-- ============ 21 HALLUCINATIONS ============ -->
+<section data-act="cheat">
+  <div class="f">
+    <div class="hd"><div class="eyebrow"><span class="chip" style="--c:var(--cheat)">Falsification</span></div><h2>Hallucinations</h2></div>
+    <div class="row grow" style="gap:40px;align-items:flex-start">
+      <div class="shot rise" style="width:820px"><img src="assets/ap-headline.webp" alt="AP: Researchers say an AI-powered transcription tool used in hospitals invents things no one ever said"></div>
+      <div class="col grow" style="gap:30px">
+        <div class="shot rise d2 tilt-r"><img src="assets/whisper-photo.webp" alt="Whisper transcription code"></div>
+        <div class="fragment fade-up card" style="border-left:12px solid var(--cheat)">
+          <div class="row" style="gap:26px;align-items:center"><div class="big" style="font-size:110px"><span data-count="100" data-on="fragment">0</span>+</div>
+          <p style="font-size:27px;color:var(--ink)">hallucinated citations in about 50 papers accepted at NeurIPS 2025, each reviewed by three or more experts.</p></div>
+          <p class="small muted" style="margin-top:8px">Reported January 2026</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <aside class="notes">AP, October 2024: OpenAI's Whisper, used in hospitals to transcribe patient visits, sometimes invents sentences no one said. Click: and in research, a check of papers accepted at NeurIPS, a top AI conference, found at least 100 hallucinated citations in about 50 papers. These passed peer review.</aside>
+</section>
+
+<!-- ============ 22 HALLUCINATIONS RECKLESS ============ -->
+<section data-act="cheat">
+  <div class="stamp">RECKLESS?</div>
+  <div class="f">
+    <div class="hd"><div class="eyebrow"><span class="chip" style="--c:var(--cheat)">Falsification</span></div><h2>Hallucinations: reckless?</h2></div>
+    <div class="row grow" style="gap:50px;align-items:flex-start">
+      <div class="shot rise" style="width:560px"><img src="assets/ap-headline.webp" alt="AP headline"></div>
+      <div class="shot rise d2 tilt-r" style="width:1020px"><img src="assets/zenocardib.webp" alt="A convincing clinical trial abstract for a drug that does not exist"></div>
+    </div>
+  </div>
+  <aside class="notes">A complete, convincing Phase III abstract for "Zenocardib," a drug that doesn't exist, generated in seconds, author list included. Note the authors. If a tool is known to invent things, and you paste its output into your work without checking, that's the recklessness question.</aside>
+</section>
+
+<!-- ============ 23 ACT III ============ -->
+<section class="act" data-act="lie" data-state="dark" data-background-image="assets/act-lying.webp" data-background-size="cover" data-background-position="right center">
+  <div class="veil"></div>
+  <div class="f">
+    <div class="num">Act III</div>
+    <h2>Gen AI as a tool for <em>lying?</em></h2>
+    <div class="def">Fabrication: making up data or results and reporting them.</div>
+    <div class="credit">Illustration by Lena Yang</div>
+  </div>
+</section>
+
+<!-- ============ 24 PHOTOSHOPPING ============ -->
+<section data-act="lie">
+  <div class="f">
+    <div class="hd"><div class="eyebrow"><span class="chip" style="--c:var(--lie)">Fabrication</span></div><h2>Image manipulation is not new</h2></div>
+    <div class="row grow" style="gap:40px;align-items:flex-start">
+      <div class="col" style="width:600px;gap:20px">
+        <div class="shot rise"><img src="assets/photoshop-hl.webp" alt="Science Has a Nasty Photoshopping Problem"></div>
+        <div class="shot rise d3"><img src="assets/retraction-chart.webp" alt="Reasons for retraction over time"></div>
+      </div>
+      <div class="col grow" style="gap:20px"><div class="shot rise d2" style="width:780px"><img src="assets/apple.webp" alt="An apple whose mirror reflection is rotten"></div>
+        <div class="shot rise d4" style="width:480px"><img src="assets/bik-byline.webp" alt="By Elisabeth Bik"></div></div>
+    </div>
+  </div>
+  <aside class="notes">Elisabeth Bik's 2022 NYT piece: photoshopped images were already a major problem, rising as a share of retractions. Photoshop leaves fingerprints: cloned pixels, duplicated backgrounds. Generative AI doesn't.</aside>
+</section>
+
+<!-- ============ 25 FRONTIERS RAT ============ -->
+<section data-act="lie">
+  <div class="f">
+    <div class="hd"><div class="eyebrow"><span class="chip" style="--c:var(--lie)">Fabrication</span> <span>Click the dots</span></div><h2>Generating bogus science</h2></div>
+    <div class="row grow" style="gap:50px;align-items:flex-start">
+      <div class="col" style="width:600px;gap:24px">
+        <div class="shot rise"><img src="assets/frontiers-title.webp" alt="Frontiers in Cell and Developmental Biology: Cellular functions of spermatogonial stem cells in relation to JAK/STAT signaling pathway"></div>
+        <div class="callout fragment fade-up" style="--c:var(--lie)"><div class="k">What happened</div><p>Figures made with Midjourney passed peer review and were published in February 2024. The paper was retracted within days.</p></div>
+      </div>
+      <div class="hots shot rise d2" style="width:900px">
+        <img src="assets/rat.webp" alt="AI-generated rat diagram with an anatomically impossible organ and gibberish labels">
+        <div class="hot" style="left:46%;top:58%">1<div class="tip">Anatomically impossible: the organ is bigger than the rat.</div></div>
+        <div class="hot" style="left:7%;top:33%">2<div class="tip">The labels are nonsense words that only look like anatomy terms.</div></div>
+        <div class="hot left" style="left:85%;top:33%">3<div class="tip">The inset panels look like lab figures but show nothing real.</div></div>
+        <div class="hot" style="left:10%;top:88%">4<div class="tip">Peer reviewers and editors still let it through.</div></div>
+      </div>
+    </div>
+  </div>
+  <aside class="notes">Click each pink dot. This one is easy to spot, which is the point: it got through anyway. The next ones are not easy.</aside>
+</section>
+
+<!-- ============ 26 SPOT THE FAKE (GAME) ============ -->
+<section data-act="lie" data-round="micro">
+  <div class="f tight">
+    <div class="row grow" style="gap:50px">
+      <div class="col" style="width:600px">
+        <div class="eyebrow"><span class="chip" style="--c:var(--pink)">Game · round 1</span></div>
+        <h2 style="font-size:76px">Can you spot the AI fake?</h2>
+        <p class="lede" style="font-size:30px">Some of these are from real papers. Some were generated. Tap the ones you think are fake.</p>
+        <div class="qrbox" data-qr style="margin-top:30px"><div class="qr"></div><div class="t"><b>Vote on your phone</b><code data-url></code><span class="live off">Connecting…</span></div></div>
+        <div class="gbar" style="flex-wrap:wrap"><span class="vcount" data-vcount></span><span class="score" data-score></span></div>
+        <div class="gbar"><button class="gbtn solid" data-act-reveal>Reveal</button><button class="gbtn" data-act-reset>Reset</button><span class="hint">Hover to magnify</span></div>
+      </div>
+      <div class="grow" style="display:flex;align-items:center"><div class="game spotgame" data-round="micro" data-answer="b,c,f"></div></div>
+    </div>
+    <span class="fragment game-reveal" data-round="micro"></span>
+    <div class="src">Images: Nature, “AI-generated images threaten science” (Nov 2024). Generated images made with Proofig’s AI software.</div>
+  </div>
+  <aside class="notes">Give them 30–45 seconds. Watch the live percentages under each tile. Press next (or Reveal): b, c and f were generated by Proofig's AI; a, d and e are from real papers. Most rooms get one or two at best.</aside>
+</section>
+
+<!-- ============ 27 GU HEATMAP ============ -->
+<section data-act="lie">
+  <div class="f">
+    <div class="hd"><div class="eyebrow"><span class="chip" style="--c:var(--lie)">Fabrication</span></div><h2>AI-generated images are (almost) indistinguishable from real ones</h2></div>
+    <div class="row grow" style="gap:50px;align-items:flex-start">
+      <div class="shot rise" style="width:760px"><img src="assets/gu-heatmap.webp" alt="Expert ratings: generated images rated as real as often as real ones"></div>
+      <div class="col grow" style="gap:28px">
+        <div class="rise d2"><div class="big"><span data-count="800">0</span></div><p class="muted">images, each rated by at least ten medical experts. Generated cell and histopathology images scored as “real” as the real ones.</p></div>
+        <div class="callout fragment fade-up" style="--c:var(--blue)"><div class="k">And detectors?</div><p>For text, seven AI detectors flagged 61% of essays by non-native English writers as AI-written, while judging native writers almost perfectly. Detection is not a safety net.</p><p class="small muted" style="margin-top:8px">Liang et al., Patterns, 2023</p></div>
+      </div>
+    </div>
+    <div class="src">Gu J, Wang X, Li C, et al. “AI-enabled image fraud in scientific publications.” Patterns 3(7):100511 (2022). Red dots are mean scores.</div>
+  </div>
+  <aside class="notes">Look at the boxed rows: "cell image real" and "cell image generated" sit at the same score. Same for histopathology. Click: and before anyone says "we'll just use detectors": text detectors are biased against non-native English writers. Detection tools can flag; they can't prove.</aside>
+</section>
+
+<!-- ============ 28 SPOT ROUND 2 (GAME) ============ -->
+<section data-act="lie" data-round="panels">
+  <div class="f tight">
+    <div class="row" style="align-items:flex-end;justify-content:space-between;margin-bottom:14px">
+      <div><div class="eyebrow"><span class="chip" style="--c:var(--pink)">Game · round 2</span></div><h2 style="font-size:66px">Which pieces are AI-generated?</h2></div>
+      <div class="gen30" style="margin-right:90px">Generated in ~30 seconds.</div>
+    </div>
+    <div class="game colgame" data-round="panels" data-answer="red:4|tum:6|plt:4.5|blt:6"></div>
+    <div class="gbar"><span class="vcount" data-vcount></span><span class="score" data-score></span><span class="grow"></span>
+      <div class="qrbox" data-qr style="padding:8px 14px 8px 8px"><div class="qr" style="width:96px;height:96px"></div><div class="t" style="font-size:18px"><b style="font-size:20px">Vote</b><code data-url style="font-size:16px"></code></div></div>
+      <button class="gbtn solid" data-act-reveal>Reveal</button><button class="gbtn" data-act-reset>Reset</button></div>
+    <span class="fragment game-reveal" data-round="panels"></span>
+    <div class="src">Credit: Cheshire (@Thatsregrettab1).</div>
+  </div>
+  <aside class="notes">Each panel has at least one generated piece. Tap columns to guess (or let the audience vote on phones). Reveal: the last fluorescence panel, the last column of tumors, the two right columns of plates, and the last blot lane. All generated in about 30 seconds.</aside>
+</section>
+
+<!-- ============ 29 TALONI ============ -->
+<section data-act="lie">
+  <div class="f">
+    <div class="hd"><div class="eyebrow"><span class="chip" style="--c:var(--lie)">Fabrication</span> <span>Not just images</span></div><h2>A whole clinical trial, invented on request</h2></div>
+    <div class="row grow" style="gap:80px;align-items:center">
+      <div class="col" style="width:560px;gap:20px">
+        <div class="big"><span data-count="300">0</span></div><p class="muted" style="font-size:32px">eyes in a fabricated clinical-trial dataset, built by GPT-4 to favor one surgery over another</p>
+      </div>
+      <div class="col grow" style="gap:26px">
+        <div class="callout rise d1" style="--c:var(--lie)"><div class="k">The demonstration</div><p>Researchers deliberately asked GPT-4 to fabricate the data, to show the risk. At a glance, it looked plausible.</p></div>
+        <div class="callout fragment fade-up" style="--c:var(--blue)"><div class="k">The check</div><p>A forensic analysis reported by Nature found it did not pass as authentic: telltale patterns in names, ages and measurements.</p></div>
+        <div class="callout fragment fade-up" style="--c:var(--amber)"><div class="k">The catch</div><p>That was 2023. Models have improved since, and a careful fabricator can fix the tells.</p></div>
+      </div>
+    </div>
+    <div class="src">Taloni A et al., JAMA Ophthalmology (2023); Naddaf M, Nature news (Nov 2023).</div>
+  </div>
+  <aside class="notes">This one comes from the workshop. The keratoconus trial dataset was fake by design. It took a statistician to catch it. Ask: who on your team would?</aside>
+</section>
+
+<!-- ============ 30 MICE ============ -->
+<section data-act="lie">
+  <div class="f">
+    <div class="hd"><div class="eyebrow"><span class="chip" style="--c:var(--lie)">Fabrication</span></div><h2>Generating bogus science</h2></div>
+    <div class="grow row center"><div class="shot rise" style="height:100%"><img src="assets/mice.webp" style="height:100%;width:auto" alt="Bioluminescence imaging of mice"></div></div>
+  </div>
+  <aside class="notes">[Your original talking point for this slide: the original slide had no caption.] Lead into the western blot walk-through.</aside>
+</section>
+
+<!-- ============ 31 WB 1 ============ -->
+<section data-act="lie">
+  <div class="f">
+    <div class="hd"><div class="eyebrow"><span class="chip" style="--c:var(--lie)">Fabrication</span> <span>A walk-through · 1 of 4</span></div><h2>Start with a real blot…</h2></div>
+    <div class="row grow" style="gap:50px;align-items:flex-start">
+      <div class="shot rise" style="width:500px"><img src="assets/wb-original.webp" alt="A photographed western blot with handwritten labels"></div>
+      <div class="col grow" style="gap:24px">
+        <div class="shot rise d2" style="width:600px"><img src="assets/wb-chat1.webp" alt="Chatbot asks clarifying questions before generating a new blot"></div>
+        <div class="shot fragment fade-up" style="width:700px;align-self:flex-end;margin-top:-90px"><img src="assets/wb-chat2.webp" alt="Chatbot offers to change the expression pattern or the protein targets"></div>
+      </div>
+    </div>
+  </div>
+  <aside class="notes">Upload a photo of a real western blot. The chatbot is eager to help: same targets? same layout? same handwriting? Then it offers options, including changing the expression pattern while keeping the same protein targets.</aside>
+</section>
+
+<!-- ============ 32 WB 2 GAME ============ -->
+<section data-act="lie" data-round="blot">
+  <div class="f">
+    <div class="hd"><div class="eyebrow"><span class="chip" style="--c:var(--pink)">Game · round 3</span> <span>Walk-through · 2 of 4</span></div><h2>…ask for a new one. Which is real?</h2></div>
+    <div class="row grow" style="gap:40px">
+      <div class="col grow">
+        <div class="game abgame" data-round="blot" data-answer="B"></div>
+        <div class="gbar"><span class="vcount" data-vcount></span><span class="score" data-score></span><span class="grow"></span><button class="gbtn solid" data-act-reveal>Reveal</button><button class="gbtn" data-act-reset>Reset</button></div>
+      </div>
+      <div class="col" style="width:520px;gap:22px">
+        <div class="shot rise d2"><img src="assets/wb-checklist.webp" alt="Chatbot: I have everything I need"></div>
+        <div class="qrbox" data-qr><div class="qr" style="width:130px;height:130px"></div><div class="t"><b>Vote on your phone</b><code data-url></code></div></div>
+      </div>
+    </div>
+    <span class="fragment game-reveal" data-round="blot"></span>
+  </div>
+  <aside class="notes">"I have everything I need": same targets, same lane labels, same blue film, same handwriting, stronger EphA1 in three lanes, new date. Which strip is the photograph? Reveal: B is the original photograph. A was generated.</aside>
+</section>
+
+<!-- ============ 33 WB 3 ============ -->
+<section data-act="lie">
+  <div class="f">
+    <div class="hd"><div class="eyebrow"><span class="chip" style="--c:var(--lie)">Fabrication</span> <span>Walk-through · 3 of 4</span></div><h2>…then a whole new experiment</h2></div>
+    <div class="row grow" style="gap:30px;align-items:flex-start">
+      <div class="shot rise" style="width:400px"><img src="assets/wb-gen1.webp" alt="Generated blot: EphA1 in ATF3 samples"></div>
+      <div class="shot rise d1" style="width:400px;margin-top:40px"><img src="assets/wb-gen2.webp" alt="Generated blot: EphA1 in siATF3 samples, new date"></div>
+      <div class="col grow" style="gap:22px">
+        <div class="shot rise d2" style="width:680px"><img src="assets/wb-sheet.webp" alt="Generated densitometry spreadsheet"></div>
+        <div class="row" style="gap:22px;align-items:flex-start">
+          <div class="shot fragment fade-up" style="width:290px"><img src="assets/wb-figure.webp" alt="Finished figure with bar chart and significance stars"></div>
+          <div class="shot fragment fade-up" style="flex:1"><img src="assets/wb-legend.webp" alt="Figure legend"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <aside class="notes">A new knockdown experiment that never happened: a new blot with a new date, densitometry numbers in a spreadsheet, a quantified bar chart with stars, and a publication-ready legend with n = 3 and one-way ANOVA.</aside>
+</section>
+
+<!-- ============ 34 WB 4 ============ -->
+<section data-act="lie">
+  <div class="f">
+    <div class="hd"><div class="eyebrow"><span class="chip" style="--c:var(--lie)">Fabrication</span> <span>Walk-through · 4 of 4</span></div><h2>The safeguard kicked in. Too late.</h2></div>
+    <div class="row grow" style="gap:50px;align-items:flex-start">
+      <div class="shot rise" style="width:860px"><img src="assets/wb-rule.webp" alt="The relevant safety rule"></div>
+      <div class="shot rise d2 tilt-r" style="width:640px"><img src="assets/wb-gap.webp" alt="Key safety gap you just exposed"></div>
+    </div>
+  </div>
+  <aside class="notes">Eventually the model stopped and quoted its own rule against fabricating experimental data. Then it described the gap itself: the requests escalated gradually, "crop this," "align the lanes," "make the knockdown look real," and by the time the policy kicked in, two manipulated blot-like images already existed.</aside>
+</section>
+
+<!-- ============ 35 AI EDITS ============ -->
+<section data-act="lie">
+  <div class="stamp">RECKLESS?</div>
+  <div class="f">
+    <div class="hd"><div class="eyebrow"><span class="chip" style="--c:var(--lie)">Fabrication</span> <span>Drag the slider</span></div><h2>AI edits: reckless?</h2></div>
+    <div class="row grow" style="gap:50px;align-items:flex-start">
+      <div class="col" style="width:720px;gap:16px">
+        <div class="cmp" id="cmp-edit"><img src="assets/edit-before.webp" alt="Original messy blot"><div class="top"><img src="assets/edit-after.webp" alt="AI-cleaned blot"></div><div class="handle"></div><span class="tg l">Original</span><span class="tg r">AI “cleaned”</span></div>
+      </div>
+      <div class="col grow" style="gap:26px">
+        <div class="shot rise d2" style="width:420px"><img src="assets/edit-figure.webp" alt="Multi-panel figure"></div>
+        <div class="callout fragment fade-up" style="--c:var(--lie)"><div class="k">Enhancement adds things</div><p>In the 2020 fastMRI challenge, some AI-reconstructed scans scored well on image-quality metrics yet showed structures that weren’t there, such as a false vessel. Radiologists called it unacceptable.</p><p class="small muted" style="margin-top:8px">Muckley et al., 2021</p></div>
+      </div>
+    </div>
+  </div>
+  <aside class="notes">Drag the slider: "clean up my blot" removes the background, the extra bands, the smudges. Many people would call that cosmetic. Click: AI enhancement doesn't only remove; it can add plausible structure that isn't in the data. Keep raw images; say exactly what tool touched what.</aside>
+</section>
+
+<!-- ============ 36 NOW WHAT ============ -->
+<section class="dark" data-state="dark" data-background-image="assets/now-what.webp" data-background-size="cover" data-background-position="right center">
+  <div class="veil" style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(11,31,68,.96) 0%,rgba(11,31,68,.85) 40%,rgba(11,31,68,.1) 75%)"></div>
+  <div class="f" style="justify-content:center">
+    <div class="eyebrow">Part 4</div>
+    <h1 style="font-size:150px;color:#fff">Now what?</h1>
+    <p class="lede" style="font-size:38px;max-width:820px">The field is moving fast, and the line between acceptable and not is blurry. But not everything is up for grabs.</p>
+  </div>
+  <aside class="notes">This is the take-home section. Three beats: it's fast, it's blurry, and a few things are settled.</aside>
+</section>
+
+<!-- ============ 37 TIMELINE ============ -->
+<section class="dark" data-state="dark" style="background:var(--navy)">
+  <div class="f">
+    <div class="hd"><div class="eyebrow">Fast · almost four years of rules</div><h2>The rules keep moving</h2></div>
+    <div class="tl">
+      <div class="yr fragment fade-up"><h3>2023</h3><ul>
+        <li class="f-jour"><b>Jan</b>Nature sets ground rules; Science bans AI text</li>
+        <li class="f-guide"><b>Feb</b>COPE: AI can’t be an author</li>
+        <li class="f-fund"><b>Jun</b>NIH bars AI in peer review</li>
+        <li class="f-jour"><b>Nov</b>Science lifts ban, requires disclosure</li>
+        <li class="f-fund"><b>Dec</b>NSF notice on AI in merit review</li></ul></div>
+      <div class="yr fragment fade-up"><h3>2024</h3><ul>
+        <li class="f-guide"><b>Mar</b>EU Living Guidelines, 1st edition</li>
+        <li class="f-fund"><b>Sep</b>UKRI policy on AI in applications</li></ul></div>
+      <div class="yr fragment fade-up"><h3>2025</h3><ul>
+        <li class="f-fund"><b>Jul</b>NIH originality rule + 6-application cap</li>
+        <li class="f-guide"><b>Sep</b>STM classifies AI use in manuscripts</li>
+        <li class="f-fund"><b>Dec</b>NSF misconduct rule names AI tools</li></ul></div>
+      <div class="yr fragment fade-up"><h3>2026</h3><ul>
+        <li class="f-fund"><b>May</b>NIH + ORI list AI misconduct risks</li>
+        <li class="f-fund"><b>Jun</b>UK funders revise joint statement</li>
+        <li class="f-fund"><b>Aug</b>ORI guidance on AI and misconduct</li>
+        <li class="f-jour"><b>Aug</b>Elsevier and JAMA update AI policies</li>
+        <li class="f-jour"><b>Sep</b>Springer Nature goes risk-based</li>
+        <li class="f-guide"><b>Oct</b>EU guidelines, 4th version</li></ul></div>
+    </div>
+    <div class="legend"><span style="--c:var(--cb)">Funders</span><span style="--c:var(--amber)">Journals and publishers</span><span style="--c:var(--coral)">Guidelines and standards</span></div>
+  </div>
+  <aside class="notes">Click year by year. Early bans (2023) softened into disclosure rules, then funders tied AI misuse to existing misconduct definitions (2025–26), and publishers rewrote their policies again in Aug–Sep 2026. Policies change every few months: always check the date on anything you rely on.</aside>
+</section>
+
+<!-- ============ 38 GRAY ZONES ============ -->
+<section>
+  <div class="f">
+    <div class="hd"><div class="eyebrow">Blurry</div><h2>Where the rules go quiet</h2></div>
+    <div class="g3 grow" style="align-content:start">
+      <div class="n-card rise d1" style="--c:var(--sky)"><div class="ix">?</div><h3>What is “substantially developed” by AI?</h3><p>NIH gives no threshold or examples.</p></div>
+      <div class="n-card rise d2" style="--c:var(--sky)"><div class="ix">?</div><h3>Where does disclosure go?</h3><p>Methods, acknowledgments, cover letter? How much detail? It varies by journal and funder.</p></div>
+      <div class="n-card rise d3" style="--c:var(--sky)"><div class="ix">?</div><h3>Writing aid or research method?</h3><p>Polishing prose and screening 4,000 abstracts are treated very differently.</p></div>
+      <div class="n-card rise d4" style="--c:var(--amber)"><div class="ix">?</div><h3>Public chatbot or enterprise tool?</h3><p>Same model, very different data protections.</p></div>
+      <div class="n-card rise d5" style="--c:var(--amber)"><div class="ix">?</div><h3>Detection you can’t trust</h3><p>Tools flag, but can’t prove, and are biased against some writers.</p></div>
+      <div class="n-card rise d6" style="--c:var(--amber)"><div class="ix">?</div><h3>Proposals vs. the research itself</h3><p>Rules for applications don’t always match rules for the work.</p></div>
+    </div>
+  </div>
+  <aside class="notes">These are the gray zones the workshop cases are built on. No one has clean answers yet. But that doesn't mean nothing is settled...</aside>
+</section>
+
+<!-- ============ 39 FIVE THINGS (HERO) ============ -->
+<section class="dark" data-state="dark" style="background:radial-gradient(ellipse at 20% 0%,#1D4F91 0%,#0B1F44 60%)">
+  <div class="f">
+    <div class="hd"><div class="eyebrow">Settled</div><h2>Five things nearly everyone agrees on</h2></div>
+    <div class="g5 grow" style="align-content:center">
+      <div class="n-card fragment fade-up" style="--c:var(--cb)"><div class="ix">1</div><h3>AI is never an author</h3><p>It can’t take responsibility for the work. COPE, ICMJE and every major publisher agree.</p></div>
+      <div class="n-card fragment fade-up" style="--c:var(--cb)"><div class="ix">2</div><h3>Humans are accountable</h3><p>You own everything you submit, including what the AI got wrong.</p></div>
+      <div class="n-card fragment fade-up" style="--c:var(--cb)"><div class="ix">3</div><h3>Disclose substantive use</h3><p>Where and how much detail varies by journal and funder.</p></div>
+      <div class="n-card fragment fade-up" style="--c:var(--cb)"><div class="ix">4</div><h3>Protect confidential material</h3><p>No manuscripts, proposals, unpublished data or participant data in non-approved tools.</p></div>
+      <div class="n-card fragment fade-up" style="--c:var(--amber);border:3px solid var(--amber)"><div class="ix">5</div><h3>AI-assisted FFP is still misconduct</h3><p>Fabrication, falsification and plagiarism count whether you or a tool did it.</p></div>
+    </div>
+  </div>
+  <aside class="notes">This is the slide to remember. Emphasize number 5: NSF's misconduct definition now names AI tools explicitly (December 2025), and NIH and ORI said in May 2026 which AI uses they may treat as misconduct. Tie back to "recklessly."</aside>
+</section>
+
+<!-- ============ 40 COLUMBIA POLICY ============ -->
+<section>
+  <div class="f">
+    <div class="hd"><div class="eyebrow">Close to home</div><h2>Columbia’s Generative AI Policy</h2></div>
+    <div class="row grow" style="gap:50px;align-items:flex-start">
+      <div class="shot rise" style="width:560px"><img src="assets/provost.webp" alt="Office of the Provost: Generative AI Policy page"></div>
+      <div class="col grow" style="gap:22px">
+        <div class="callout rise d1" style="--c:var(--blue)"><div class="k">Be transparent</div><p>“…individuals who use Generative AI in research must be transparent regarding its use, in describing methods, acknowledgements, or elsewhere, as appropriate.”</p></div>
+        <div class="callout rise d2" style="--c:var(--coral)"><div class="k">You are responsible</div><p>“Researchers are responsible for the accuracy of any content created by AI that is included in any research output…”</p></div>
+        <div class="callout rise d3" style="--c:var(--amber)"><div class="k">Mind others’ rights</div><p>“…the output of AI tools may infringe the rights of third parties…”</p></div>
+        <p class="small muted rise d4">Also: keep unpublished data, confidential information and participants’ personal data out of AI tools unless CUIT/Procurement-approved terms allow it.</p>
+      </div>
+    </div>
+    <div class="src">provost.columbia.edu/content/office-senior-vice-provost/ai-policy · The policy calls itself a work in progress; check the current version.</div>
+  </div>
+  <aside class="notes">Columbia's policy is principle-based and lines up with the five settled points. The key operational point for researchers is data: unpublished research data, confidential information and research subjects' personal information stay out of AI tools except under approved contract terms.</aside>
+</section>
+
+<!-- ============ 41 FIVE WAYS ============ -->
+<section>
+  <div class="f">
+    <div class="hd"><div class="eyebrow">Human accountability</div><h2>5 ways to mitigate the threats</h2></div>
+    <div class="row grow" style="gap:50px">
+      <div class="shot rise" style="width:330px;align-self:flex-start"><img src="assets/nasem-cover.webp" alt="Realizing the Promise and Minimizing the Perils of AI for Science and the Scientific Community"></div>
+      <div class="col grow" style="gap:24px">
+        <div class="g3">
+          <div class="n-card rise d1" style="--c:var(--blue)"><h3>Transparency</h3><p>Disclose GenAI tools, algorithms and settings. Attribute human vs. AI contributions.</p></div>
+          <div class="n-card rise d2" style="--c:var(--blue)"><h3>Verification</h3><p>Validate the accuracy and reliability of AI-generated data, imagery and inferences.</p></div>
+          <div class="n-card rise d3" style="--c:var(--blue)"><h3>Documentation</h3><p>Mark AI-generated or synthetic data with provenance. Never present it as real-world observation.</p></div>
+        </div>
+        <div class="g2" style="padding:0 12%">
+          <div class="n-card rise d4"><h3>Ethics &amp; equity</h3><p>Make sure AI use produces sound, socially beneficial results. Mitigate risk of harm.</p></div>
+          <div class="n-card rise d5"><h3>Oversight</h3><p>Keep monitoring, engage the public, and contribute to AI governance.</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="src">Based on Blau W, Cerf VG, et al., “Protecting scientific integrity in an age of generative AI,” PNAS (2024), and Jamieson, Kearney &amp; Mazza (eds.), Realizing the Promise and Minimizing the Perils of AI for Science and the Scientific Community.</div>
+  </div>
+  <aside class="notes">The five principles from the PNAS editorial. Notice how they map to what we've seen: transparency against idea laundering, verification against hallucinations, documentation against fabricated images.</aside>
+</section>
+
+<!-- ============ 42 FIVE QUESTIONS ============ -->
+<section class="dark" data-state="dark" style="background:var(--navy)">
+  <div class="f">
+    <div class="hd"><div class="eyebrow">Take it with you</div><h2>Five questions before you hit Enter</h2></div>
+    <div class="g5 grow" style="align-content:center">
+      <div class="n-card rise d1" style="--c:var(--cb)"><div class="ix">1</div><h3>Whose material is this?</h3><p>Confidential, personal, or someone else’s?</p></div>
+      <div class="n-card rise d2" style="--c:var(--cb)"><div class="ix">2</div><h3>Can I verify and explain it?</h3><p>Every citation, number, line of code.</p></div>
+      <div class="n-card rise d3" style="--c:var(--cb)"><div class="ix">3</div><h3>Whose judgment is in the work?</h3><p>Ideas, interpretation, conclusions.</p></div>
+      <div class="n-card rise d4" style="--c:var(--cb)"><div class="ix">4</div><h3>Could I describe it in Methods?</h3><p>If you’d be uneasy writing it down, stop.</p></div>
+      <div class="n-card rise d5" style="--c:var(--amber)"><div class="ix">5</div><h3>What do the rules say today?</h3><p>This funder, this journal, Columbia. Check the date.</p></div>
+    </div>
+  </div>
+  <aside class="notes">These five questions work even when no rule applies yet, which, as we saw, is often.</aside>
+</section>
+
+<!-- ============ 43 THANK YOU ============ -->
+<section class="thanks" data-state="dark" data-background-image="assets/thanks-bg.webp" data-background-size="cover">
+  <div class="veil"></div>
+  <div class="f" style="justify-content:center">
+    <h1 style="color:#fff;font-size:140px">Thank you!</h1>
+    <p class="lede" style="font-size:44px;color:#DCE8F3;margin-top:20px">Questions?</p>
+    <div class="row" style="gap:20px;margin-top:70px;flex-wrap:wrap">
+      <span class="callout" style="--c:var(--cb);background:rgba(19,48,94,.85);color:#fff;font-size:28px;padding:16px 26px">Fast-moving</span>
+      <span class="callout" style="--c:var(--amber);background:rgba(19,48,94,.85);color:#fff;font-size:28px;padding:16px 26px">Blurry at the edges</span>
+      <span class="callout" style="--c:var(--pink);background:rgba(19,48,94,.85);color:#fff;font-size:28px;padding:16px 26px">Five things are settled</span>
+    </div>
+  </div>
+  <aside class="notes">Recap the take-home in one breath: fast-moving, blurry at the edges, but five things are settled. Open for questions.</aside>
+</section>
+
+<!-- ============ 44 RESOURCES ============ -->
+<section>
+  <div class="f">
+    <div class="hd"><div class="eyebrow">Keep going</div><h2>Tools &amp; resources</h2></div>
+    <ul class="res">
+      <li><b>Columbia University ReaDI Program</b><a href="https://research.columbia.edu/ReaDI-program">research.columbia.edu/ReaDI-program</a></li>
+      <li><b>Columbia University Generative AI Policy</b><a href="https://provost.columbia.edu/content/office-senior-vice-provost/ai-policy">provost.columbia.edu/content/office-senior-vice-provost/ai-policy</a></li>
+      <li><b>Data Management @ Columbia University</b><a href="https://research.columbia.edu/content/data-management">research.columbia.edu/content/data-management</a></li>
+      <li><b>Realizing the Promise and Minimizing the Perils of AI for Science and the Scientific Community</b><a href="https://penn.manifoldapp.org/projects/realizing-the-promise-and-minimizing-the-perils-of-ai-for-science-and-the-scientific-community">penn.manifoldapp.org/projects/realizing-the-promise…</a></li>
+      <li><b>Guidelines for Best Practices in Image Processing (ORI)</b><a href="https://ori.hhs.gov/education/products/RIandImages/guidelines/list.html">ori.hhs.gov/education/products/RIandImages/guidelines/list.html</a></li>
+      <li><b>Creating clear and informative image-based figures for scientific publications</b><a href="https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.3001161">journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.3001161</a></li>
+      <li><b>7 Best Tools to Help You Detect Edited Images</b><a href="https://www.geeksforgeeks.org/best-tools-to-help-you-detect-edited-images/">geeksforgeeks.org/best-tools-to-help-you-detect-edited-images</a></li>
+      <li><b>Balancing Innovation and Integrity: The Role of AI in Research and Scientific Writing</b><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10759812/">pmc.ncbi.nlm.nih.gov/articles/PMC10759812</a></li>
+    </ul>
+  </div>
+</section>
+
+</div></div>
+
+<div id="brand"><img class="b" src="assets/logo-black.png" alt="Columbia Research, Office of Research Compliance and Training"><img class="w" src="assets/logo-white.png" alt=""></div>
+<div class="lens" id="lens"></div>
+
+<script src="lib/reveal.js"></script>
+<script src="lib/notes.js"></script>
+<script src="lib/qrcode.js"></script>
+<script src="js/config.js"></script>
+<script src="js/rounds.js"></script>
+<script src="js/live.js"></script>
+<script src="js/deck.js"></script>
+</body>
+</html>

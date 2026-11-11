@@ -1,0 +1,31 @@
+{
+  "rules": {
+    ".read": false,
+    ".write": false,
+    "s": {
+      "$s": {
+        ".read": "$s.length >= 4 && $s.length <= 16",
+        "owner": {
+          ".write": "auth != null && !data.exists() && newData.val() === auth.uid"
+        },
+        "state": {
+          ".write": "auth != null && root.child('s').child($s).child('owner').val() === auth.uid",
+          "round": { ".validate": "newData.isString() && newData.val().length <= 20" },
+          "reveal": {
+            "$r": { ".validate": "$r.length <= 20 && newData.isString() && newData.val().length <= 120" }
+          },
+          "$other": { ".validate": false }
+        },
+        "votes": {
+          "$r": {
+            "$uid": {
+              ".write": "auth != null && auth.uid === $uid && $r.length <= 20",
+              ".validate": "newData.isString() && newData.val().length <= 200"
+            }
+          }
+        },
+        "$other": { ".validate": false }
+      }
+    }
+  }
+}

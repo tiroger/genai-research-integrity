@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0B1F44">
+<title>Vote · Scientific Research in the Age of Gen AI</title>
+<style>
+@font-face{font-family:"Libre Franklin";font-weight:400;src:url(../fonts/libre-franklin-latin-400-normal.woff2) format("woff2")}
+@font-face{font-family:"Libre Franklin";font-weight:700;src:url(../fonts/libre-franklin-latin-700-normal.woff2) format("woff2")}
+@font-face{font-family:"Libre Franklin";font-weight:800;src:url(../fonts/libre-franklin-latin-800-normal.woff2) format("woff2")}
+@font-face{font-family:"Source Serif 4";font-weight:600;src:url(../fonts/source-serif-4-latin-600-normal.woff2) format("woff2")}
+:root{--navy:#0B1F44;--blue:#1D4F91;--cb:#B9D9EB;--paper:#F4F7FA;--ink:#13233F;--muted:#55657D;--line:#D5DFEA;--pink:#E0457B;--green:#2E9E6B}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;background:var(--paper);color:var(--ink);font-family:"Libre Franklin",system-ui,-apple-system,sans-serif}
+header{background:var(--navy);color:#fff;padding:14px 18px calc(14px);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:5}
+header .t{font:600 18px "Source Serif 4",Georgia,serif}
+header .s{font:700 12px "Libre Franklin";letter-spacing:.12em;text-transform:uppercase;color:var(--cb)}
+main{padding:18px 16px 110px;max-width:720px;margin:0 auto}
+h1{font:600 26px/1.2 "Source Serif 4",Georgia,serif;color:var(--navy);margin:6px 0 6px}
+.hint{color:var(--muted);font-size:15px;margin:0 0 16px}
+.wait{text-align:center;padding:70px 10px;color:var(--muted)}
+.wait .big{font:600 30px "Source Serif 4",Georgia,serif;color:var(--navy);margin-bottom:10px}
+.dot{display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--green);margin-right:8px;animation:p 1.5s infinite}
+@keyframes p{50%{opacity:.3}}
+.tiles{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.tile{position:relative;border-radius:12px;overflow:hidden;aspect-ratio:1/1;background:#000;border:0;padding:0;outline:0 solid var(--pink);outline-offset:-5px}
+.tile img{width:100%;height:100%;object-fit:cover;display:block}
+.tile .l{position:absolute;left:8px;top:8px;background:rgba(0,0,0,.7);color:#fff;font:800 18px "Libre Franklin";width:32px;height:32px;border-radius:8px;display:grid;place-items:center}
+.tile.on{outline-width:5px}
+.tile.on::after{content:"AI?";position:absolute;right:8px;top:8px;background:var(--pink);color:#fff;font:800 13px "Libre Franklin";padding:5px 8px;border-radius:6px}
+.opts{display:flex;flex-direction:column;gap:10px}
+.opt{display:flex;align-items:center;gap:12px;background:#fff;border:2px solid var(--line);border-radius:14px;padding:16px;font-size:17px;text-align:left;color:var(--ink);font-family:inherit}
+.opt .bx{width:24px;height:24px;border-radius:6px;border:2px solid var(--line);flex:none;display:grid;place-items:center;color:#fff;font-weight:800}
+.opt.on{border-color:var(--blue);background:#EEF4FB}.opt.on .bx{background:var(--blue);border-color:var(--blue)}.opt.on .bx::after{content:"✓";font-size:15px}
+.panel{margin-bottom:18px}
+.panel .pl{font:800 12px "Libre Franklin";letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.pw{position:relative}
+.pw img{display:block;width:100%;border-radius:8px}
+.zs{position:absolute;inset:0;display:flex}
+.z{flex:1;border:0;background:transparent;padding:0;border-radius:6px}
+.z.on{box-shadow:inset 0 0 0 4px var(--pink);background:rgba(224,69,123,.14)}
+.ab{display:flex;flex-direction:column;gap:14px}
+.abo{background:#fff;border:3px solid var(--line);border-radius:16px;padding:12px;text-align:left;font-family:inherit}
+.abo .k{font:800 22px "Libre Franklin";color:var(--navy);margin-bottom:8px}
+.abo img{width:100%;display:block;border-radius:8px}
+.abo.on{border-color:var(--pink)}
+.bar{position:fixed;left:0;right:0;bottom:0;background:#fff;border-top:1px solid var(--line);padding:12px 16px calc(12px + env(safe-area-inset-bottom));display:flex;align-items:center;justify-content:space-between;gap:12px}
+.status{font-size:14px;color:var(--muted)}
+.status.ok{color:var(--green);font-weight:700}
+.result{background:var(--navy);color:#fff;border-radius:14px;padding:16px 18px;margin:0 0 16px;font-size:17px;line-height:1.4}
+.result b{color:var(--cb)}
+.good{outline:5px solid var(--green)!important;outline-offset:-5px}
+.bad{opacity:.55}
+.foot{font-size:12px;color:var(--muted);text-align:center;margin-top:26px}
+</style>
+</head>
+<body>
+<header><div class="t">Gen AI &amp; Research Integrity</div><div class="s" id="sess"></div></header>
+<main id="app"><div class="wait"><div class="big">Connecting…</div></div></main>
+<div class="bar"><span class="status" id="status">Votes are anonymous.</span><span class="status" id="me"></span></div>
+
+<script src="../js/config.js"></script>
+<script src="../js/rounds.js"></script>
+<script src="../js/live.js"></script>
+<script>
+(function(){
+  var app=document.getElementById("app"), statusEl=document.getElementById("status");
+  var s=Live.clean(location.hash.slice(1)||new URLSearchParams(location.search).get("s"));
+  var R=window.ROUNDS, cur=null, revealed={}, mine={}, saveT=null;
+  document.getElementById("sess").textContent=s?("Session "+s):"";
+  function esc(x){return String(x).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+  function img(src){return "../"+src}
+  function wait(msg,sub){app.innerHTML='<div class="wait"><div class="big">'+msg+'</div><div>'+(sub||"")+'</div></div>'}
+
+  if(!s){wait("No session code","Scan the QR code on the presenter’s screen.");return}
+
+  Live.init().then(function(ok){
+    if(!ok){wait("Live voting isn’t available","Follow along on the presenter’s screen.");return}
+    wait('<span class="dot"></span>You’re in!',"Keep this page open. It will change when there’s something to vote on.");
+    Live.onState(s,function(state){
+      revealed=(state&&state.reveal)||{};
+      var r=state&&state.round;
+      if(r!==cur){cur=r; if(!r||!R[r]){wait('<span class="dot"></span>Watch the screen',"Your votes are saved. The next question will appear here.");return}
+        Live.myVote(s,r).then(function(v){mine[r]=v||"";render(r)});
+      } else if(cur&&R[cur]) render(cur);
+    });
+  });
+
+  function save(r,val){
+    mine[r]=val; statusEl.textContent="Saving…"; statusEl.className="status";
+    clearTimeout(saveT); saveT=setTimeout(function(){
+      Live.vote(s,r,val||"-").then(function(){statusEl.textContent="Saved ✓";statusEl.className="status ok"})
+        .catch(function(){statusEl.textContent="Couldn’t save. Try again.";statusEl.className="status"});
+    },250);
+  }
+  function setOf(v){return (v&&v!=="-")?v.split(",").filter(Boolean):[]}
+
+  function render(r){
+    var d=R[r], v=mine[r]||"", ans=revealed[r], h='<h1>'+esc(d.title)+'</h1><p class="hint">'+esc(d.hint||"")+'</p>';
+    if(d.type==="multi"){
+      var on=setOf(v);
+      h+='<div class="opts">'+d.options.map(function(o){return '<button class="opt'+(on.indexOf(o.id)>=0?" on":"")+'" data-id="'+o.id+'"><span class="bx"></span>'+esc(o.label)+'</button>'}).join("")+'</div>';
+    }
+    if(d.type==="tiles"){
+      var on2=setOf(v), a=ans?ans.split(","):null;
+      if(a){var hit=on2.filter(function(x){return a.indexOf(x)>=0}).length, fa=on2.length-hit;
+        h='<div class="result">Answer: <b>'+a.join(", ")+'</b> were AI-generated.<br>You found '+hit+' of '+a.length+(fa?' with '+fa+' false alarm'+(fa>1?"s":""):"")+'.</div>'+h}
+      h+='<div class="tiles">'+d.items.map(function(it){var cls=on2.indexOf(it.id)>=0?" on":"";if(a)cls+=a.indexOf(it.id)>=0?" good":" bad";
+        return '<button class="tile'+cls+'" data-id="'+it.id+'"><img src="'+img(it.img)+'" alt=""><span class="l">'+it.id+'</span></button>'}).join("")+'</div>';
+    }
+    if(d.type==="columns"){
+      var sel={}; (v&&v!=="-"?v:"").split("|").forEach(function(p){var kv=p.split(":");if(kv[0])sel[kv[0]]=(kv[1]||"").split(".").filter(Boolean)});
+      var A=null; if(ans){A={};ans.split("|").forEach(function(p){var kv=p.split(":");A[kv[0]]=(kv[1]||"").split(".")})}
+      if(A){var tot=0,hit2=0;Object.keys(A).forEach(function(p){tot+=A[p].length;A[p].forEach(function(i){if((sel[p]||[]).indexOf(i)>=0)hit2++})});
+        h='<div class="result">The outlined columns were AI-generated, in about 30 seconds.<br>You found <b>'+hit2+' of '+tot+'</b>.</div>'+h}
+      h+=d.panels.map(function(p){var z="";for(var i=0;i<p.n;i++){var c=(sel[p.id]||[]).indexOf(String(i))>=0?" on":"";if(A&&(A[p.id]||[]).indexOf(String(i))>=0)c+=" good";z+='<button class="z'+c+'" data-p="'+p.id+'" data-i="'+i+'"></button>'}
+        return '<div class="panel"><div class="pl">'+esc(p.label)+'</div><div class="pw"><img src="'+img(p.img)+'" alt=""><div class="zs">'+z+'</div></div></div>'}).join("");
+    }
+    if(d.type==="ab"){
+      h+=(ans?'<div class="result">'+(v===ans?"Correct!":"Fooled you.")+' <b>'+ans+'</b> was the real photograph.</div>':"");
+      h+='<div class="ab">'+d.options.map(function(o){var c=v===o.id?" on":"";if(ans)c+=o.id===ans?" good":" bad";return '<button class="abo'+c+'" data-id="'+o.id+'"><div class="k">'+o.id+'</div><img src="'+img(o.img)+'" alt=""></button>'}).join("")+'</div>';
+    }
+    h+='<div class="foot">Pinch to zoom. Votes are anonymous; you can change yours any time.</div>';
+    app.innerHTML=h;
+    app.onclick=function(e){
+      if(revealed[r])return;
+      var b=e.target.closest("button");if(!b)return;
+      if(d.type==="multi"||d.type==="tiles"){var on=setOf(mine[r]),id=b.dataset.id,i=on.indexOf(id);
+        if(i>=0)on.splice(i,1);else on.push(id);
+        if(d.type==="multi"&&id==="none"&&i<0)on=["none"]; else if(d.type==="multi")on=on.filter(function(x){return x!=="none"||id==="none"});
+        save(r,on.join(","));}
+      if(d.type==="columns"){var sel={};(mine[r]&&mine[r]!=="-"?mine[r]:"").split("|").forEach(function(p){var kv=p.split(":");if(kv[0])sel[kv[0]]=(kv[1]||"").split(".").filter(Boolean)});
+        var p=b.dataset.p,ix=b.dataset.i;sel[p]=sel[p]||[];var k=sel[p].indexOf(ix);if(k>=0)sel[p].splice(k,1);else sel[p].push(ix);
+        save(r,Object.keys(sel).filter(function(p){return sel[p].length}).map(function(p){return p+":"+sel[p].join(".")}).join("|"));}
+      if(d.type==="ab")save(r,b.dataset.id);
+      render(r);
+    };
+  }
+})();
+</script>
+</body>
+</html>
