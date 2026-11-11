@@ -91,7 +91,7 @@ h1{font:600 26px/1.2 "Source Serif 4",Georgia,serif;color:var(--navy);margin:6px
     mine[r]=val; statusEl.textContent="Saving…"; statusEl.className="status";
     clearTimeout(saveT); saveT=setTimeout(function(){
       Live.vote(s,r,val||"-").then(function(){statusEl.textContent="Saved ✓";statusEl.className="status ok"})
-        .catch(function(){statusEl.textContent="Couldn’t save. Try again.";statusEl.className="status"});
+        .catch(function(e){var c=(e&&(e.code||e.message))||"unknown";console.error("[vote]",e);statusEl.textContent="Couldn’t save ("+c+"). Tap again.";statusEl.className="status"});
     },250);
   }
   function setOf(v){return (v&&v!=="-")?v.split(",").filter(Boolean):[]}
