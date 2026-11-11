@@ -5,6 +5,20 @@
   var $$ = function (sel, root) { return Array.prototype.slice.call((root || document).querySelectorAll(sel)); };
   var R = window.ROUNDS || {};
 
+  /* ---------------- per-slide brand + letterbox colour ----------------
+     Done before Reveal starts so data-background-color fills the whole window
+     and the logo scales with the slide instead of sitting on the window edge. */
+  var LOGO_B = ($("#brand .b") || {}).src, LOGO_W = ($("#brand .w") || {}).src;
+  $$(".reveal .slides > section").forEach(function (s) {
+    var accent = s.classList.contains("accent"), dark = accent || s.classList.contains("dark");
+    if (!s.hasAttribute("data-background-color") && !s.hasAttribute("data-background-image"))
+      s.setAttribute("data-background-color", accent ? "#1D4F91" : dark ? "#0B1F44" : "#F4F7FA");
+    if (/nobrand/.test(s.getAttribute("data-state") || "") || s.classList.contains("act")) return;
+    var d = document.createElement("div"); d.className = "brand";
+    d.innerHTML = '<img alt="Columbia Research, Office of Research Compliance and Training" src="' + (dark ? LOGO_W : LOGO_B) + '">';
+    s.appendChild(d);
+  });
+
   /* ---------------- Reveal ---------------- */
   Reveal.initialize({
     width: 1920, height: 1080, margin: 0, minScale: 0.1, maxScale: 3,
@@ -340,7 +354,6 @@
     var ln = document.getElementById("lens"); if (ln) ln.style.display = "none";
     playCharts(slide);
     $$("[data-count]", slide).forEach(function (el) { if (el.dataset.on !== "fragment") count(el); });
-    document.querySelector(".reveal-viewport").classList.toggle("nobrand", slide.classList.contains("cover") || slide.classList.contains("act") || /nobrand/.test(slide.dataset.state || ""));
     panicStep(slide);
     syncRound(slide);
   }
