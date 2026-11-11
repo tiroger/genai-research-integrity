@@ -23,7 +23,7 @@
   Reveal.initialize({
     width: 1920, height: 1080, margin: 0, minScale: 0.1, maxScale: 3,
     center: false, hash: true, controls: true, controlsTutorial: false, progress: true,
-    slideNumber: "c/t", transition: "fade", backgroundTransition: "fade", transitionSpeed: "default",
+    slideNumber: function () { var t = Reveal.getTotalSlides(), i = Reveal.getIndices().h + 1; return [String(i).padStart(2, "0"), "/", t]; }, transition: "fade", backgroundTransition: "fade", transitionSpeed: "default",
     pdfSeparateFragments: false, plugins: [window.RevealNotes].filter(Boolean)
   });
 
@@ -158,7 +158,7 @@
     el.innerHTML = '<div class="cgame"><div class="colx" style="gap:16px">' + panel(p.red) + panel(p.tum) + '</div><div class="colx" style="gap:16px">' + panel(p.plt) + panel(p.blt) + "</div></div>";
   }
   function renderAB(el, def) {
-    el.innerHTML = '<div class="ab">' + def.options.map(function (o) {
+    el.innerHTML = '<div class="ab' + (el.dataset.stack ? " stack" : "") + '">' + def.options.map(function (o) {
       return '<div class="abopt" data-id="' + o.id + '"><div class="k"><span class="vkey">' + o.id + '</span><span class="res"></span></div><img src="' + o.img + '" alt="Option ' + o.id + '"><div class="vbar"><div class="vfill"></div></div></div>';
     }).join("") + "</div>";
   }
@@ -437,6 +437,11 @@
   Reveal.on("slidechanged", function (e) {
     if (e.previousSlide) $$("video", e.previousSlide).forEach(function (v) { v.pause(); });
   });
+
+  /* ---------------- flip cards ---------------- */
+  $$(".flip").forEach(function (f) { f.addEventListener("click", function () { f.classList.toggle("on"); }); });
+  Reveal.on("fragmentshown", function (e) { if (e.fragment.classList.contains("flip-all")) $$(".flip", Reveal.getCurrentSlide()).forEach(function (f, i) { setTimeout(function () { f.classList.add("on"); }, i * 90); }); });
+  Reveal.on("fragmenthidden", function (e) { if (e.fragment.classList.contains("flip-all")) $$(".flip", Reveal.getCurrentSlide()).forEach(function (f) { f.classList.remove("on"); }); });
 
   /* ---------------- hotspots ---------------- */
   $$(".hot").forEach(function (h) {
