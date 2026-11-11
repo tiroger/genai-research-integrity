@@ -348,7 +348,7 @@ section.present .d1{transition-delay:.12s}section.present .d2{transition-delay:.
 .print-pdf .rise{opacity:1!important;transform:none!important}
 
 /* video */
-.vidframe{position:relative;flex:none;width:620px;background:var(--navy2);border:1px solid #24477F;border-radius:14px;padding:14px}
+.vidframe{position:relative;flex:none;width:1180px;background:var(--navy2);border:1px solid #24477F;border-radius:14px;padding:14px}
 .vidframe video{display:block;width:100%;max-height:760px;border-radius:8px;background:#000;object-fit:contain}
 .vidhint{position:absolute;left:50%;bottom:34px;transform:translateX(-50%);background:rgba(11,31,68,.85);color:#fff;font:700 18px var(--sans);letter-spacing:.08em;text-transform:uppercase;padding:8px 14px;border-radius:999px;pointer-events:none;transition:opacity .3s}
 .vidframe.playing .vidhint,.vidframe.novid .vidhint{opacity:0}

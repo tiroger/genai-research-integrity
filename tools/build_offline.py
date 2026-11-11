@@ -9,6 +9,7 @@ import base64, mimetypes, os, re, sys
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 mimetypes.add_type("image/webp", ".webp")
 mimetypes.add_type("font/woff2", ".woff2")
+mimetypes.add_type("video/mp4", ".mp4")
 
 
 def data_uri(path):
@@ -45,8 +46,12 @@ def main():
     def asset(m):
         p = os.path.join(ROOT, m.group(2))
         return '%s="%s"' % (m.group(1), data_uri(p)) if os.path.exists(p) else m.group(0)
-    # videos stay as files next to the HTML (too large to inline)
-    html = re.sub(r'(src|data-background-image|poster)="(assets/(?![^"]+\.mp4)[^"]+)"', asset, html)
+    # small videos are inlined too; anything over 25 MB stays as a separate file
+    def asset2(m):
+        p = os.path.join(ROOT, m.group(2))
+        if p.endswith(".mp4") and os.path.exists(p) and os.path.getsize(p) > 25e6: return m.group(0)
+        return asset(m)
+    html = re.sub(r'(src|data-background-image|poster)="(assets/[^"]+)"', asset2, html)
     # rounds.js references images by path; rewrite them too
     html = re.sub(r'"(assets/[^"]+\.webp)"',
                   lambda m: '"%s"' % data_uri(os.path.join(ROOT, m.group(1))), html)
