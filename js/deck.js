@@ -22,7 +22,7 @@
   /* torn-paper edges for the newspaper clippings (size-independent: % along, px across) */
   (function () {
     var seed = 3, rnd = function () { return (seed = (seed * 16807) % 2147483647) / 2147483647; };
-    document.querySelectorAll(".clips .hl").forEach(function (el) {
+    document.querySelectorAll(".hl.np").forEach(function (el) {
       var pts = [], n = 54, m = 30;
       var o = function () { return (rnd() * 10 * (rnd() < .15 ? 1.8 : 1)).toFixed(1); };
       for (var i = 0; i <= n; i++) pts.push((100 * i / n).toFixed(2) + "% " + o() + "px");
