@@ -7,11 +7,13 @@ window.ROUNDS = {
     hint: "Pick all that apply.",
     options: [
       { id: "lit",   label: "Find or summarize literature" },
+      { id: "data",  label: "Analyze data" },
       { id: "code",  label: "Write or debug code" },
       { id: "edit",  label: "Edit or translate writing" },
       { id: "ideas", label: "Brainstorm ideas" },
       { id: "img",   label: "Make or edit an image" },
-      { id: "none",  label: "None of these" }
+      { id: "none",  label: "None of these" },
+      { id: "never", label: "I have not used AI" }
     ]
   },
   worries: {

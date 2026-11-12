@@ -62,7 +62,7 @@ h1{font:600 26px/1.2 "Source Serif 4",Georgia,serif;color:var(--navy);margin:6px
 <div class="bar"><span class="status" id="status">Votes are anonymous.</span><span class="status" id="me"></span></div>
 
 <script src="../js/config.js?v=22f5f014"></script>
-<script src="../js/rounds.js?v=9b770cee"></script>
+<script src="../js/rounds.js?v=a06fe653"></script>
 <script src="../js/live.js?v=7d553307"></script>
 <script>
 (function(){
@@ -131,7 +131,7 @@ h1{font:600 26px/1.2 "Source Serif 4",Georgia,serif;color:var(--navy);margin:6px
       var b=e.target.closest("button");if(!b)return;
       if(d.type==="multi"||d.type==="tiles"){var on=setOf(mine[r]),id=b.dataset.id,i=on.indexOf(id);
         if(i>=0)on.splice(i,1);else on.push(id);
-        if(d.type==="multi"&&id==="none"&&i<0)on=["none"]; else if(d.type==="multi")on=on.filter(function(x){return x!=="none"||id==="none"});
+        var EX=["none","never"];if(d.type==="multi"&&EX.indexOf(id)>=0&&i<0)on=[id]; else if(d.type==="multi")on=on.filter(function(x){return EX.indexOf(x)<0});
         save(r,on.join(","));}
       if(d.type==="columns"){var sel={};(mine[r]&&mine[r]!=="-"?mine[r]:"").split("|").forEach(function(p){var kv=p.split(":");if(kv[0])sel[kv[0]]=(kv[1]||"").split(".").filter(Boolean)});
         var p=b.dataset.p,ix=b.dataset.i;sel[p]=sel[p]||[];var k=sel[p].indexOf(ix);if(k>=0)sel[p].splice(k,1);else sel[p].push(ix);

@@ -703,3 +703,9 @@ section.present .ffpx .hl2{animation:ffpHl .5s 2.5s both}
 .il-grid .frame img{display:block;width:100%;height:auto}
 .wb-head{flex:1;display:flex;flex-direction:column;justify-content:center;background:var(--navy);color:#fff;border-radius:16px;padding:30px 40px;font:600 italic 50px/1.15 var(--serif);border-left:10px solid var(--coral)}
 .wb-head span{display:block;font:700 19px var(--sans);font-style:normal;letter-spacing:.14em;text-transform:uppercase;color:var(--cb);margin-bottom:8px}
+/* warm-up poll: 8 options */
+.pollgame[data-round="warmup"] .vote{padding:22px 30px}
+.pollgame[data-round="warmup"] .vrow{margin:17px 0}
+.pollgame[data-round="warmup"] .vbtn{padding:12px 20px;font-size:28px}
+.pollgame[data-round="warmup"] .vbar{height:48px}
+.pollgame[data-round="warmup"] .vcount{font-size:36px}
