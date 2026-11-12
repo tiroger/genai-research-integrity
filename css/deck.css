@@ -586,3 +586,7 @@ section.act h1 em{font-style:italic;color:var(--amber)}
 .pc .now .drift .ring{fill:none;stroke:var(--amber);stroke-width:3;animation:nowring 1.8s infinite;transform-box:fill-box;transform-origin:center}
 .pc .now .zlabel rect{fill:var(--navy)}
 .pc .now .zlabel text{font:700 25px var(--sans);fill:#fff;text-anchor:middle;dominant-baseline:central}
+
+.pc .now .trail circle{fill:var(--amber);opacity:0}
+.pc .now .drift .halo{fill:var(--amber);opacity:.18}
+.pc .now .drift .q{font:800 22px var(--sans);fill:var(--navy);text-anchor:middle;dominant-baseline:central}

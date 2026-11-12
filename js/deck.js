@@ -56,23 +56,42 @@
   }
 
   /* tech panic: one stage lit per click, then the "today?" marker */
-  /* "Gen AI" dot drifts along the curve between stages 2 and 4: we can't say where it is */
+  /* "Gen AI" dot wanders between stages 2 and 4: it drifts, hesitates, doubles back.
+     Position eases toward a target that is re-picked at random intervals, so it never settles. */
   var drift = { run: false };
   function startDrift(slide) {
-    var path = $("#pc-curve", slide), dot = $("#pc-now .drift", slide);
+    var path = $("#pc-curve", slide), dot = $("#pc-now .drift", slide), trail = $$("#pc-now .trail circle", slide);
     if (!path || !dot || drift.run) return;
     if (!drift.l0) {
       var L = path.getTotalLength(), f = function (tx) { var best = 0, bd = 1e9; for (var l = 0; l <= L; l += 3) { var d = Math.abs(path.getPointAtLength(l).x - tx); if (d < bd) { bd = d; best = l; } } return best; };
-      drift.l0 = f(560); drift.l1 = f(1215);
+      drift.l0 = f(560); drift.l1 = f(1215); drift.u = 0.62; drift.v = 0; drift.target = 0.62; drift.next = 0; drift.hist = [];
     }
-    drift.run = true; var t0 = performance.now();
+    drift.run = true; var last = performance.now();
+    function pick(now) {
+      var r = Math.random();
+      if (r < 0.22) { drift.next = now + 700 + Math.random() * 900; return; }            // hesitate in place
+      var jump = (Math.random() < 0.3 ? 0.55 : 0.25) * (Math.random() < 0.5 ? -1 : 1);  // small nudge or big swing
+      drift.target = Math.max(0, Math.min(1, drift.u + jump + (Math.random() - 0.5) * 0.15));
+      drift.next = now + 900 + Math.random() * 1800;
+    }
     (function step(now) {
       if (!slide.classList.contains("present") || !$("#pc-now", slide).classList.contains("show") || document.hidden) { drift.run = false; return; }
-      var u = (Math.sin((now - t0) / 1400) + Math.sin((now - t0) / 610) * 0.35) / 1.35;   // irregular back-and-forth
-      var p = path.getPointAtLength(drift.l0 + (drift.l1 - drift.l0) * (u + 1) / 2);
-      dot.setAttribute("transform", "translate(" + p.x + "," + p.y + ")");
+      var dt = Math.min(50, now - last) / 1000; last = now;
+      if (now > drift.next) pick(now);
+      var k = 9, damp = 5.2;                                                              // soft spring toward target
+      drift.v += ((drift.target - drift.u) * k - drift.v * damp) * dt;
+      drift.u = Math.max(0, Math.min(1, drift.u + drift.v * dt));
+      var p = path.getPointAtLength(drift.l0 + (drift.l1 - drift.l0) * drift.u);
+      dot.setAttribute("transform", "translate(" + p.x.toFixed(1) + "," + p.y.toFixed(1) + ")");
+      drift.hist.unshift([p.x, p.y]); if (drift.hist.length > 36) drift.hist.pop();
+      var speed = Math.min(1, Math.abs(drift.v) * 6);
+      trail.forEach(function (c, i) {
+        var q = drift.hist[Math.min(drift.hist.length - 1, (i + 1) * 5)];
+        c.setAttribute("cx", q[0].toFixed(1)); c.setAttribute("cy", q[1].toFixed(1));
+        c.style.opacity = (0.32 - i * 0.05) * speed;
+      });
       requestAnimationFrame(step);
-    })(t0);
+    })(last);
   }
 
   function panicStep(slide) {
