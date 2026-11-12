@@ -638,3 +638,48 @@ section.act h1 em{font-style:italic;color:var(--amber)}
 .hx-card{display:grid;grid-row:span 4;grid-template-rows:subgrid;row-gap:0}
 .hx-card .then{margin-top:0}
 .hx-card.now .then{margin-top:0}
+
+/* ---------- FFP hybrid (slide 11) ---------- */
+.ffpx{display:grid;grid-template-columns:repeat(3,1fr);margin-top:6px}
+.ffpx .col{padding:0 44px;min-width:0}
+.ffpx .col+.col{border-left:2px solid var(--line)}
+.ffpx .col:first-child{padding-left:0}.ffpx .col:last-child{padding-right:0}
+.ffpx .demo{position:relative;overflow:hidden;background:color-mix(in srgb,var(--c) 14%,#fff);border-radius:16px;border-bottom:4px solid var(--c);padding:16px 28px 8px}
+.ffpx .demo svg{display:block;width:100%;height:178px}
+.ffpx .top{position:relative;display:flex;align-items:center;gap:18px;margin:78px 0 10px}
+.ffpx .ic{position:relative;z-index:1;width:56px;height:56px;flex:none;border-radius:50%;background:var(--c);display:grid;place-items:center}
+.ffpx .ic svg{width:28px;height:28px;fill:none;stroke:var(--navy);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.ffpx .term{position:relative;z-index:1;font:600 58px/1 var(--serif);letter-spacing:-.01em;color:var(--navy)}
+.ffpx .wm{position:absolute;left:-6px;top:-84px;font:700 italic 124px/1 var(--serif);color:var(--c);opacity:.24;white-space:nowrap;pointer-events:none}
+.ffpx p{font-size:27px;line-height:1.38;color:var(--ink);margin:18px 0 0}
+.ffpx+.intent{margin-top:34px}
+/* drawings */
+.ffpx .ax{stroke:#8A9AB0;stroke-width:2}
+.ffpx .b{fill:#B9C7D8}
+.ffpx .bf{fill:none;stroke:var(--coral);stroke-width:3;stroke-dasharray:9 7;transform-box:fill-box;transform-origin:50% 100%}
+.ffpx .pen path{fill:var(--navy)}
+.ffpx .pen{transform:translate(320px,10px) rotate(35deg)}
+.ffpx .cap{font:italic 600 15px var(--serif);fill:#B5502F;text-anchor:middle}
+.ffpx .fit{stroke:var(--navy);stroke-width:3}
+.ffpx .pt{fill:var(--blue)}
+.ffpx .gone{fill:none;stroke:#C48A1A;stroke-width:2.5;stroke-dasharray:4 4}
+.ffpx .x{fill:none;stroke:#C48A1A;stroke-width:4;stroke-linecap:round}
+.ffpx .doc rect:first-child{fill:#fff;stroke:#9AAFC6;stroke-width:2}
+.ffpx .doc line{stroke:#C3CFDC;stroke-width:6;stroke-linecap:round}
+.ffpx .doc .hl{fill:#7FB2DB;opacity:.45}
+.ffpx .arr{fill:none;stroke:var(--navy);stroke-width:3.5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:90;stroke-dashoffset:0}
+/* play once each time the slide is shown */
+section.present .ffpx .bf1{animation:ffpGrow .7s .7s cubic-bezier(.3,1.3,.5,1) both}
+section.present .ffpx .bf2{animation:ffpGrow .7s 1.3s cubic-bezier(.3,1.3,.5,1) both}
+section.present .ffpx .pen{animation:ffpPen 1.6s .5s ease-in-out both}
+section.present .ffpx .cap{animation:ffpFade .5s 2s both}
+section.present .ffpx .gone{animation:ffpGone .6s 1.6s both}
+section.present .ffpx .x{animation:ffpFade .3s 2s both}
+section.present .ffpx .arr{animation:ffpDraw .8s 1.8s ease-out both}
+section.present .ffpx .hl2{animation:ffpHl .5s 2.5s both}
+@keyframes ffpGrow{from{transform:scaleY(0);opacity:0}to{transform:none;opacity:1}}
+@keyframes ffpPen{0%{transform:translate(240px,40px) rotate(35deg)}50%{transform:translate(240px,22px) rotate(35deg)}100%{transform:translate(320px,10px) rotate(35deg)}}
+@keyframes ffpFade{from{opacity:0}to{opacity:1}}
+@keyframes ffpGone{from{fill:var(--blue);stroke:transparent}to{fill:transparent;stroke:#C48A1A}}
+@keyframes ffpDraw{from{stroke-dashoffset:90}to{stroke-dashoffset:0}}
+@keyframes ffpHl{from{opacity:0}to{opacity:.45}}
