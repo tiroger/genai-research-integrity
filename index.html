@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Scientific Research in the Age of Gen AI</title>
 <link rel="stylesheet" href="lib/reveal.css?v=f8e9b506">
-<link rel="stylesheet" href="css/deck.css?v=7b89e6bc">
+<link rel="stylesheet" href="css/deck.css?v=425c9b6c">
 </head>
 <body>
 <div class="reveal"><div class="slides">
@@ -307,22 +307,41 @@
   <div class="row2" style="gap:44px">
     <div class="frame rise" style="width:1060px;flex:none"><img decoding="async" data-src="assets/laundry.webp" alt="The generative AI idea laundry: the text is new, the idea is stolen"></div>
     <div class="colx fill" style="gap:24px">
-      <div class="msg ai rise d1" style="font-size:26px"><div class="bh sm"><img decoding="async" data-src="assets/bot-gemini.png" alt=""><b>Gemini, continued</b></div><p><b>“Idea laundering” (the real threat):</b> the AI takes a specific idea, method or finding and rewrites it so thoroughly that it evades plagiarism detection.</p><p><b>How it works:</b> paste a 2023 abstract into a chatbot and ask it to “rewrite this for a new proposal.” The logic stays; every noun and verb changes.</p></div>
+      <div class="msg ai rise d1" style="font-size:26px"><div class="bh sm"><img decoding="async" data-src="assets/bot-gemini.png" alt=""><b>Gemini, continued</b></div><p><b>“Idea laundering” (the real threat):</b> the AI takes a specific idea, method or finding and rewrites it so thoroughly that it evades plagiarism detection.</p><p><b>How it works:</b> “You feed an abstract from a 2023 paper into ChatGPT and ask it to ‘rewrite this for a new proposal.’” The logic and structure stay; every noun and verb changes.</p><span class="nosrc">No reference given</span></div>
       <div class="real fragment fade-up"><p><span class="realtag">Study</span><br><b>Gupta &amp; Pruthi, 2025:</b> experts judged <b>24%</b> of 50 AI-generated research documents to be paraphrased or significantly borrowed from existing work.</p></div>
     </div>
   </div>
   <p class="foot">Gupta T, Pruthi D. “All That Glitters is Not Novel: Plagiarism in AI Generated Research” (2025).</p>
-  <aside class="notes">Copy-paste gets caught. Laundering doesn't: the structure survives, the words all change. About a quarter of AI-generated research ideas in the Gupta and Pruthi study were laundered versions of existing work.</aside>
+  <aside class="notes">Copy-paste gets caught. Laundering doesn't: the structure survives, the words all change. About a quarter of AI-generated research ideas in the Gupta and Pruthi study were laundered versions of existing work. Notice what Gemini didn't do: it used the term "idea laundering" without saying where it came from.</aside>
 </section>
 
-<!-- 16 · IDEA LAUNDERING RECKLESS -->
+<!-- 16 · WHERE THE TERM COMES FROM -->
+<section id="il-origin">
+  <div class="eyebrow"><span class="tag t-plag">Plagiarism</span> · Due diligence</div>
+  <h2>Where did “idea laundering” come from?</h2>
+  <div class="row2" style="gap:56px;align-items:stretch">
+    <div class="colx" style="width:640px;flex:none;gap:26px">
+      <div class="msg me rise" style="font-size:28px;margin-left:auto"><span class="who">Before using the term, I asked</span>Where does the term “idea laundering” come from?</div>
+      <div class="real fragment fade-up" data-fragment-index="1"><p><span class="realtag">The source</span><br><b>Dutta, Uhegbu, Nori, Mashkoor, Taswell &amp; Taswell, 2020 IEEE ICSC:</b> a kind of plagiarism “analogous to the concept and practice of money laundering,” hidden in plain sight.</p></div>
+      <p class="lede fragment fade-up" data-fragment-index="2" style="font-size:29px">The first answer used the term with no reference. Had I not asked, I could have run with the idea and published it as my own, without ever knowing.</p>
+    </div>
+    <div class="il-stack fill">
+      <div class="frame il-t rise d1"><img decoding="async" data-src="assets/il-title.webp" alt="DREAM Principles from the PORTAL-DOORS Project and NPDS Cyberinfrastructure, by Dutta, Uhegbu, Nori, Mashkoor, Taswell and Taswell"></div>
+      <div class="frame il-c rise d2"><img decoding="async" data-src="assets/il-conf.webp" alt="2020 IEEE 14th International Conference on Semantic Computing (ICSC)"></div>
+      <div class="frame il-p fragment fade-up" data-fragment-index="1"><img decoding="async" data-src="assets/il-paragraph.webp" alt="Paragraph defining idea laundering as plagiarism hidden in plain sight, making dirty ideas look clean"></div>
+    </div>
+  </div>
+  <aside class="notes">This is due diligence. Gemini used "idea laundering" as if it were common knowledge and gave no source. When I asked where the term came from, it traces to a 2020 IEEE conference paper by Dutta, Taswell and colleagues, building on the IEEE's five levels of plagiarism. The point: if I hadn't asked, I could have taken the idea, run with it, and published it, laundering it myself without knowing.</aside>
+</section>
+
+<!-- 17 · IDEA LAUNDERING RECKLESS -->
 <section>
   <div class="stamp">RECKLESS?</div>
   <div class="eyebrow"><span class="tag t-plag">Plagiarism</span></div>
   <h2>Idea laundering: reckless?</h2>
   <div class="row2" style="gap:48px">
     <div class="colx" style="width:720px">
-      <div class="quote rise"><p>Idea laundering is “analogous to the concept and practice of money laundering”: passing off ideas that were obtained illegitimately as legitimate, <em>making dirty ideas look clean.</em></p><div class="src">Building on the IEEE’s five levels of plagiarism</div></div>
+      <div class="quote rise"><p>Passing off ideas that were obtained illegitimately as legitimate: <em>making dirty ideas look clean.</em></p><div class="src">Dutta, Taswell et al., IEEE ICSC (2020)</div></div>
       <p class="lede rise d2" style="font-size:30px">If you know the tool can do this, and you don’t check where the idea came from, is that reckless?</p>
     </div>
     <div class="frame fill rise d3"><img decoding="async" data-src="assets/laundering-paper.webp" alt="The Mechanism of Idea Laundering: How Generative AI Facilitates the Fabrication of Scientific Credibility"></div>

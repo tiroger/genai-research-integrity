@@ -686,3 +686,12 @@ section.present .ffpx .hl2{animation:ffpHl .5s 2.5s both}
 .clips .hl{position:absolute}
 .hl.np.tilt-l{rotate:-1.4deg}.hl.np.tilt-r{rotate:1.2deg}
 .hl.np.tilt-l,.hl.np.tilt-r{padding:30px 36px 36px}
+
+/* idea laundering: origin of the term */
+.nosrc{display:inline-block;margin-top:12px;font:800 15px var(--sans);letter-spacing:.14em;text-transform:uppercase;color:#B3261E;border:2px solid #B3261E;border-radius:6px;padding:4px 10px;rotate:-2deg}
+.il-stack{position:relative;min-height:740px}
+.il-stack .frame{position:absolute;padding:0;overflow:hidden;border-radius:16px;box-shadow:0 14px 34px rgba(11,31,68,.16)}
+.il-stack img{display:block;width:100%;height:auto}
+.il-stack .il-t{right:0;top:84px;width:760px}
+.il-stack .il-c{left:0;top:0;width:580px;z-index:2}
+.il-stack .il-p{left:30px;top:380px;width:690px;z-index:3}
