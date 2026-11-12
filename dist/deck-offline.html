@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<link rel="preconnect" href="https://www.gstatic.com" crossorigin><link rel="preconnect" href="https://identitytoolkit.googleapis.com" crossorigin><link rel="preconnect" href="https://genai-talk-votes-default-rtdb.firebaseio.com" crossorigin><link rel="preload" as="script" href="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Scientific Research in the Age of Gen AI</title>
@@ -3855,6 +3856,10 @@ window.ROUNDS = {
     if (readyP) return readyP;
     var cfg = window.FIREBASE_CONFIG;
     if (!cfg || !cfg.databaseURL || location.protocol === "file:") return (readyP = Promise.resolve(false));
+    // fetch all three SDK files in parallel; execute app first (the others depend on it)
+    ["firebase-auth-compat.js", "firebase-database-compat.js"].forEach(function (f) {
+      var l = document.createElement("link"); l.rel = "preload"; l.as = "script"; l.href = SDK + f; document.head.appendChild(l);
+    });
     readyP = timeout(
       load(SDK + "firebase-app-compat.js")
         .then(function () { return Promise.all([load(SDK + "firebase-auth-compat.js"), load(SDK + "firebase-database-compat.js")]); })
@@ -3863,8 +3868,8 @@ window.ROUNDS = {
           return firebase.auth().signInAnonymously();
         })
         .then(function (cred) { uid = cred.user.uid; db = firebase.database(); return true; }),
-      12000
-    ).catch(function (e) { console.warn("[live] off:", e && e.message); return false; });
+      15000
+    ).catch(function (e) { console.warn("[live] off:", e && e.message); readyP = null; return false; });
     return readyP;
   }
 
@@ -4300,16 +4305,26 @@ window.ROUNDS = {
       var q = qrcode(0, "M"); q.addData(url); q.make();
       $(".qr", box).innerHTML = q.createSvgTag({ cellSize: 4, margin: 2, scalable: true });
       var u = $("[data-url]", box); if (u) u.textContent = url.replace(/^https?:\/\//, "");
-      var lv = $(".live", box); if (lv) { lv.classList.toggle("off", live === false); lv.textContent = live === false ? "Not connected yet" : "Live · session " + s; }
+      var lv = $(".live", box); if (lv) { lv.classList.toggle("off", live !== true && live !== undefined); lv.textContent = live === "connecting" ? "Connecting…" : live === false ? "Not connected" : "Live · session " + s; }
     });
   }
 
-  Live.init().then(function (ok) {
+  // Speaker view loads the deck in preview iframes (?receiver). Those copies must not
+  // connect: the "upcoming slide" preview would push the next slide's question to phones.
+  var RECEIVER = /receiver/i.test(location.search) || (window.parent !== window && /notes/i.test(document.referrer));
+  var s0 = Live.clean(params.get("s")) || Live.clean(localStorage.getItem("deck-session")) || (Live.newSession ? Live.newSession() : "demo");
+  if (!RECEIVER) localStorage.setItem("deck-session", s0);
+  drawQR(s0, "connecting");
+
+  function connect(attempt) {
+    return Live.init().then(function (ok) {
+      if (!ok && attempt < 3) return new Promise(function (r) { setTimeout(r, 3000 * attempt); }).then(function () { return connect(attempt + 1); });
+      return ok;
+    });
+  }
+  (RECEIVER ? Promise.resolve(false) : connect(1)).then(function (ok) {
     if (!ok) {
       if (location.protocol === "file:") { $$("[data-qr]").forEach(function (b) { b.style.display = "none"; }); return; }
-      // Not connected yet: still show the QR so the layout can be rehearsed.
-      var s0 = Live.clean(params.get("s")) || Live.clean(localStorage.getItem("deck-session")) || (Live.newSession ? Live.newSession() : "demo");
-      localStorage.setItem("deck-session", s0);
       drawQR(s0, false);
       return;
     }
@@ -4335,7 +4350,7 @@ window.ROUNDS = {
   });
 
   function syncRound(slide) {
-    if (!Live.on || !Live.host) return;
+    if (!Live.on || !Live.host || RECEIVER) return;
     var r = slide && slide.dataset.round;
     Live.setRound(Live.session, r || null);
   }

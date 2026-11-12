@@ -386,16 +386,26 @@
       var q = qrcode(0, "M"); q.addData(url); q.make();
       $(".qr", box).innerHTML = q.createSvgTag({ cellSize: 4, margin: 2, scalable: true });
       var u = $("[data-url]", box); if (u) u.textContent = url.replace(/^https?:\/\//, "");
-      var lv = $(".live", box); if (lv) { lv.classList.toggle("off", live === false); lv.textContent = live === false ? "Not connected yet" : "Live · session " + s; }
+      var lv = $(".live", box); if (lv) { lv.classList.toggle("off", live !== true && live !== undefined); lv.textContent = live === "connecting" ? "Connecting…" : live === false ? "Not connected" : "Live · session " + s; }
     });
   }
 
-  Live.init().then(function (ok) {
+  // Speaker view loads the deck in preview iframes (?receiver). Those copies must not
+  // connect: the "upcoming slide" preview would push the next slide's question to phones.
+  var RECEIVER = /receiver/i.test(location.search) || (window.parent !== window && /notes/i.test(document.referrer));
+  var s0 = Live.clean(params.get("s")) || Live.clean(localStorage.getItem("deck-session")) || (Live.newSession ? Live.newSession() : "demo");
+  if (!RECEIVER) localStorage.setItem("deck-session", s0);
+  drawQR(s0, "connecting");
+
+  function connect(attempt) {
+    return Live.init().then(function (ok) {
+      if (!ok && attempt < 3) return new Promise(function (r) { setTimeout(r, 3000 * attempt); }).then(function () { return connect(attempt + 1); });
+      return ok;
+    });
+  }
+  (RECEIVER ? Promise.resolve(false) : connect(1)).then(function (ok) {
     if (!ok) {
       if (location.protocol === "file:") { $$("[data-qr]").forEach(function (b) { b.style.display = "none"; }); return; }
-      // Not connected yet: still show the QR so the layout can be rehearsed.
-      var s0 = Live.clean(params.get("s")) || Live.clean(localStorage.getItem("deck-session")) || (Live.newSession ? Live.newSession() : "demo");
-      localStorage.setItem("deck-session", s0);
       drawQR(s0, false);
       return;
     }
@@ -421,7 +431,7 @@
   });
 
   function syncRound(slide) {
-    if (!Live.on || !Live.host) return;
+    if (!Live.on || !Live.host || RECEIVER) return;
     var r = slide && slide.dataset.round;
     Live.setRound(Live.session, r || null);
   }

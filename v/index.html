@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<link rel="preconnect" href="https://www.gstatic.com" crossorigin><link rel="preconnect" href="https://identitytoolkit.googleapis.com" crossorigin><link rel="preconnect" href="https://genai-talk-votes-default-rtdb.firebaseio.com" crossorigin><link rel="preload" as="script" href="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#0B1F44">
@@ -62,7 +63,7 @@ h1{font:600 26px/1.2 "Source Serif 4",Georgia,serif;color:var(--navy);margin:6px
 
 <script src="../js/config.js?v=22f5f014"></script>
 <script src="../js/rounds.js?v=9b770cee"></script>
-<script src="../js/live.js?v=5ad5d987"></script>
+<script src="../js/live.js?v=7d553307"></script>
 <script>
 (function(){
   var app=document.getElementById("app"), statusEl=document.getElementById("status");
@@ -75,14 +76,16 @@ h1{font:600 26px/1.2 "Source Serif 4",Georgia,serif;color:var(--navy);margin:6px
 
   if(!s){wait("No session code","Scan the QR code on the presenter’s screen.");return}
 
-  Live.init().then(function(ok){
-    if(!ok){wait("Live voting isn’t available","Follow along on the presenter’s screen.");return}
+  wait('<span class="dot"></span>Connecting…',"One moment.");
+  function connect(n){return Live.init().then(function(ok){if(!ok&&n<3)return new Promise(function(r){setTimeout(r,2500*n)}).then(function(){return connect(n+1)});return ok})}
+  connect(1).then(function(ok){
+    if(!ok){app.innerHTML='<div class="wait"><div class="big">Couldn’t connect</div><div>Check your connection, then <button class="opt" style="display:inline-block;width:auto;margin-top:12px" onclick="location.reload()">try again</button></div></div>';return}
     wait('<span class="dot"></span>You’re in!',"Keep this page open. It will change when there’s something to vote on.");
     Live.onState(s,function(state){
       revealed=(state&&state.reveal)||{};
       var r=state&&state.round;
       if(r!==cur){cur=r; if(!r||!R[r]){wait('<span class="dot"></span>Watch the screen',"Your votes are saved. The next question will appear here.");return}
-        Live.myVote(s,r).then(function(v){mine[r]=v||"";render(r)});
+        Live.myVote(s,r).then(function(v){mine[r]=v||"";if(cur===r)render(r)});
       } else if(cur&&R[cur]) render(cur);
     });
   });

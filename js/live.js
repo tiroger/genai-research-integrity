@@ -24,6 +24,10 @@
     if (readyP) return readyP;
     var cfg = window.FIREBASE_CONFIG;
     if (!cfg || !cfg.databaseURL || location.protocol === "file:") return (readyP = Promise.resolve(false));
+    // fetch all three SDK files in parallel; execute app first (the others depend on it)
+    ["firebase-auth-compat.js", "firebase-database-compat.js"].forEach(function (f) {
+      var l = document.createElement("link"); l.rel = "preload"; l.as = "script"; l.href = SDK + f; document.head.appendChild(l);
+    });
     readyP = timeout(
       load(SDK + "firebase-app-compat.js")
         .then(function () { return Promise.all([load(SDK + "firebase-auth-compat.js"), load(SDK + "firebase-database-compat.js")]); })
@@ -32,8 +36,8 @@
           return firebase.auth().signInAnonymously();
         })
         .then(function (cred) { uid = cred.user.uid; db = firebase.database(); return true; }),
-      12000
-    ).catch(function (e) { console.warn("[live] off:", e && e.message); return false; });
+      15000
+    ).catch(function (e) { console.warn("[live] off:", e && e.message); readyP = null; return false; });
     return readyP;
   }
 
