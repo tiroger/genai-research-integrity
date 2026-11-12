@@ -23,7 +23,7 @@
 
 <!-- 2 · WARM-UP POLL -->
 <section class="dark" data-state="dark" data-round="warmup">
-  <div class="eyebrow">Warm-up · quick poll</div>
+  <div class="eyebrow">Warm-up</div>
   <h2>In the past month, have you used AI to…</h2>
   <div class="row2" style="gap:48px">
     <div class="fill"><div class="game pollgame" data-round="warmup"></div></div>
@@ -50,7 +50,6 @@
     <div class="scard rise d3" style="--c:var(--coral)"><h3>Video</h3>
       <div class="logos" style="flex:1;justify-content:center"><img decoding="async" data-src="assets/logo-sora.webp" style="height:240px" alt="Sora"></div></div>
   </div>
-  <p class="hint rise d4" style="margin-top:26px">A new tool every few weeks, and most are free to try.</p>
   <aside class="notes">Text, images, video, code. The point isn't the brands: it's that every one of these can produce something that looks like research output.</aside>
 </section>
 
@@ -198,7 +197,7 @@
 <!-- 9 · NATURE SURVEY (poll, then reveal) -->
 <section data-round="worries">
   <div>
-    <div><div class="eyebrow">Poll · then the big survey</div><h2 style="margin-bottom:10px">Which negative impacts of AI in research worry you?</h2>
+    <div><div class="eyebrow">Poll</div><h2 style="margin-bottom:10px">Which negative impacts of AI in research worry you?</h2>
       <div class="cmp-legend"><span class="me">This room</span><span class="nat">Nature survey of ~1,600 researchers</span></div></div>
   </div>
   <div class="row2" style="gap:40px;align-items:flex-start"><div class="fill"><div class="game cmpgame" data-round="worries" data-compare="pattern:69,bias:58,fraud:55,irrepro:53,power:43,energy:26,other:3"></div>
@@ -275,11 +274,9 @@
   <div class="eyebrow"><span class="tag t-plag">Plagiarism</span></div>
   <h2>LLMs are already writing the literature</h2>
   <div class="row2">
-    <div class="frame rise" style="width:640px"><img decoding="async" data-src="assets/llm-words.webp" alt="Excess stylistic words in PubMed abstracts, 2013–2024"></div>
-    <div class="colx fill">
-      <p class="lede rise d1">After ChatGPT arrived, “style” words like <em>delves</em> jumped in PubMed abstracts, far past anything seen before.</p>
+    <div class="frame rise" style="width:820px;flex:none"><img decoding="async" data-src="assets/llm-words.webp" alt="Excess stylistic words in PubMed abstracts, 2013–2024"></div>
+    <div class="colx fill" style="justify-content:center">
       <div class="frame fragment fade-up" style="border:3px solid var(--coral)"><img decoding="async" data-src="assets/certainly.webp" alt="A published introduction beginning: Certainly, here is a possible introduction for your topic"></div>
-      <p class="hint fragment fade-up" style="font-size:24px">A published paper whose introduction begins “Certainly, here is a possible introduction for your topic.” It was retracted.</p>
     </div>
   </div>
   <p class="foot">Chart: excess word usage across 14 million PubMed abstracts, 2013–2024, via Nature.</p>
@@ -317,7 +314,7 @@
 
 <!-- 16 · WHERE THE TERM COMES FROM -->
 <section id="il-origin">
-  <div class="eyebrow"><span class="tag t-plag">Plagiarism</span> · Due diligence</div>
+  <div class="eyebrow"><span class="tag t-plag">Plagiarism</span></div>
   <h2>Where did “idea laundering” come from?</h2>
   <div class="il-grid">
     <div class="colx" style="gap:24px">
@@ -376,7 +373,7 @@
 
 <!-- 19 · KIM 2 -->
 <section id="kim2">
-  <div class="eyebrow"><span class="tag t-cheat">Falsification</span> · the original table, step by step</div>
+  <div class="eyebrow"><span class="tag t-cheat">Falsification</span></div>
   <h2>…and qualitative data, too</h2>
   <div class="zcap" data-zcap="z19">Real interviews with dialysis patients (Young et al.). GPT-4 was told to make them <b>negative</b>, then <b>positive</b>, and to fill in inaudible parts “in the participant’s voice.” Bold is what it changed.</div>
   <div class="r-stack" style="height:640px;width:100%;margin-top:14px">
@@ -435,12 +432,8 @@
   <div class="stamp">RECKLESS?</div>
   <div class="eyebrow"><span class="tag t-cheat">Falsification</span></div>
   <h2>Hallucinations: reckless?</h2>
-  <div class="row2" style="gap:48px">
-    <div class="frame rise" style="width:1180px"><img decoding="async" data-src="assets/zenocardib.webp" alt="A convincing clinical trial abstract for a drug that does not exist"></div>
-    <div class="colx fill" style="padding-top:20px">
-      <p class="lede rise d1">A complete Phase III abstract for <b>Zenocardib</b>, a drug that doesn’t exist.</p>
-      <p class="lede rise d2" style="color:var(--muted)">Generated in seconds, author list included.</p>
-    </div>
+  <div class="row2" style="justify-content:center">
+    <div class="frame rise" style="width:1100px"><img decoding="async" data-src="assets/zenocardib.webp" alt="A convincing clinical trial abstract for a drug that does not exist"></div>
   </div>
   <aside class="notes">Look at the authors. If a tool is known to invent things and you paste its output into your work without checking, that's the recklessness question.</aside>
 </section>
@@ -552,7 +545,6 @@
         <div class="card fragment fade-up" style="padding:30px;min-height:250px"><h3 style="font-size:40px;color:var(--navy)">The check</h3><p style="font-size:28px">A forensic analysis reported by Nature found telltale patterns in names, ages and measurements.</p></div>
         <div class="card fragment fade-up" style="padding:30px;min-height:250px"><h3 style="font-size:40px;color:var(--navy)">The catch</h3><p style="font-size:28px">That was 2023. Models have improved, and a careful fabricator can fix the tells.</p></div>
       </div>
-      <p class="lede fragment fade-up" style="font-size:36px;font-family:var(--serif);font-style:italic;color:var(--blue)">Who on your team would catch it?</p>
     </div>
   </div>
   <aside class="notes">It took a statistician to catch it. Ask the room: who on your team would?</aside>
@@ -568,7 +560,7 @@
 
 <!-- 31 · WB 1 -->
 <section>
-  <div class="eyebrow"><span class="tag t-lie">Fabrication</span> · a demonstration</div>
+  <div class="eyebrow"><span class="tag t-lie">Fabrication</span></div>
   <h2>I asked it to alter a real blot</h2>
   <ol class="wsteps"><li class="on"><span>1</span>Ask</li><li class="on"><span>2</span>Clarify</li><li class=""><span>3</span>Generate</li><li class=""><span>4</span>Quantify</li><li class=""><span>5</span>Figure</li><li class=""><span>6</span>Safeguard</li></ol>
   <div class="row2" style="gap:48px">
