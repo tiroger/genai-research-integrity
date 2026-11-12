@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Scientific Research in the Age of Gen AI</title>
 <link rel="stylesheet" href="lib/reveal.css?v=f8e9b506">
-<link rel="stylesheet" href="css/deck.css?v=e96a50c6">
+<link rel="stylesheet" href="css/deck.css?v=ef98bc73">
 </head>
 <body>
 <div class="reveal"><div class="slides">
@@ -115,14 +115,14 @@
 </section>
 
 <!-- 6 · GROWING THREAT -->
-<section>
+<section id="threat" class="clips">
   <div class="eyebrow">The worry</div>
   <h2>A growing threat?</h2>
-  <div class="cards two" style="gap:22px">
-    <div class="hl fragment fade-up"><div class="k"><b>Fabrizio Gramuglio</b> · May 21, 2024</div><h3>The Looming Threat of Generative AI to Scientific Integrity</h3></div>
-    <div class="hl fragment fade-up"><div class="k"><b>Lauren Leffer</b> · March 18, 2024</div><h3>Too Much Trust in AI Poses Unexpected Threats to the Scientific Process</h3><p>It’s vital to “keep humans in the loop” to avoid humanizing machine-learning models in research.</p></div>
-    <div class="hl fragment fade-up"><div class="k"><b>Isaac Hanson</b> · December 5, 2023</div><h3>AI’s data fakery is ‘scary’ say researchers, but the problem is already huge</h3><p>Generative AI, particularly GPT-4, is capable of producing fake data sets in minutes.</p></div>
-    <div class="hl op fragment fade-up"><div class="k"><b>Opinion</b> · Jorge Quintanilla · November 2, 2023</div><h3>Generative AI makes fraud an existential threat to science</h3></div>
+  <div class="cards pile">
+    <div class="hl fragment"><div class="k"><b>Fabrizio Gramuglio</b> · May 21, 2024</div><h3>The <mark>Looming Threat</mark> of Generative AI to Scientific Integrity</h3></div>
+    <div class="hl fragment"><div class="k"><b>Lauren Leffer</b> · March 18, 2024</div><h3>Too Much Trust in AI Poses <mark>Unexpected Threats</mark> to the Scientific Process</h3><p>It’s vital to “keep humans in the loop” to avoid humanizing machine-learning models in research.</p></div>
+    <div class="hl fragment"><div class="k"><b>Isaac Hanson</b> · December 5, 2023</div><h3>AI’s data fakery is <mark>‘scary’</mark> say researchers, but the problem is already huge</h3><p>Generative AI, particularly GPT-4, is capable of producing fake data sets in minutes.</p></div>
+    <div class="hl op fragment"><div class="k"><b>Opinion</b> · Jorge Quintanilla · November 2, 2023</div><h3>Generative AI makes fraud an <mark>existential threat</mark> to science</h3></div>
   </div>
   <aside class="notes">The headlines are alarming: "looming threat," "existential threat," "scary." Before accepting that framing, a bit of history.</aside>
 </section>
@@ -144,9 +144,7 @@
       <g id="pc-now" class="now">
         <rect class="zone" x="529" y="0" width="718" height="440" rx="18"/>
         <path class="zone-curve" d="M0 430 C 90 428, 120 412, 170 404 S 430 330, 529 262 S 790 70, 888 70 S 1120 180, 1247 252 S 1480 382, 1606 398 S 1720 410, 1776 412" clip-path="url(#pczone)"/>
-        <g class="trail"><circle r="17"/><circle r="15"/><circle r="13"/><circle r="11"/><circle r="9"/><circle r="7"/></g>
-        <g class="drift"><circle class="halo" r="34"/><circle class="ring" r="20"/><circle class="core" r="20"/><text class="q" y="1">?</text></g>
-        <g class="zlabel" transform="translate(888,372)"><rect x="-300" y="-30" width="600" height="60" rx="30"/><text x="0" y="1">Gen AI is somewhere in here, and moving fast</text></g>
+        <g class="zlabel" transform="translate(888,372)"><rect x="-300" y="-30" width="600" height="60" rx="30"/><text x="0" y="1">AI is somewhere in here, and moving fast</text></g>
       </g>
       <path class="curve" id="pc-curve" d="M0 430 C 90 428, 120 412, 170 404 S 430 330, 529 262 S 790 70, 888 70 S 1120 180, 1247 252 S 1480 382, 1606 398 S 1720 410, 1776 412"/>
       <g class="drops"><line x1="170" y1="430" x2="170" y2="440"/><line x1="529" y1="288" x2="529" y2="440"/><line x1="888" y1="96" x2="888" y2="440"/><line x1="1247" y1="278" x2="1247" y2="440"/><line x1="1606" y1="424" x2="1606" y2="440"/></g>
@@ -155,6 +153,10 @@
       <g class="pt" data-i="3" style="--c:#E0663F"><circle cx="888" cy="70" r="26"/><text x="888" y="70">3</text></g>
       <g class="pt" data-i="4" style="--c:#1D4F91"><circle cx="1247" cy="252" r="26"/><text x="1247" y="252">4</text></g>
       <g class="pt" data-i="5" style="--c:#8A9AB0"><circle cx="1606" cy="398" r="26"/><text x="1606" y="398">5</text></g>
+      <g id="pc-dot" class="now">
+          <g class="trail"><circle r="17"/><circle r="15"/><circle r="13"/><circle r="11"/><circle r="9"/><circle r="7"/></g>
+          <g class="drift"><circle class="halo" r="34"/><circle class="ring" r="20"/><circle class="core" r="20"/><text class="q" y="1">?</text></g>
+      </g>
       
     </svg>
   </div>
@@ -167,7 +169,7 @@
   </div>
   <span class="fragment step"></span><span class="fragment step"></span><span class="fragment step"></span><span class="fragment step"></span><span class="fragment step"></span><span class="fragment step"></span>
   <p class="foot">Adapted from Grady &amp; Castro, “Tech Panics, Generative AI, and the Need for Regulatory Caution,” Center for Data Innovation, May 2023.</p>
-  <aside class="notes">Click through the five stages; each click lights one up. Then ask: where are we with generative AI right now? Let a few people answer, then click once more: the shaded zone shows Gen AI could be anywhere from early fear to normalization, and the dot keeps moving. The honest answer is that it moves too fast to pin down.</aside>
+  <aside class="notes">Click through the five stages; each click lights one up. Then ask: where are we with generative AI right now? Let a few people answer, then click once more: the shaded zone shows AI could be anywhere from early fear to normalization, and the dot keeps moving. The honest answer is that it moves too fast to pin down.</aside>
 </section>
 
 <!-- 8 · HISTORY -->
@@ -698,6 +700,6 @@
 <script src="js/config.js?v=22f5f014"></script>
 <script src="js/rounds.js?v=9b770cee"></script>
 <script src="js/live.js?v=5ad5d987"></script>
-<script src="js/deck.js?v=efb232aa"></script>
+<script src="js/deck.js?v=b35880e2"></script>
 </body>
 </html>

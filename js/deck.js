@@ -19,6 +19,20 @@
     s.appendChild(d);
   });
 
+  /* torn-paper edges for the newspaper clippings (size-independent: % along, px across) */
+  (function () {
+    var seed = 3, rnd = function () { return (seed = (seed * 16807) % 2147483647) / 2147483647; };
+    document.querySelectorAll(".clips .hl").forEach(function (el) {
+      var pts = [], n = 54, m = 30;
+      var o = function () { return (rnd() * 10 * (rnd() < .15 ? 1.8 : 1)).toFixed(1); };
+      for (var i = 0; i <= n; i++) pts.push((100 * i / n).toFixed(2) + "% " + o() + "px");
+      for (i = 0; i <= m; i++) pts.push("calc(100% - " + o() + "px) " + (100 * i / m).toFixed(2) + "%");
+      for (i = n; i >= 0; i--) pts.push((100 * i / n).toFixed(2) + "% calc(100% - " + o() + "px)");
+      for (i = m; i >= 0; i--) pts.push(o() + "px " + (100 * i / m).toFixed(2) + "%");
+      el.style.setProperty("--tear", "polygon(" + pts.join(",") + ")");
+    });
+  })();
+
   /* ---------------- Reveal ---------------- */
   Reveal.initialize({
     width: 1920, height: 1080, margin: 0, minScale: 0.1, maxScale: 3,
@@ -60,7 +74,7 @@
      Position eases toward a target that is re-picked at random intervals, so it never settles. */
   var drift = { run: false };
   function startDrift(slide) {
-    var path = $("#pc-curve", slide), dot = $("#pc-now .drift", slide), trail = $$("#pc-now .trail circle", slide);
+    var path = $("#pc-curve", slide), dot = $("#pc-dot .drift", slide), trail = $$("#pc-dot .trail circle", slide);
     if (!path || !dot || drift.run) return;
     if (!drift.l0) {
       var L = path.getTotalLength(), f = function (tx) { var best = 0, bd = 1e9; for (var l = 0; l <= L; l += 3) { var d = Math.abs(path.getPointAtLength(l).x - tx); if (d < bd) { bd = d; best = l; } } return best; };
@@ -99,7 +113,7 @@
     var n = $$(".fragment.step.visible", slide).length, all = n === 0 || n > 5;
     $$(".pc-card", slide).forEach(function (b) { var i = +b.dataset.i; b.classList.toggle("on", i === n); b.classList.toggle("dim", !all && i !== n); });
     $$(".pt", slide).forEach(function (p) { p.classList.toggle("on", +p.dataset.i === n); });
-    var now = $("#pc-now", slide); if (now) { now.classList.toggle("show", n > 5); if (n > 5) startDrift(slide); }
+    var now = $("#pc-now", slide), dot = $("#pc-dot", slide); if (now) { now.classList.toggle("show", n > 5); if (dot) dot.classList.toggle("show", n > 5); if (n > 5) startDrift(slide); }
   }
 
   /* ---------------- counters ---------------- */
