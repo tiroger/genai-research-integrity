@@ -697,3 +697,10 @@ section.present .ffpx .hl2{animation:ffpHl .5s 2.5s both}
 .il-stack .il-p{left:30px;top:360px;width:640px;z-index:3}
 .fakewrap{position:relative}
 .fakechip{position:absolute;bottom:22px;right:22px;font:800 17px var(--sans);letter-spacing:.12em;text-transform:uppercase;color:#fff;background:#B3261E;border-radius:8px;padding:8px 14px;box-shadow:0 4px 12px rgba(0,0,0,.18)}
+
+/* demo step tracker (western blot walk-through) */
+.wsteps{list-style:none;display:flex;gap:10px;margin:-14px 0 22px;padding:0}
+.wsteps li{display:flex;align-items:center;gap:8px;font:700 17px var(--sans);letter-spacing:.1em;text-transform:uppercase;color:#9AA9BD;padding:6px 14px 6px 6px;border-radius:999px;background:var(--track)}
+.wsteps li span{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;background:#fff;color:#8A9AB0;font-size:14px;letter-spacing:0}
+.wsteps li.done{color:var(--blue)}.wsteps li.done span{background:var(--cb);color:var(--navy)}
+.wsteps li.on{background:var(--navy);color:#fff}.wsteps li.on span{background:var(--coral);color:#fff}
