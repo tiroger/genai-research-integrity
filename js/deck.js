@@ -56,20 +56,31 @@
   }
 
   /* tech panic: one stage lit per click, then the "today?" marker */
-  function placeNow(slide) {
-    var path = $("#pc-curve", slide), g = $("#pc-now", slide);
-    if (!path || !g || g.dataset.placed) return;
-    var L = path.getTotalLength(), best = null, tx = 1070;
-    for (var l = 0; l <= L; l += 4) { var p = path.getPointAtLength(l); if (!best || Math.abs(p.x - tx) < Math.abs(best.x - tx)) best = p; }
-    g.setAttribute("transform", "translate(" + best.x + "," + best.y + ")"); g.dataset.placed = 1;
+  /* "Gen AI" dot drifts along the curve between stages 2 and 4: we can't say where it is */
+  var drift = { run: false };
+  function startDrift(slide) {
+    var path = $("#pc-curve", slide), dot = $("#pc-now .drift", slide);
+    if (!path || !dot || drift.run) return;
+    if (!drift.l0) {
+      var L = path.getTotalLength(), f = function (tx) { var best = 0, bd = 1e9; for (var l = 0; l <= L; l += 3) { var d = Math.abs(path.getPointAtLength(l).x - tx); if (d < bd) { bd = d; best = l; } } return best; };
+      drift.l0 = f(560); drift.l1 = f(1215);
+    }
+    drift.run = true; var t0 = performance.now();
+    (function step(now) {
+      if (!slide.classList.contains("present") || !$("#pc-now", slide).classList.contains("show") || document.hidden) { drift.run = false; return; }
+      var u = (Math.sin((now - t0) / 1400) + Math.sin((now - t0) / 610) * 0.35) / 1.35;   // irregular back-and-forth
+      var p = path.getPointAtLength(drift.l0 + (drift.l1 - drift.l0) * (u + 1) / 2);
+      dot.setAttribute("transform", "translate(" + p.x + "," + p.y + ")");
+      requestAnimationFrame(step);
+    })(t0);
   }
+
   function panicStep(slide) {
     if (!slide || slide.id !== "panic") return;
-    placeNow(slide);
     var n = $$(".fragment.step.visible", slide).length, all = n === 0 || n > 5;
     $$(".pc-card", slide).forEach(function (b) { var i = +b.dataset.i; b.classList.toggle("on", i === n); b.classList.toggle("dim", !all && i !== n); });
     $$(".pt", slide).forEach(function (p) { p.classList.toggle("on", +p.dataset.i === n); });
-    var now = $("#pc-now", slide); if (now) now.classList.toggle("show", n > 5);
+    var now = $("#pc-now", slide); if (now) { now.classList.toggle("show", n > 5); if (n > 5) startDrift(slide); }
   }
 
   /* ---------------- counters ---------------- */

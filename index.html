@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Scientific Research in the Age of Gen AI</title>
 <link rel="stylesheet" href="lib/reveal.css?v=f8e9b506">
-<link rel="stylesheet" href="css/deck.css?v=d164d927">
+<link rel="stylesheet" href="css/deck.css?v=e7a8dab5">
 </head>
 <body>
 <div class="reveal"><div class="slides">
@@ -134,12 +134,19 @@
   <div class="pc-chart">
     <svg viewBox="0 0 1776 440">
       <defs>
+        <clipPath id="pczone"><rect x="529" y="0" width="718" height="440"/></clipPath>
         <linearGradient id="pcfill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1D4F91" stop-opacity=".22"/><stop offset="1" stop-color="#1D4F91" stop-opacity="0"/></linearGradient>
       </defs>
       <text class="axl" x="0" y="18">PUBLIC CONCERN ↑</text>
       <text class="axl" x="1776" y="470" text-anchor="end">TIME →</text>
       <line class="ax" x1="0" y1="440" x2="1776" y2="440"/>
       <path class="area" d="M0 430 C 90 428, 120 412, 170 404 S 430 330, 529 262 S 790 70, 888 70 S 1120 180, 1247 252 S 1480 382, 1606 398 S 1720 410, 1776 412 L 1776 440 L 0 440 Z"/>
+      <g id="pc-now" class="now">
+        <rect class="zone" x="529" y="0" width="718" height="440" rx="18"/>
+        <path class="zone-curve" d="M0 430 C 90 428, 120 412, 170 404 S 430 330, 529 262 S 790 70, 888 70 S 1120 180, 1247 252 S 1480 382, 1606 398 S 1720 410, 1776 412" clip-path="url(#pczone)"/>
+        <g class="drift"><circle class="ring" r="20"/><circle class="core" r="20"/></g>
+        <g class="zlabel" transform="translate(888,372)"><rect x="-300" y="-30" width="600" height="60" rx="30"/><text x="0" y="1">Gen AI is somewhere in here, and moving fast</text></g>
+      </g>
       <path class="curve" id="pc-curve" d="M0 430 C 90 428, 120 412, 170 404 S 430 330, 529 262 S 790 70, 888 70 S 1120 180, 1247 252 S 1480 382, 1606 398 S 1720 410, 1776 412"/>
       <g class="drops"><line x1="170" y1="430" x2="170" y2="440"/><line x1="529" y1="288" x2="529" y2="440"/><line x1="888" y1="96" x2="888" y2="440"/><line x1="1247" y1="278" x2="1247" y2="440"/><line x1="1606" y1="424" x2="1606" y2="440"/></g>
       <g class="pt" data-i="1" style="--c:#7FB2DB"><circle cx="170" cy="404" r="26"/><text x="170" y="404">1</text></g>
@@ -147,7 +154,7 @@
       <g class="pt" data-i="3" style="--c:#E0663F"><circle cx="888" cy="70" r="26"/><text x="888" y="70">3</text></g>
       <g class="pt" data-i="4" style="--c:#1D4F91"><circle cx="1247" cy="252" r="26"/><text x="1247" y="252">4</text></g>
       <g class="pt" data-i="5" style="--c:#8A9AB0"><circle cx="1606" cy="398" r="26"/><text x="1606" y="398">5</text></g>
-      <g id="pc-now" class="now" transform="translate(1070.2,142.2)" data-placed="1"><circle r="15"/><circle class="ring" r="15"/><g class="pin"><rect x="-128" y="-92" width="256" height="54" rx="27"/><text x="0" y="-65">Gen AI, today?</text><path d="M-10 -38 L0 -24 L10 -38 Z"/></g></g>
+      
     </svg>
   </div>
   <div class="pc-cards">
@@ -159,7 +166,7 @@
   </div>
   <span class="fragment step"></span><span class="fragment step"></span><span class="fragment step"></span><span class="fragment step"></span><span class="fragment step"></span><span class="fragment step"></span>
   <p class="foot">Adapted from Grady &amp; Castro, “Tech Panics, Generative AI, and the Need for Regulatory Caution,” Center for Data Innovation, May 2023.</p>
-  <aside class="notes">Click through the five stages; each click lights one up. Then ask: where are we with generative AI right now? Let a few people answer, then click once more to drop the "Gen AI, today?" marker between peak panic and normalization.</aside>
+  <aside class="notes">Click through the five stages; each click lights one up. Then ask: where are we with generative AI right now? Let a few people answer, then click once more: the shaded zone shows Gen AI could be anywhere from early fear to normalization, and the dot keeps moving. The honest answer is that it moves too fast to pin down.</aside>
 </section>
 
 <!-- 8 · HISTORY -->
@@ -690,6 +697,6 @@
 <script src="js/config.js?v=22f5f014"></script>
 <script src="js/rounds.js?v=9b770cee"></script>
 <script src="js/live.js?v=5ad5d987"></script>
-<script src="js/deck.js?v=41f10e7f"></script>
+<script src="js/deck.js?v=99619c7b"></script>
 </body>
 </html>

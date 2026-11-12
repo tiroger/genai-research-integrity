@@ -578,3 +578,11 @@ section.act h1 em{font-style:italic;color:var(--amber)}
 .qrbox.wide{flex-direction:row;align-items:center;width:auto;gap:20px}
 .qrbox.wide .qr{width:200px;height:200px}
 .qrbox.wide .t{max-width:300px}
+
+/* panic cycle: uncertainty zone */
+.pc .now .zone{fill:var(--amber);opacity:.13;stroke:var(--amber);stroke-width:2;stroke-dasharray:8 8;stroke-opacity:.9}
+.pc .now .zone-curve{fill:none;stroke:var(--amber);stroke-width:12;stroke-linecap:round;opacity:.55}
+.pc .now .drift .core{fill:var(--amber);stroke:var(--navy);stroke-width:4}
+.pc .now .drift .ring{fill:none;stroke:var(--amber);stroke-width:3;animation:nowring 1.8s infinite;transform-box:fill-box;transform-origin:center}
+.pc .now .zlabel rect{fill:var(--navy)}
+.pc .now .zlabel text{font:700 25px var(--sans);fill:#fff;text-anchor:middle;dominant-baseline:central}
