@@ -609,6 +609,15 @@ section.act h1 em{font-style:italic;color:var(--amber)}
 .pc .now .drift .halo{fill:var(--amber);opacity:.18}
 .pc .now .drift .q{font:800 22px var(--sans);fill:var(--navy);text-anchor:middle;dominant-baseline:central}
 
+/* ===== slide number: serif folio (option A, softened) ===== */
+.reveal .slide-number,.reveal-viewport.dark .reveal .slide-number{top:30px;right:44px;bottom:auto;left:auto;background:none;border:0;box-shadow:none;padding:0;border-radius:0;font:400 26px/1 var(--serif);letter-spacing:0}
+.reveal .slide-number a{gap:6px;align-items:baseline}
+.reveal .slide-number .slide-number-a{color:rgba(29,79,145,.55);font-variant-numeric:oldstyle-nums proportional-nums}
+.reveal .slide-number .slide-number-delimiter,.reveal .slide-number .slide-number-b{font-style:italic;font-size:17px;color:rgba(85,101,125,.4);opacity:1}
+.reveal-viewport.dark .reveal .slide-number .slide-number-a{color:rgba(242,179,61,.6)}
+.reveal-viewport.dark .reveal .slide-number .slide-number-delimiter,.reveal-viewport.dark .reveal .slide-number .slide-number-b{color:rgba(185,217,235,.38)}
+.reveal .slide-number{transition:opacity .4s}
+
 </style>
 </head>
 <body>
@@ -3785,7 +3794,7 @@ window.ROUNDS = {
   Reveal.initialize({
     width: 1920, height: 1080, margin: 0, minScale: 0.1, maxScale: 3,
     center: false, hash: true, controls: true, controlsTutorial: false, progress: true,
-    slideNumber: function () { var t = Reveal.getTotalSlides(), i = Reveal.getIndices().h + 1; return [String(i).padStart(2, "0"), "/", t]; }, transition: "fade", backgroundTransition: "fade", transitionSpeed: "default",
+    slideNumber: function () { var t = Reveal.getTotalSlides(), i = Reveal.getIndices().h + 1; return [String(i), "/", t]; }, transition: "fade", backgroundTransition: "fade", transitionSpeed: "default",
     pdfSeparateFragments: false, viewDistance: 2, mobileViewDistance: 1, preloadIframes: false, plugins: [window.RevealNotes].filter(Boolean)
   });
 

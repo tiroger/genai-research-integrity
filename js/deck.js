@@ -23,7 +23,7 @@
   Reveal.initialize({
     width: 1920, height: 1080, margin: 0, minScale: 0.1, maxScale: 3,
     center: false, hash: true, controls: true, controlsTutorial: false, progress: true,
-    slideNumber: function () { var t = Reveal.getTotalSlides(), i = Reveal.getIndices().h + 1; return [String(i).padStart(2, "0"), "/", t]; }, transition: "fade", backgroundTransition: "fade", transitionSpeed: "default",
+    slideNumber: function () { var t = Reveal.getTotalSlides(), i = Reveal.getIndices().h + 1; return [String(i), "/", t]; }, transition: "fade", backgroundTransition: "fade", transitionSpeed: "default",
     pdfSeparateFragments: false, viewDistance: 2, mobileViewDistance: 1, preloadIframes: false, plugins: [window.RevealNotes].filter(Boolean)
   });
 
