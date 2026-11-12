@@ -695,3 +695,5 @@ section.present .ffpx .hl2{animation:ffpHl .5s 2.5s both}
 .il-stack .il-t{right:0;top:84px;width:760px}
 .il-stack .il-c{left:0;top:0;width:580px;z-index:2}
 .il-stack .il-p{left:30px;top:360px;width:640px;z-index:3}
+.fakewrap{position:relative}
+.fakechip{position:absolute;bottom:22px;right:22px;font:800 17px var(--sans);letter-spacing:.12em;text-transform:uppercase;color:#fff;background:#B3261E;border-radius:8px;padding:8px 14px;box-shadow:0 4px 12px rgba(0,0,0,.18)}
