@@ -805,3 +805,15 @@ section:has(.recap:not([hidden])) .ty-h{margin-top:70px!important}
 .wsteps.late em{top:calc(100% + 7px)}
 section[data-round="pledge"] .cards.tall .card{min-height:400px}
 .pledge-bar{justify-content:flex-start}
+/* blot demo: labelled original vs generated */
+.wbpair{gap:30px}
+.wbcmp{margin:0;background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px 22px 22px;box-shadow:0 8px 24px rgba(11,31,68,.08)}
+.wbcmp figcaption{display:inline-block;margin-bottom:14px;font:800 20px var(--sans);letter-spacing:.14em;text-transform:uppercase;border-radius:8px;padding:6px 14px}
+.wbcmp .real{background:var(--cb);color:var(--navy)}
+.wbcmp .gen{background:var(--coral);color:#fff}
+.wbcmp img{display:block;width:100%;height:auto;border-radius:6px}
+.wbpair{gap:22px}
+.wbcmp{display:grid;grid-template-columns:190px 1fr;align-items:center;gap:20px;padding:16px 20px}
+.wbcmp figcaption{margin:0;justify-self:start}
+.wbcmp img{height:300px;width:auto;max-width:100%;object-fit:contain}
+.wbcmp{grid-template-columns:230px 1fr}.wbcmp figcaption{white-space:nowrap}
