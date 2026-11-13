@@ -221,7 +221,11 @@
   $$(".game").forEach(function (el) {
     var round = el.dataset.round, def = R[round]; if (!def) return;
     var st = games[round] = { round: round, def: def, el: el, slide: el.closest("section"), answer: el.dataset.answer || "", revealed: false, local: {}, votes: {} };
-    if (def.type === "multi") { if (el.dataset.compare) { st.compare = true; renderCompare(el, def); } else renderPoll(el, def); }
+    if (def.type === "multi" && el.hasAttribute("data-cards")) {
+      // vote bars live inside the slide's own cards (one card per option, in order)
+      st.cards = $$('[data-poll="' + round + '"] > .card', st.slide);
+      st.cards.forEach(function (c, i) { var o = def.options[i]; if (!o) return; c.dataset.id = o.id; c.insertAdjacentHTML("beforeend", '<div class="cbar"><i></i><span>–</span></div>'); });
+    } else if (def.type === "multi") { if (el.dataset.compare) { st.compare = true; renderCompare(el, def); } else renderPoll(el, def); }
     if (def.type === "tiles") renderTiles(el, def);
     if (def.type === "columns") renderCols(el, def);
     if (def.type === "ab") renderAB(el, def);
@@ -261,6 +265,15 @@
     var vc = $("[data-vcount]", st.slide);
     if (vc) vc.textContent = Live.on ? (T.n + (T.n === 1 ? " vote" : " votes")) : "";
     var pct = function (k) { return T.n ? Math.round(100 * (T.c[k] || 0) / T.n) : 0; };
+    if (t === "multi" && st.cards) {
+      st.slide.classList.toggle("has-votes", Live.on && T.n > 0);
+      var top = 0; st.cards.forEach(function (c) { top = Math.max(top, pct(c.dataset.id)); });
+      st.cards.forEach(function (c) {
+        var p = pct(c.dataset.id); $(".cbar i", c).style.width = p + "%"; $(".cbar span", c).textContent = T.n ? p + "%" : "–";
+        c.classList.toggle("lead", T.n > 0 && p === top);
+      });
+      return;
+    }
     if (t === "multi" && st.compare) {
       var base = Live.on ? T.n : 0, loc = 0;
       if (!Live.on) Object.keys(st.local).forEach(function (k) { loc = Math.max(loc, st.local[k]); });
@@ -597,5 +610,133 @@
     c.addEventListener("pointerdown", function (e) { drag = true; c.setPointerCapture(e.pointerId); set(e.clientX); });
     c.addEventListener("pointermove", function (e) { if (drag) set(e.clientX); });
     c.addEventListener("pointerup", function () { drag = false; });
+  });
+
+
+  /* ================= flair ================= */
+  var reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* RECKLESS? stamp: the slide gives a small jolt when it lands */
+  Reveal.on("fragmentshown", function (e) {
+    if (!e.fragment.classList.contains("stamp")) return;
+    var sl = Reveal.getCurrentSlide(); sl.classList.remove("jolt"); void sl.offsetWidth; sl.classList.add("jolt");
+  });
+
+  /* chatbot replies: typing dots, then the words stream in */
+  function prepType(m) {
+    if (m._typed) return; m._typed = true;
+    var walk = document.createTreeWalker(m, NodeFilter.SHOW_TEXT, { acceptNode: function (n) { return n.parentNode.closest(".who") ? NodeFilter.FILTER_REJECT : (n.nodeValue.trim() ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT); } });
+    var nodes = []; while (walk.nextNode()) nodes.push(walk.currentNode);
+    nodes.forEach(function (n) {
+      var frag = document.createDocumentFragment();
+      n.nodeValue.split(/(\s+)/).forEach(function (w) {
+        if (!w) return;
+        if (/^\s+$/.test(w)) { frag.appendChild(document.createTextNode(w)); return; }
+        var sp = document.createElement("span"); sp.className = "w"; sp.textContent = w; frag.appendChild(sp);
+      });
+      n.parentNode.replaceChild(frag, n);
+    });
+    // list markers and other pseudo-content follow their item
+    m.insertAdjacentHTML("beforeend", '<span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>');
+    m._words = $$(".w", m);
+  }
+  function runType(m, delay) {
+    prepType(m); clearTimeout(m._t); clearInterval(m._iv);
+    m.classList.add("typing", "streaming"); m._words.forEach(function (w) { w.classList.remove("on"); });
+    if (reduce) { m.classList.remove("typing", "streaming"); return; }
+    var k = 0, per = Math.max(10, Math.min(38, 2600 / m._words.length));
+    m._t = setTimeout(function () {
+      m.classList.remove("typing");
+      m._iv = setInterval(function () { var w = m._words[k++]; if (!w) { clearInterval(m._iv); m.classList.remove("streaming"); return; } w.classList.add("on"); }, per);
+    }, delay + 900);
+  }
+  function resetType(m) { if (!m._typed) return; clearTimeout(m._t); clearInterval(m._iv); m.classList.remove("typing", "streaming"); }
+  function typeSlide(sl) {
+    $$(".msg[data-type]", sl).forEach(function (m) {
+      if (m.classList.contains("fragment")) { prepType(m); if (!m.classList.contains("visible")) return; resetType(m); return; }
+      runType(m, m.classList.contains("d1") ? 300 : m.classList.contains("d2") ? 500 : 150);
+    });
+  }
+  $$(".msg[data-type]").forEach(prepType);
+
+  /* p-value ticking down until it "works" */
+  function runP(box) {
+    var spec = $(".spec b", box), pv = $(".pv b", box), seq = [], p = 0.41, i;
+    for (i = 1; i <= 46; i++) { p = Math.max(0.051, p * (0.9 + Math.random() * 0.13) + (Math.random() - 0.5) * 0.02); seq.push(p); }
+    seq.push(0.047);
+    clearInterval(box._iv); box.classList.remove("hit"); i = 0;
+    var steps = [1, 2, 3, 5, 8, 12, 17, 23, 31, 40, 52, 66, 81, 97, 114, 131, 148, 163, 171, 176, 179, 180];
+    box._iv = setInterval(function () {
+      var n = Math.min(i, seq.length - 1), last = n === seq.length - 1;
+      spec.textContent = "#" + (last ? 180 : steps[Math.min(steps.length - 2, Math.floor(i * steps.length / seq.length))]);
+      pv.textContent = seq[n].toFixed(3);
+      if (last) { clearInterval(box._iv); box.classList.add("hit"); }
+      i++;
+    }, 70);
+  }
+  function resetP(box) { clearInterval(box._iv); box.classList.remove("hit"); $(".spec b", box).textContent = "#1"; $(".pv b", box).textContent = "0.412"; }
+
+  /* thank-you: what this room actually did */
+  function recap() {
+    var rc = $(".recap"); if (!rc) return;
+    if (!Live.on) { rc.hidden = true; return; }
+    var people = {}, any = false;
+    Object.keys(games).forEach(function (r) { Object.keys(games[r].votes || {}).forEach(function (u) { people[u] = 1; any = true; }); });
+    var n = Object.keys(people).length;
+    if (!any || n < 1) { rc.hidden = true; return; }
+    rc.hidden = false;
+    function set(key, val, show) { var b = $('[data-r="' + key + '"]', rc); if (!b) return; b.style.display = show ? "" : "none"; if (show) { $("b", b).dataset.to = val; } }
+    set("n", n, true);
+    var m = games.micro, mv = m ? Object.keys(m.votes || {}) : [];
+    if (mv.length) {
+      var ans = parseAnswer("tiles", m.answer), hit = 0;
+      mv.forEach(function (u) { (m.votes[u] || "").split(",").forEach(function (k) { if (ans.indexOf(k) >= 0) hit++; }); });
+      set("micro", (hit / mv.length).toFixed(1), true);
+    } else set("micro", 0, false);
+    var bl = games.blot, bv = bl ? Object.keys(bl.votes || {}) : [];
+    if (bv.length) { var f = bv.filter(function (u) { return bl.votes[u] && bl.votes[u] !== bl.answer && bl.votes[u] !== "-"; }).length; set("blot", Math.round(100 * f / bv.length) + "%", true); }
+    else set("blot", 0, false);
+    var pn = games.panels, pv = pn ? Object.keys(pn.votes || {}) : [];
+    if (pv.length) {
+      var A = parseAnswer("columns", pn.answer), tot = 0, h2 = 0;
+      Object.keys(A).forEach(function (k) { tot += A[k].length; });
+      pv.forEach(function (u) { var o = parseAnswer("columns", pn.votes[u] || ""); Object.keys(A).forEach(function (k) { A[k].forEach(function (i) { if ((o[k] || []).indexOf(i) >= 0) h2++; }); }); });
+      var pt = $("[data-pt]", rc); if (pt) pt.textContent = tot;
+      set("panels", (h2 / pv.length).toFixed(1), true);
+    } else set("panels", 0, false);
+    // count up
+    $$(".rs b", rc).forEach(function (b, idx) {
+      var to = String(b.dataset.to || "0"), pc = /%$/.test(to), num = parseFloat(to), dec = /\./.test(to) ? 1 : 0, t0 = null;
+      b.textContent = (0).toFixed(dec) + (pc ? "%" : "");
+      setTimeout(function () {
+        function f(ts) { if (!t0) t0 = ts; var k = Math.min(1, (ts - t0) / 900), e = 1 - Math.pow(1 - k, 3); b.textContent = (num * e).toFixed(dec) + (pc ? "%" : ""); if (k < 1) requestAnimationFrame(f); }
+        requestAnimationFrame(f);
+      }, 500 + idx * 180);
+    });
+  }
+
+  function flairSlide(sl) {
+    if (!sl) return;
+    typeSlide(sl);
+    $$(".pdrop", sl).forEach(function (b) { var fr = b.closest(".fragment"); if (fr && fr.classList.contains("visible")) { clearInterval(b._iv); b.classList.add("hit"); $(".spec b", b).textContent = "#180"; $(".pv b", b).textContent = "0.047"; } else resetP(b); });
+    sl.classList.toggle("glitched", !!$(".glitch-go.visible", sl));
+    if ($(".recap", sl)) recap();
+  }
+  Reveal.on("slidechanged", function (e) {
+    if (e.previousSlide) $$(".msg[data-type]", e.previousSlide).forEach(resetType);
+    flairSlide(e.currentSlide);
+  });
+  Reveal.on("ready", function (e) { flairSlide(e.currentSlide); });
+  Reveal.on("fragmentshown", function (e) {
+    var f = e.fragment, sl = Reveal.getCurrentSlide();
+    if (f.matches(".msg[data-type]")) runType(f, 250);
+    $$(".msg[data-type]", f).forEach(function (m) { runType(m, 250); });
+    if (f.querySelector(".pdrop")) runP($(".pdrop", f));
+    if (f.classList.contains("glitch-go")) sl.classList.add("glitched");
+  });
+  Reveal.on("fragmenthidden", function (e) {
+    var f = e.fragment, sl = Reveal.getCurrentSlide();
+    if (f.querySelector(".pdrop")) resetP($(".pdrop", f));
+    if (f.classList.contains("glitch-go")) sl.classList.remove("glitched");
   });
 })();

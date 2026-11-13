@@ -55,5 +55,18 @@ window.ROUNDS = {
       { id: "A", img: "assets/wb-gen-strip.webp" },
       { id: "B", img: "assets/wb-orig-strip.webp" }
     ]
+  },
+  pledge: {
+    type: "multi",
+    single: true,
+    title: "Which question will you start asking?",
+    hint: "Pick one.",
+    options: [
+      { id: "q1", label: "Whose material is this?" },
+      { id: "q2", label: "Can I verify and explain it?" },
+      { id: "q3", label: "Whose judgment is in the work?" },
+      { id: "q4", label: "Could I describe it in Methods?" },
+      { id: "q5", label: "What do the rules say today?" }
+    ]
   }
 };
