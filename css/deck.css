@@ -836,3 +836,7 @@ section:not(.present) .real.alert .bar i{animation:none}
 .real.alert .body{padding:18px 24px 20px}
 .real.alert h3{margin:0 0 8px;font:800 31px/1.14 var(--sans);color:var(--navy);letter-spacing:-.01em}
 .real.alert p{margin:0;font-size:21px;line-height:1.35;color:var(--ink)}
+/* Fortune clipping with pull quote (slide 23) */
+.hal .hl.np h3{font-size:36px;line-height:1.12;margin:4px 0 0}
+.npq{margin:18px 0 0;padding:14px 0 0 22px;border-left:5px solid #A3221B;font:700 italic 40px/1.18 "Old Standard TT",Georgia,serif;color:#191919}
+.npq cite{display:block;margin-top:10px;font:400 italic 20px/1.35 "Old Standard TT",Georgia,serif;color:#4a4a4a}
