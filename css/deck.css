@@ -826,3 +826,13 @@ section[data-round="pledge"] .cards.tall .card{min-height:400px}
 .hal .refs{font-size:24px;gap:16px}
 .hal .refcard{padding:24px 28px}
 .hal .topaz p{font-size:56px}
+/* "It happened": real news headline, styled as a news alert */
+.real.alert{background:#fff;border:0;padding:0;border-radius:12px;overflow:hidden;box-shadow:0 10px 26px rgba(11,31,68,.14)}
+.real.alert .bar{display:flex;align-items:center;gap:12px;background:#B3261E;color:#fff;padding:9px 20px;font:800 16px var(--sans);letter-spacing:.16em;text-transform:uppercase}
+.real.alert .bar i{flex:none;width:11px;height:11px;border-radius:50%;background:#fff;animation:alertBlink 1.2s infinite}
+section:not(.present) .real.alert .bar i{animation:none}
+@keyframes alertBlink{50%{opacity:.25}}
+.real.alert .bar span{margin-left:auto;font-weight:600;letter-spacing:.1em;opacity:.88;white-space:nowrap}
+.real.alert .body{padding:18px 24px 20px}
+.real.alert h3{margin:0 0 8px;font:800 31px/1.14 var(--sans);color:var(--navy);letter-spacing:-.01em}
+.real.alert p{margin:0;font-size:21px;line-height:1.35;color:var(--ink)}
