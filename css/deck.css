@@ -818,8 +818,11 @@ section[data-round="pledge"] .cards.tall .card{min-height:400px}
 .wbcmp img{height:300px;width:auto;max-width:100%;object-fit:contain}
 .wbcmp{grid-template-columns:230px 1fr}.wbcmp figcaption{white-space:nowrap}
 /* slide 23: Topaz quote */
-.zeno img{display:block;max-height:430px;width:100%;object-fit:cover;object-position:center 30%}
 .topaz{background:var(--navy);border-radius:16px;padding:26px 34px;border-left:10px solid var(--amber)}
-.topaz p{margin:0;font:600 italic 40px/1.2 var(--serif);color:#fff}
+.topaz p{margin:0;font:600 italic 50px/1.18 var(--serif);color:#fff}
 .topaz .by{display:block;margin-top:14px;font-size:20px;line-height:1.35;color:var(--cb)}
 .topaz .by b{color:#fff}
+.topaz{padding:40px 44px}
+.hal .refs{font-size:24px;gap:16px}
+.hal .refcard{padding:24px 28px}
+.hal .topaz p{font-size:56px}
