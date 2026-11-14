@@ -882,6 +882,14 @@ section.present .fakeref .end,section.present .fakeref .endl{animation:fadeIn .4
 @keyframes fadeIn{to{opacity:1}}
 .chartcard .credit{margin-top:6px;font-size:16px;line-height:1.35;color:var(--muted)}
 .chartcard~* .stat span,.row2 .stat span{line-height:1.3}
+/* citations slide */
+.cites .refs{font-size:21px;gap:12px}
+.ministats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.ministats>div{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+.ministats b{display:block;font:700 46px/1 var(--serif);color:var(--blue)}
+.ministats>div>span{display:block;margin-top:8px;font-size:19px;line-height:1.3;color:var(--muted)}
+.ministats b span{font:inherit;color:inherit}
+.cites+.fill .chartcard{padding:26px 30px 20px}
 
 </style>
 </head>
@@ -1293,9 +1301,19 @@ section.present .fakeref .end,section.present .fakeref .endl{animation:fadeIn .4
   <aside class="notes">A specification search isn't misconduct by itself. Reporting the winner as if it were the only test is. And if the agent logged 180 attempts and you never opened the log, is that reckless?</aside>
 </section>
 
+<!-- 23 · ACT III -->
+<section class="accent act" data-state="dark nobrand">
+  <div class="art" style="background-image:url(assets/act-lying.webp)"></div>
+  <div class="actword" aria-hidden="true" style="--c:#F28C6B">lying</div>
+  <div class="eyebrow"><span class="tag t-lie">Act III · Fabrication</span></div>
+  <div class="txt"><h1>Gen AI as a tool for <em>lying?</em></h1>
+    <p class="sub">Making up data or results and reporting them.</p></div>
+  <span class="credit">Illustration: Lena Yang</span>
+</section>
+
 <!-- 21 · HALLUCINATIONS -->
 <section>
-  <div class="eyebrow"><span class="tag t-cheat">Falsification</span></div>
+  <div class="eyebrow"><span class="tag t-lie">Fabrication</span></div>
   <h2>Hallucinations</h2>
   <div class="row2" style="gap:44px;align-items:center;margin-top:30px">
     <div class="colx" style="width:760px;flex:none;gap:26px;justify-content:center">
@@ -1306,11 +1324,23 @@ section.present .fakeref .end,section.present .fakeref .endl{animation:fadeIn .4
   <aside class="notes">OpenAI's Whisper, used to transcribe patient visits, sometimes invents sentences no one said. Hallucination is a known, documented behavior of these tools.</aside>
 </section>
 
-<!-- 22b · FAKE REFERENCES RISING -->
+<!-- AI INVENTS CITATIONS -->
 <section>
-  <div class="eyebrow"><span class="tag t-cheat">Falsification</span></div>
-  <h2>Fake references took off in mid-2024</h2>
-  <div class="row2" style="gap:44px;align-items:flex-start">
+  <div class="eyebrow"><span class="tag t-lie">Fabrication</span></div>
+  <h2>AI invents citations, and it’s getting more common</h2>
+  <div class="row2" style="gap:40px;align-items:center;min-height:780px">
+    <div class="colx cites" style="width:600px;flex:none;gap:22px">
+      <div class="refcard rise"><ol class="refs" aria-label="Example references in the style of hallucinated citations">
+          <li><span class="t">Varga, M. &amp; Okonjo, T. (2023). Shear-stress priming of endothelial KLF2 in arteriovenous fistulas. <i>Arterioscler Thromb Vasc Biol</i> 43, 1187–1199.</span><span class="nsp">No such paper</span></li>
+          <li><span class="t">Lindqvist, A. et al. (2024). AI-assisted hemodynamic monitoring after cardiac surgery. <i>Intensive Care Med</i> 50, 412–420.</span><span class="nsp">No such paper</span></li>
+          <li><span class="t">Haddad, R. &amp; Peres, J. (2022). Pericyte loss and capillary rarefaction in early sepsis. <i>Circ Res</i> 131(4), 288–301.</span><span class="nsp">No such paper</span></li>
+        </ol><span class="fragment glitch-go" data-fragment-index="1"></span></div>
+      <div class="ministats rise d2">
+        <div><b><span data-count="2.5" data-dec="1">0</span>M</b><span>papers checked</span></div>
+        <div><b><span data-count="4046">0</span></b><span>fake references found</span></div>
+        <div><b>12×</b><span>rise in three years</span></div>
+      </div>
+    </div>
     <div class="fill">
       <div class="frame rise chartcard"><div class="clab">Papers containing fabricated references, per 10,000 scanned</div>
       <svg class="fakeref" viewBox="0 0 1100 560" role="img" aria-label="Papers containing fabricated references per 10,000 scanned, by quarter, Q1 2023 to Q1 2026: flat around 3 to 5 until mid-2024, then rising to 56.9">
@@ -1321,45 +1351,25 @@ section.present .fakeref .end,section.present .fakeref .endl{animation:fadeIn .4
       </svg>
       <div class="credit">Chart redrawn from <i>Fortune</i> (Tristan Bove, May 24, 2026), values read from the published chart. Data: Topaz et al., <i>The Lancet</i>, 2026.</div></div>
     </div>
-    <div class="colx" style="width:430px;flex:none;gap:26px;padding-top:10px">
-      <div class="stat rise d1"><b><span data-count="2.5" data-dec="1">0</span>M</b><span>biomedical papers checked in PubMed Central, 2023 to early 2026</span></div>
-      <div class="stat rise d2"><b><span data-count="4046">0</span></b><span>fabricated references, across 2,810 papers</span></div>
-      <div class="stat rise d3"><b><span data-count="12">0</span>×</b><span>more than a 12-fold rise in the rate in three years</span></div>
-    </div>
   </div>
-  <aside class="notes">This is the audit Topaz's near miss started. His team checked about 2.5 million PubMed Central papers and 97 million references, and flagged 4,046 fabricated references across 2,810 papers. The rate was flat until mid-2024, around when AI writing tools took off, then climbed fast; Fortune reports it grew more than 12-fold in three years. Chart redrawn from Fortune's (Tristan Bove), from Topaz et al. in The Lancet; quarterly values are read off their chart, so treat them as approximate.</aside>
+  <aside class="notes">AI tools invent citations: references that look exactly like real ones (these three are invented for the slide). Click: none of them exist. And it's accelerating. Maxim Topaz's team at Columbia checked about 2.5 million PubMed Central papers and 97 million references, and flagged 4,046 fabricated references across 2,810 papers. The rate was flat until mid-2024, then climbed fast; Fortune reports more than 12-fold in three years. Chart redrawn from Fortune's (Tristan Bove), data from Topaz et al. in The Lancet; quarterly values read off their chart, so approximate.</aside>
 </section>
 
-<!-- 22 · HALLUCINATIONS RECKLESS -->
+<!-- FAKE CITATIONS RECKLESS -->
 <section>
-  <div class="eyebrow"><span class="tag t-cheat">Falsification</span></div>
-  <h2>Hallucinations: reckless?</h2>
+  <div class="eyebrow"><span class="tag t-lie">Fabrication</span></div>
+  <h2>Fake citations: reckless?</h2>
   <div class="row2 hal" style="gap:48px;align-items:center;min-height:760px">
-    <div class="colx" style="width:800px;flex:none;gap:26px">
-      <div class="refcard rise"><ol class="refs" aria-label="Example references in the style of hallucinated citations">
-          <li><span class="t">Varga, M. &amp; Okonjo, T. (2023). Shear-stress priming of endothelial KLF2 in arteriovenous fistulas. <i>Arterioscler Thromb Vasc Biol</i> 43, 1187–1199.</span><span class="nsp">No such paper</span></li>
-          <li><span class="t">Lindqvist, A. et al. (2024). AI-assisted hemodynamic monitoring after cardiac surgery. <i>Intensive Care Med</i> 50, 412–420.</span><span class="nsp">No such paper</span></li>
-          <li><span class="t">Haddad, R. &amp; Peres, J. (2022). Pericyte loss and capillary rarefaction in early sepsis. <i>Circ Res</i> 131(4), 288–301.</span><span class="nsp">No such paper</span></li>
-        </ol><span class="fragment glitch-go" data-fragment-index="1"></span></div>
-      <div class="real alert fragment fade-up" data-fragment-index="2"><div class="bar"><i></i>It happened<span>Retraction Watch · Jan 28, 2026</span></div><div class="body"><h3>Medical journal publishes a letter on AI with a fake reference to itself</h3><p><i>Intensive Care Medicine</i>: 10 of 15 references couldn’t be found. The authors blamed AI formatting. Retracted Nov 2025.</p></div></div>
+    <div class="colx" style="width:900px;flex:none">
+      <div class="hl np tilt-r fragment fade-up" data-fragment-index="1"><div class="k"><b>Fortune</b> · Tristan Bove · May 24, 2026</div><h3>AI hallucinations are infiltrating expert work—and entering the permanent body of knowledge</h3><blockquote class="npq">“I’m an AI researcher. I know about hallucinations. If this is happening to me, an AI expert, what happens to other people?”<cite>Maxim Topaz, Columbia, after an AI tool slipped a fake reference into his own paper</cite></blockquote></div>
     </div>
-    <div class="colx fill" style="gap:26px;justify-content:center">
-      <div class="hl np tilt-r fragment fade-up" data-fragment-index="3"><div class="k"><b>Fortune</b> · Tristan Bove · May 24, 2026</div><h3>AI hallucinations are infiltrating expert work—and entering the permanent body of knowledge</h3><blockquote class="npq">“I’m an AI researcher. I know about hallucinations. If this is happening to me, an AI expert, what happens to other people?”<cite>Maxim Topaz, Columbia, after an AI tool slipped a fake reference into his own paper</cite></blockquote></div>
-      <div class="real fragment fade-up" data-fragment-index="4"><p>If you cite references from an AI without checking them, when the risk is known, is that reckless?</p></div>
+    <div class="colx fill" style="gap:26px">
+      <div class="real alert fragment fade-up" data-fragment-index="2"><div class="bar"><i></i>It happened<span>Retraction Watch · Jan 28, 2026</span></div><div class="body"><h3>Medical journal publishes a letter on AI with a fake reference to itself</h3><p><i>Intensive Care Medicine</i>: 10 of 15 references couldn’t be found. The authors blamed AI formatting. Retracted Nov 2025.</p></div></div>
+      <div class="real fragment fade-up" data-fragment-index="3"><p>If you cite references from an AI without checking them, when the risk is known, is that reckless?</p></div>
     </div>
   </div>
   <div class="stamp fragment">RECKLESS?</div>
-  <aside class="notes">These references look exactly like real ones (invented for the slide). Click: none of them exist. Click: this happened in a clinical journal. A December 2024 letter in Intensive Care Medicine had 10 of its 15 references that don't exist, including one to Intensive Care Medicine itself. The authors said they used generative AI only to turn PubMed IDs into a formatted reference list. It was retracted in November 2025. Click: it even happens to experts. Maxim Topaz, an AI-in-health researcher at Columbia Nursing, used an AI app to polish his own paper; it slipped in a fake reference, and the journal caught it. "I felt deeply embarrassed... If this is happening to me, an AI expert, what happens to other people?" (Fortune, May 2026). That led to his Lancet audit: about 4,000 fabricated references across nearly 3,000 PubMed Central papers. Click: and it catches experts. Maxim Topaz, an AI-in-health researcher at Columbia Nursing, used an AI app to polish his own paper; it slipped in a fake reference, and the journal caught it. "I felt deeply embarrassed... I'm an AI researcher. I know about hallucinations." That near miss led his team's Lancet audit (May 2026): 4,046 fabricated references across 2,810 PubMed Central papers, and by early 2026 about 1 in 277 papers had one. Click: the risk is known, so citing AI-supplied references without checking is the recklessness question.</aside>
-</section>
-
-<!-- 23 · ACT III -->
-<section class="accent act" data-state="dark nobrand">
-  <div class="art" style="background-image:url(assets/act-lying.webp)"></div>
-  <div class="actword" aria-hidden="true" style="--c:#F28C6B">lying</div>
-  <div class="eyebrow"><span class="tag t-lie">Act III · Fabrication</span></div>
-  <div class="txt"><h1>Gen AI as a tool for <em>lying?</em></h1>
-    <p class="sub">Making up data or results and reporting them.</p></div>
-  <span class="credit">Illustration: Lena Yang</span>
+  <aside class="notes">Even experts aren't immune. Click: Maxim Topaz, an AI-in-health researcher at Columbia, used an AI app to polish his own paper; it slipped in a fake reference, and the journal caught it. That near miss started the audit on the last slide. Click: and when nobody catches it, papers get retracted. A December 2024 letter in Intensive Care Medicine had 10 of its 15 references that couldn't be found, including one to the journal itself; the authors said they'd used generative AI to format the reference list. Retracted November 2025 (Retraction Watch, Jan 28, 2026). Click: the risk is known. If you don't do the due diligence and leave fabricated citations in, is that reckless, and so potentially research misconduct?</aside>
 </section>
 
 <!-- 24 · IMAGE MANIPULATION -->

@@ -863,3 +863,11 @@ section.present .fakeref .end,section.present .fakeref .endl{animation:fadeIn .4
 @keyframes fadeIn{to{opacity:1}}
 .chartcard .credit{margin-top:6px;font-size:16px;line-height:1.35;color:var(--muted)}
 .chartcard~* .stat span,.row2 .stat span{line-height:1.3}
+/* citations slide */
+.cites .refs{font-size:21px;gap:12px}
+.ministats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.ministats>div{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+.ministats b{display:block;font:700 46px/1 var(--serif);color:var(--blue)}
+.ministats>div>span{display:block;margin-top:8px;font-size:19px;line-height:1.3;color:var(--muted)}
+.ministats b span{font:inherit;color:inherit}
+.cites+.fill .chartcard{padding:26px 30px 20px}
