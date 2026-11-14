@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Scientific Research in the Age of Gen AI</title>
 <link rel="stylesheet" href="lib/reveal.css?v=f8e9b506">
-<link rel="stylesheet" href="css/deck.css?v=b60464b7">
+<link rel="stylesheet" href="css/deck.css?v=5768817a">
 </head>
 <body>
 <div class="reveal"><div class="slides">
@@ -430,13 +430,21 @@
 <section>
   <div class="eyebrow"><span class="tag t-lie">Fabrication</span></div>
   <h2>Hallucinations</h2>
-  <div class="row2" style="gap:44px;align-items:center;margin-top:30px">
-    <div class="colx" style="width:760px;flex:none;gap:26px;justify-content:center">
-      <div class="hl np tilt-l rise"><div class="k"><b>AP</b> · October 26, 2024</div><h3 style="font-size:58px">Researchers say an AI-powered transcription tool used in hospitals invents things no one ever said</h3></div>
+  <div class="row2" style="gap:48px;align-items:center;min-height:760px">
+    <div class="colx" style="width:780px;flex:none;gap:40px">
+      <div class="hl np tilt-l rise"><div class="k"><b>AP</b> · Garance Burke &amp; Hilke Schellmann · Oct 26, 2024</div><h3 style="font-size:50px">Researchers say an AI-powered transcription tool used in hospitals invents things no one ever said</h3></div>
+      <div class="gt fragment fade-up"><p>“You can’t catch errors if you take away the ground truth.”</p><span>William Saunders, former OpenAI engineer, on a medical transcription tool that deletes the original audio</span></div>
     </div>
-    <div class="frame fill rise d1"><img decoding="async" data-src="assets/whisper-photo.webp" alt="Code for the Whisper transcription model"></div>
+    <div class="colx fill" style="gap:18px">
+      <div class="tx rise d1">
+        <div class="row said"><span class="who">Speaker said</span><p>“He, the boy, was going to, I’m not sure exactly, take the umbrella.”</p></div>
+        <div class="row heard"><span class="who">Whisper transcribed</span><p>“He took a big piece of a cross, a teeny, small piece … <mark>I’m sure he didn’t have a terror knife so he killed a number of people.</mark>”</p></div>
+      </div>
+      <div class="txnote rise d2">It also invented a medication: <b>“hyperactivated antibiotics.”</b></div>
+      <div class="txsrc rise d2">Examples from Koenecke (Cornell) &amp; Sloane (UVA), reported by AP</div>
+    </div>
   </div>
-  <aside class="notes">OpenAI's Whisper, used to transcribe patient visits, sometimes invents sentences no one said. Hallucination is a known, documented behavior of these tools.</aside>
+  <aside class="notes">OpenAI's Whisper transcription tool invents text. In AP's reporting: a University of Michigan researcher found hallucinations in 8 of every 10 public-meeting transcripts he checked; a machine learning engineer found them in about half of 100+ hours; one developer in nearly every one of 26,000 transcripts. Koenecke and Sloane found 187 hallucinations in 13,000+ clear, short audio clips, and nearly 40% were harmful because the speaker could be misrepresented. OpenAI itself warns against using it in high-risk domains, yet 30,000+ clinicians and 40 health systems use a Whisper-based tool, and it's widely used to transcribe research interviews. Click: that tool, Nabla, deletes the original audio. You can't catch errors if you take away the ground truth. Keep your raw data.</aside>
 </section>
 
 <!-- AI INVENTS CITATIONS -->

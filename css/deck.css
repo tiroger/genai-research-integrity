@@ -871,3 +871,19 @@ section.present .fakeref .end,section.present .fakeref .endl{animation:fadeIn .4
 .ministats>div>span{display:block;margin-top:8px;font-size:19px;line-height:1.3;color:var(--muted)}
 .ministats b span{font:inherit;color:inherit}
 .cites+.fill .chartcard{padding:26px 30px 20px}
+/* hallucination transcript */
+.tx{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 10px 26px rgba(11,31,68,.1)}
+.tx .row{padding:22px 28px}
+.tx .row+.row{border-top:1px dashed var(--line)}
+.tx .who{display:block;font:800 16px var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.tx .heard .who{color:#B3261E}
+.tx p{margin:0;font:400 30px/1.35 ui-monospace,Menlo,monospace;color:var(--ink)}
+.tx .heard{background:#FDF6F5}
+.tx mark{color:inherit;padding:0 .05em;background:linear-gradient(rgba(242,140,107,.55),rgba(242,140,107,.55)) no-repeat 0 85%/0% 70%;transition:background-size 1.2s cubic-bezier(.6,0,.3,1) 1.6s}
+section.present .tx mark{background-size:100% 70%}
+.txnote{font-size:26px;color:var(--ink);padding-left:4px}
+.txnote b{font-family:ui-monospace,Menlo,monospace;color:#B3261E;font-weight:700}
+.txsrc{font-size:17px;color:var(--muted);padding-left:4px}
+.gt{background:var(--navy);border-radius:16px;padding:28px 34px;border-left:10px solid var(--amber)}
+.gt p{margin:0;font:600 italic 42px/1.2 var(--serif);color:#fff}
+.gt span{display:block;margin-top:12px;font-size:19px;line-height:1.35;color:var(--cb)}
