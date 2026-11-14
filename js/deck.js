@@ -122,7 +122,7 @@
     var t0 = performance.now(), dur = 1300;
     function step(t) {
       var p = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - p, 3);
-      el.textContent = pre + (to * e).toFixed(dec);
+      var v = (to * e).toFixed(dec); if (to >= 1000) v = Number(v).toLocaleString("en-US", { minimumFractionDigits: dec, maximumFractionDigits: dec }); el.textContent = pre + v;
       if (p < 1) requestAnimationFrame(step);
     }
     requestAnimationFrame(step);

@@ -840,3 +840,26 @@ section:not(.present) .real.alert .bar i{animation:none}
 .hal .hl.np h3{font-size:36px;line-height:1.12;margin:4px 0 0}
 .npq{margin:18px 0 0;padding:14px 0 0 22px;border-left:5px solid #A3221B;font:700 italic 40px/1.18 "Old Standard TT",Georgia,serif;color:#191919}
 .npq cite{display:block;margin-top:10px;font:400 italic 20px/1.35 "Old Standard TT",Georgia,serif;color:#4a4a4a}
+/* fake-reference trend chart */
+.chartcard{padding:22px 26px 18px;background:#fff}
+.chartcard .clab{font:700 17px var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:12px}
+.chartcard .clab::before{content:"";width:28px;height:5px;border-radius:3px;background:#B3261E}
+.fakeref{display:block;width:100%;height:auto;margin-top:6px}
+.fakeref .g{stroke:var(--line);stroke-width:1.5}
+.fakeref .axis{stroke:#8A9AB0;stroke-width:2}
+.fakeref .yl{font:500 19px var(--sans);fill:var(--muted);text-anchor:end}
+.fakeref .xl{font:700 18px var(--sans);fill:var(--ink);text-anchor:middle}
+.fakeref .xy{font:800 19px var(--sans);fill:var(--navy);text-anchor:middle}
+.fakeref .band{fill:rgba(242,179,61,.16)}
+.fakeref .bandl{font:800 15px var(--sans);letter-spacing:.12em;text-transform:uppercase;fill:#B07A10;text-anchor:middle}
+.fakeref .line{fill:none;stroke:#B3261E;stroke-width:6;stroke-linejoin:round;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:1}
+.fakeref .area{fill:rgba(179,38,30,.07);opacity:0}
+.fakeref .end,.fakeref .endl{opacity:0}
+.fakeref .end{fill:#B3261E}.fakeref .endl{font:800 26px var(--sans);fill:#B3261E}
+section.present .fakeref .line{animation:drawLine 2.2s .5s cubic-bezier(.5,0,.3,1) forwards}
+section.present .fakeref .area{animation:fadeIn .8s 2.2s forwards}
+section.present .fakeref .end,section.present .fakeref .endl{animation:fadeIn .4s 2.6s forwards}
+@keyframes drawLine{to{stroke-dashoffset:0}}
+@keyframes fadeIn{to{opacity:1}}
+.chartcard .credit{margin-top:6px;font-size:16px;line-height:1.35;color:var(--muted)}
+.chartcard~* .stat span,.row2 .stat span{line-height:1.3}
