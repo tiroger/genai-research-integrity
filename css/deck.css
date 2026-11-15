@@ -891,3 +891,37 @@ section.present .tx mark{background-size:100% 70%}
 .takehome{margin-top:22px;background:var(--navy);color:#fff;border-radius:14px;border-left:10px solid var(--amber);padding:18px 30px;font:600 34px/1.25 var(--serif)}
 .takehome em{color:var(--amber);font-style:italic}
 .cover h1{font-size:108px;margin-top:130px;max-width:1100px}
+
+/* ---------- mouse demo ---------- */
+.lblfig{margin:0;background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px 22px 22px;box-shadow:0 8px 24px rgba(11,31,68,.08)}
+.lblfig figcaption{display:inline-block;margin-bottom:14px;font:800 18px var(--sans);letter-spacing:.14em;text-transform:uppercase;border-radius:8px;padding:6px 14px;background:var(--cb);color:var(--navy)}
+.lblfig img{display:block;width:100%;height:auto;border-radius:6px}
+.mfab{position:relative;width:1130px;margin:0 auto;background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 10px 26px rgba(11,31,68,.1)}
+.mfab img{display:block;width:100%;height:auto}
+.mbox{position:absolute;border:5px solid var(--coral);border-radius:10px;box-shadow:0 0 0 3px rgba(255,255,255,.7);pointer-events:none}
+.mbox b{position:absolute;left:50%;top:-2px;translate:-50% -100%;white-space:nowrap;background:var(--coral);color:#fff;font:800 18px var(--sans);letter-spacing:.1em;text-transform:uppercase;border-radius:8px 8px 0 0;padding:5px 12px}
+.reveal .slides section .mbox.fragment{opacity:0;scale:1.08;transition:opacity .3s,scale .45s cubic-bezier(.2,1.5,.4,1)}
+.reveal .slides section .mbox.fragment.visible{opacity:1;scale:1}
+.xl{background:#fff;border:1px solid #C9D3DE;border-radius:12px;overflow:hidden;box-shadow:0 10px 26px rgba(11,31,68,.1);font-family:Calibri,"Segoe UI",var(--sans)}
+.xl-bar{background:#1D6F42;color:#fff;font:600 19px var(--sans);padding:10px 16px;display:flex;align-items:center;gap:10px}
+.xl-bar i{width:20px;height:20px;border-radius:4px;background:#fff;opacity:.9}
+.xl table{border-collapse:collapse;width:100%;font-size:23px}
+.xl th{background:#EEF1F4;color:#66707C;font-weight:500;font-size:17px;border:1px solid #D5DBE2;padding:4px 10px;text-align:center}
+.xl tbody th,.xl thead tr+tr th{width:44px}
+.xl td{border:1px solid #E1E6EB;padding:9px 14px;color:#1B2530;white-space:nowrap}
+.xl td.n{text-align:right;font-variant-numeric:tabular-nums}
+.xl thead td{background:#F7F9FB;white-space:normal;font-size:20px;line-height:1.2}
+.xl-tabs{display:flex;gap:2px;background:#EEF1F4;padding:6px 10px 0;border-top:1px solid #D5DBE2}
+.xl-tabs span{font:500 17px var(--sans);color:#55657D;padding:7px 16px;border-radius:6px 6px 0 0}
+.xl-tabs .on{background:#fff;color:#1D6F42;font-weight:700;box-shadow:inset 0 -3px 0 #1D6F42}
+.xl-note{background:#fff;border:1px solid var(--line);border-left:6px solid #1D6F42;border-radius:12px;padding:18px 22px}
+.xl-note .who{display:block;font:800 15px var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.xl-note p{margin:0;font:400 24px/1.4 ui-monospace,Menlo,monospace;color:var(--ink)}
+.xl-note mark{background:rgba(242,179,61,.45);color:inherit;padding:0 .1em}
+.twoface{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.twoface>div{border-radius:12px;padding:16px 18px;background:#fff;border:1px solid var(--line);border-top:6px solid var(--coral)}
+.twoface>div+div{border-top-color:#1D6F42}
+.twoface b{display:block;font:800 16px var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.twoface span{font-size:24px;line-height:1.3;color:var(--ink)}
+.xl table{font-size:26px}.xl thead td{font-size:22px}.xl-note p{font-size:26px}
+.mfab{width:1150px}
