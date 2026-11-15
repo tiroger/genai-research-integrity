@@ -887,3 +887,7 @@ section.present .tx mark{background-size:100% 70%}
 .gt{background:var(--navy);border-radius:16px;padding:28px 34px;border-left:10px solid var(--amber)}
 .gt p{margin:0;font:600 italic 42px/1.2 var(--serif);color:#fff}
 .gt span{display:block;margin-top:12px;font-size:19px;line-height:1.35;color:var(--cb)}
+/* take-home line (slide 5) */
+.takehome{margin-top:22px;background:var(--navy);color:#fff;border-radius:14px;border-left:10px solid var(--amber);padding:18px 30px;font:600 34px/1.25 var(--serif)}
+.takehome em{color:var(--amber);font-style:italic}
+.cover h1{font-size:108px;margin-top:130px;max-width:1100px}

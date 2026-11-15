@@ -70,7 +70,7 @@
   }
 
   /* tech panic: one stage lit per click, then the "today?" marker */
-  /* "Gen AI" dot wanders between stages 2 and 4: it drifts, hesitates, doubles back.
+  /* "AI" dot wanders between stages 2 and 4: it drifts, hesitates, doubles back.
      Position eases toward a target that is re-picked at random intervals, so it never settles. */
   var drift = { run: false };
   function startDrift(slide) {
