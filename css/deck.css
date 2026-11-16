@@ -956,3 +956,23 @@ section.present .tx mark{background-size:100% 70%}
 .xl-zoom span{width:54px;text-align:center;font-variant-numeric:tabular-nums}
 .xl-zoom button{appearance:none;width:28px;height:28px;border-radius:50%;border:1px solid #BCC5D0;background:#fff;color:#44536A;font:700 18px/1 var(--sans);cursor:pointer;padding:0}
 .xl-zoom button:hover{background:#E2E7EC}
+
+/* published AI figures with ringed nonsense and zoom lenses (built in js/deck.js) */
+.zstage{position:relative;height:760px}
+.zoomfig{position:absolute;margin:0}
+.zoomfig>img{display:block;width:100%;height:100%;border-radius:10px;box-shadow:0 0 0 1px var(--line),0 12px 30px rgba(11,31,68,.14)}
+.zoomfig>svg{position:absolute;left:0;top:0;width:100%;height:100%;overflow:visible;pointer-events:none}
+.zoomfig>svg line{stroke:#E4572E;stroke-width:3;stroke-linecap:round;stroke-dasharray:var(--len);stroke-dashoffset:var(--len)}
+.zring{position:absolute;box-sizing:border-box;border:4px solid #E4572E;border-radius:999px;box-shadow:0 0 0 2px rgba(255,255,255,.9),inset 0 0 0 2px rgba(255,255,255,.9);opacity:0;transform:scale(1.5);pointer-events:none}
+.zlens{position:absolute;border-radius:999px;background-repeat:no-repeat;background-color:#fff;box-shadow:0 0 0 5px #E4572E,0 0 0 9px #fff,0 18px 36px rgba(11,31,68,.32);opacity:0;transform:scale(.25);pointer-events:none}
+.zlens b{position:absolute;left:50%;top:100%;transform:translateX(-50%);margin-top:18px;white-space:nowrap;background:var(--navy);color:#fff;font:700 19px var(--sans);padding:7px 14px;border-radius:8px}
+section.present .zring{animation:zring .45s cubic-bezier(.2,.9,.3,1) both;animation-delay:calc(.7s + var(--i)*.7s)}
+section.present .zoomfig>svg line{animation:zline .3s ease-out both;animation-delay:calc(1.05s + var(--i)*.7s)}
+section.present .zlens{animation:zlens .5s cubic-bezier(.2,1.25,.4,1) both;animation-delay:calc(1.2s + var(--i)*.7s)}
+@keyframes zring{to{opacity:1;transform:none}}
+@keyframes zline{to{stroke-dashoffset:0}}
+@keyframes zlens{to{opacity:1;transform:none}}
+.zoomfig figcaption{position:absolute;left:0;right:0;top:100%;margin-top:20px;display:flex;align-items:center;justify-content:space-between;gap:16px;font:500 20px var(--sans);color:var(--muted);white-space:nowrap}
+.zoomfig figcaption b{color:var(--navy);font-weight:800}
+.rtag{flex:none;font:800 16px var(--sans);letter-spacing:.14em;text-transform:uppercase;color:#B3261E;border:2.5px solid #B3261E;border-radius:6px;padding:4px 10px;transform:rotate(-2deg)}
+.print-pdf .zring,.print-pdf .zlens{opacity:1!important;transform:none!important}

@@ -595,6 +595,43 @@
     if (e.key === "-") lbZoom(0.8, innerWidth / 2, innerHeight / 2);
   }, true);
 
+  /* ---------------- zoom callouts ----------------
+     <i data-src="x,y,w,h" data-lens="cx,cy,zoom"> inside a .zoomfig: ring the source box (percent of the image)
+     and show it magnified in a lens centred at cx,cy (percent of the image, may sit outside it). */
+  var zi = 0;
+  $$(".zoomfig").forEach(function (fig) {
+    var W = parseFloat(fig.style.width), H = parseFloat(fig.style.height), img = fig.querySelector("img");
+    var url = img.getAttribute("data-src") || img.getAttribute("src"), NS = "http://www.w3.org/2000/svg";
+    var svg = document.createElementNS(NS, "svg");
+    fig.appendChild(svg);
+    $$("i[data-src]", fig).forEach(function (m) {
+      var s = m.getAttribute("data-src").split(",").map(Number), l = m.getAttribute("data-lens").split(",").map(Number);
+      var x = s[0] / 100 * W, y = s[1] / 100 * H, w = s[2] / 100 * W, h = s[3] / 100 * H, z = l[2];
+      var lw = w * z, lh = h * z, lx = l[0] / 100 * W - lw / 2, ly = l[1] / 100 * H - lh / 2, i = zi++;
+      var ring = document.createElement("div"), lens = document.createElement("div");
+      ring.className = "zring";
+      ring.style.cssText = "left:" + x + "px;top:" + y + "px;width:" + w + "px;height:" + h + "px;--i:" + i;
+      lens.className = "zlens";
+      lens.style.cssText = "left:" + lx + "px;top:" + ly + "px;width:" + lw + "px;height:" + lh + "px;--i:" + i +
+        ";background-size:" + W * z + "px " + H * z + "px;background-position:" + (-x * z) + "px " + (-y * z) + "px" +
+        ";transform-origin:" + (x + w / 2 - lx) + "px " + (y + h / 2 - ly) + "px";
+      lens.style.backgroundImage = 'url("' + url + '")';
+      if (m.getAttribute("data-label")) { var b = document.createElement("b"); b.textContent = m.getAttribute("data-label"); lens.appendChild(b); }
+      // connector: centre to centre, trimmed to the edge of each ellipse
+      var ax = x + w / 2, ay = y + h / 2, bx = lx + lw / 2, by = ly + lh / 2, dx = bx - ax, dy = by - ay, d = Math.sqrt(dx * dx + dy * dy) || 1;
+      function edge(rx, ry) { return 1 / Math.sqrt(Math.pow(dx / d / rx, 2) + Math.pow(dy / d / ry, 2)); }
+      var t0 = edge(w / 2, h / 2) + 2, t1 = d - edge(lw / 2, lh / 2) - 9;
+      if (t1 > t0) {
+        var ln = document.createElementNS(NS, "line");
+        ln.setAttribute("x1", ax + dx / d * t0); ln.setAttribute("y1", ay + dy / d * t0);
+        ln.setAttribute("x2", ax + dx / d * t1); ln.setAttribute("y2", ay + dy / d * t1);
+        ln.style.cssText = "--i:" + i + ";--len:" + Math.ceil(t1 - t0);
+        svg.appendChild(ln);
+      }
+      fig.appendChild(ring); fig.appendChild(lens); m.remove();
+    });
+  });
+
   /* ---------------- hotspots ---------------- */
   $$(".hot").forEach(function (h) {
     h.addEventListener("click", function (e) { e.stopPropagation(); h.classList.toggle("open"); });
