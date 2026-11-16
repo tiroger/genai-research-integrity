@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Scientific Research in the Age of Generative AI</title>
 <link rel="stylesheet" href="lib/reveal.css?v=f8e9b506">
-<link rel="stylesheet" href="css/deck.css?v=23bd1870">
+<link rel="stylesheet" href="css/deck.css?v=aee7a2e3">
 </head>
 <body>
 <div class="reveal"><div class="slides">
@@ -566,19 +566,16 @@
   <div class="eyebrow"><span class="tag t-lie">Fabrication</span></div>
   <h2>Then I asked for the numbers</h2>
   <ol class="wsteps"><li class="done"><span>1</span>Ask</li><li class="done"><span>2</span>Clarify</li><li class="done"><span>3</span>Generate</li><li class="on"><span>4</span>Quantify</li><li class=""><span>5</span>Figure</li></ol>
-  <div class="row2" style="gap:44px;align-items:flex-start">
-    <div class="xl rise" style="width:980px;flex:none">
+  <div class="row2" style="justify-content:center">
+    <div class="xl big rise" style="width:1560px;flex:none">
       <div class="xl-bar"><i></i>mouse_overlay_analysis.xlsx</div>
       <table><thead><tr><th></th><th>A</th><th>B</th><th>C</th><th>D</th><th>E</th></tr>
       <tr><th>1</th><td><b>Spatial block</b></td><td><b>Image instances</b></td><td><b>Overlay mean (px)</b></td><td><b>Color sum mean (a.u.)</b></td><td><b>Relative block mean (%)</b></td></tr></thead>
       <tbody><tr><th>2</th><td>R1-L</td><td class="n">4</td><td class="n">175.8</td><td class="n">222.1</td><td class="n">10.5</td></tr><tr><th>3</th><td>R1-R</td><td class="n">4</td><td class="n">176.5</td><td class="n">206.0</td><td class="n">9.7</td></tr><tr><th>4</th><td>R2-L</td><td class="n">4</td><td class="n">168.8</td><td class="n">201.8</td><td class="n">9.5</td></tr><tr><th>5</th><td>R2-R</td><td class="n">4</td><td class="n">379.0</td><td class="n">1,027.1</td><td class="n">48.6</td></tr><tr><th>6</th><td>R3-L</td><td class="n">4</td><td class="n">246.5</td><td class="n">384.0</td><td class="n">18.2</td></tr><tr><th>7</th><td>R3-R</td><td class="n">4</td><td class="n">728.0</td><td class="n">2,114.6</td><td class="n">100.0</td></tr></tbody></table>
       <div class="xl-tabs"><span class="on">Analysis</span><span>Mouse data</span><span>Method and source</span></div>
     </div>
-    <div class="colx fill" style="gap:22px">
-      <div class="xl-note fragment fade-up"><span class="who">Its own header</span><p>“Synthetic/rendered visuals. No calibrated radiance, photon flux, or biological inference.”</p></div>
-    </div>
   </div>
-  <aside class="notes">Next I asked it to analyze and quantify each set and chart it, then for an Excel file. It said it would quantify all three sets. This is the workbook it delivered: per-mouse pixel measurements, block means, formulas, two charts. Click: its own header labels the whole thing synthetic, with no biological inference. You only know that if you open the file and read it. (For your reference: the workbook covers the 24 real mice only.)</aside>
+  <aside class="notes">Next I asked it to analyze and quantify the images and chart the result, then for an Excel file. This is the workbook it delivered: per-mouse measurements, block means, formulas, two charts. The point is how little effort it took.</aside>
 </section>
 
 <!-- MOUSE DEMO 4 -->
@@ -586,18 +583,10 @@
   <div class="eyebrow"><span class="tag t-lie">Fabrication</span></div>
   <h2>Then the figure, legend included</h2>
   <ol class="wsteps"><li class="done"><span>1</span>Ask</li><li class="done"><span>2</span>Clarify</li><li class="done"><span>3</span>Generate</li><li class="done"><span>4</span>Quantify</li><li class="on"><span>5</span>Figure</li></ol>
-  <div class="row2" style="gap:44px;align-items:flex-start">
-    <div class="frame rise" style="flex:none"><img decoding="async" data-src="assets/mouse-figure.webp" style="height:700px;width:auto" alt="Publication-style figure: representative mouse images, two dot plots, and a figure legend"></div>
-    <div class="colx fill" style="gap:22px">
-      <div class="xl-note rise d1"><span class="who">In its legend</span><p>“These synthetic/rendered visual metrics … are not calibrated radiance or photon-flux measurements. … <mark>no biological significance is inferred.</mark>”</p></div>
-      <div class="twoface fragment fade-up">
-        <div><b>The image tool</b><span>drew 21 mice on request</span></div>
-        <div><b>The analysis tool</b><span>measured only the real 24, and said so</span></div>
-      </div>
-      <div class="real fragment fade-up"><p>The only safeguards were in the fine print.</p></div>
-    </div>
+  <div class="row2" style="justify-content:center">
+    <div class="frame rise" style="flex:none"><img decoding="async" data-src="assets/mouse-figure.webp" style="height:740px;width:auto" alt="Publication-style figure: representative mouse images, two dot plots, and a figure legend"></div>
   </div>
-  <aside class="notes">Last, I asked for a figure with representative images, a graph and a legend. It looks publication-ready: panels A, B and C, means and SDs, a methods-grade legend. And again the caveats are there, in its subtitle and at the end of the legend: synthetic, not calibrated, no biological significance inferred. Click: so the two halves behaved differently. The image tool fabricated without hesitation. The analysis tool stuck to the real data and disclosed what it did. Click: but every one of those safeguards is a line of text that I had to go looking for, and that anyone could leave out. That's the due diligence point again.</aside>
+  <aside class="notes">Last, I asked for a figure with representative images, a graph and a legend. It looks publication-ready: panels A, B and C, means and SDs, a methods-style legend. A handful of short requests and no special skill. That is how easy it is.</aside>
 </section>
 
 <!-- 35 · AI EDITS -->
