@@ -976,3 +976,23 @@ section.present .zlens{animation:zlens .5s cubic-bezier(.2,1.25,.4,1) both;anima
 .zoomfig figcaption b{color:var(--navy);font-weight:800}
 .rtag{flex:none;font:800 16px var(--sans);letter-spacing:.14em;text-transform:uppercase;color:#B3261E;border:2.5px solid #B3261E;border-radius:6px;padding:4px 10px;transform:rotate(-2deg)}
 .print-pdf .zring,.print-pdf .zlens{opacity:1!important;transform:none!important}
+
+/* case-file slide: clipping on the left, dated events on the right */
+.cf-lead{margin:14px 0 44px;font:500 33px/1.36 var(--sans);color:var(--ink)}
+.cf-lead i{font-style:italic}
+.cf-tl{list-style:none;margin:0;padding:0}
+.cf-tl li{position:relative;display:grid;grid-template-columns:150px 77px 1fr;align-items:start;margin:0 0 38px;opacity:0;transform:translateY(14px)}
+.cf-tl li:last-child{margin-bottom:0}
+.cf-tl time{font:800 20px/38px var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--blue);text-align:right}
+.cf-tl li::before{content:"";grid-column:2;grid-row:1;justify-self:center;margin-top:8px;width:22px;height:22px;border-radius:50%;background:#fff;border:4px solid var(--blue);box-sizing:border-box;position:relative;z-index:1}
+.cf-tl li:not(:last-child)::after{content:"";position:absolute;left:187px;top:30px;bottom:-46px;width:3px;border-radius:2px;background:var(--cb);transform-origin:top;transform:scaleY(0)}
+.cf-tl li>div{grid-column:3;grid-row:1;font:500 30px/1.3 var(--sans);color:var(--muted)}
+.cf-tl li>div b{color:var(--navy);font-weight:800}
+.cf-tl li.now::before{background:#B3261E;border-color:#B3261E;box-shadow:0 0 0 6px rgba(179,38,30,.16)}
+.cf-tl li.now time{color:#B3261E}
+.cf-tl li>div .rtag{display:table;margin:18px 0 0;font-size:20px}
+section.present .cf-tl li{animation:cfin .5s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(.8s + var(--i)*.75s)}
+section.present .cf-tl li::after{animation:cfline .6s ease-out both;animation-delay:calc(1.1s + var(--i)*.75s)}
+@keyframes cfline{to{transform:scaleY(1)}}
+@keyframes cfin{to{opacity:1;transform:none}}
+.print-pdf .cf-tl li{opacity:1!important;transform:none!important}.print-pdf .cf-tl li::after{transform:none!important}
