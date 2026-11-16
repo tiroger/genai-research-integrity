@@ -934,3 +934,13 @@ section.present .tx mark{background-size:100% 70%}
 .xl.big thead td{font-size:27px}
 .xl.big .xl-tabs{padding:8px 14px 0}
 .xl.big .xl-tabs span{font-size:21px;padding:10px 22px}
+
+/* figure-first slide: title and steps on the left, the figure as large as it goes on the right */
+.figsplit .fs-l{width:740px}
+.figsplit .fs-l h2{margin-bottom:34px}
+.figsplit .wsteps{flex-direction:column;align-items:flex-start;gap:12px;margin:0}
+.figsplit .wsteps li{font-size:20px;padding:8px 20px 8px 8px}
+.figsplit .wsteps li span{width:32px;height:32px;font-size:16px}
+.figsplit .fs-r{position:absolute;right:72px;top:70px;height:932px;padding:10px;box-sizing:border-box;box-shadow:0 14px 34px rgba(11,31,68,.14)}
+.figsplit .fs-r img{display:block;height:100%;width:auto}
+.figsplit .brand{right:auto;left:72px}
