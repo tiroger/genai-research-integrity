@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Scientific Research in the Age of Generative AI</title>
 <link rel="stylesheet" href="lib/reveal.css?v=f8e9b506">
-<link rel="stylesheet" href="css/deck.css?v=6c797f52">
+<link rel="stylesheet" href="css/deck.css?v=5cbfca16">
 </head>
 <body>
 <div class="reveal"><div class="slides">
@@ -566,16 +566,8 @@
   <div class="eyebrow"><span class="tag t-lie">Fabrication</span></div>
   <h2>Then I asked for the numbers</h2>
   <ol class="wsteps"><li class="done"><span>1</span>Ask</li><li class="done"><span>2</span>Clarify</li><li class="done"><span>3</span>Generate</li><li class="on"><span>4</span>Quantify</li><li class=""><span>5</span>Figure</li></ol>
-  <div class="row2" style="justify-content:center">
-    <div class="xl big rise" style="width:1560px;flex:none">
-      <div class="xl-bar"><i></i>mouse_overlay_analysis.xlsx</div>
-      <table><thead><tr><th></th><th>A</th><th>B</th><th>C</th><th>D</th><th>E</th></tr>
-      <tr><th>1</th><td><b>Spatial block</b></td><td><b>Image instances</b></td><td><b>Overlay mean (px)</b></td><td><b>Color sum mean (a.u.)</b></td><td><b>Relative block mean (%)</b></td></tr></thead>
-      <tbody><tr><th>2</th><td>R1-L</td><td class="n">4</td><td class="n">175.8</td><td class="n">222.1</td><td class="n">10.5</td></tr><tr><th>3</th><td>R1-R</td><td class="n">4</td><td class="n">176.5</td><td class="n">206.0</td><td class="n">9.7</td></tr><tr><th>4</th><td>R2-L</td><td class="n">4</td><td class="n">168.8</td><td class="n">201.8</td><td class="n">9.5</td></tr><tr><th>5</th><td>R2-R</td><td class="n">4</td><td class="n">379.0</td><td class="n">1,027.1</td><td class="n">48.6</td></tr><tr><th>6</th><td>R3-L</td><td class="n">4</td><td class="n">246.5</td><td class="n">384.0</td><td class="n">18.2</td></tr><tr><th>7</th><td>R3-R</td><td class="n">4</td><td class="n">728.0</td><td class="n">2,114.6</td><td class="n">100.0</td></tr></tbody></table>
-      <div class="xl-tabs"><span class="on">Analysis</span><span>Mouse data</span><span>Method and source</span></div>
-    </div>
-  </div>
-  <aside class="notes">Next I asked it to analyze and quantify the images and chart the result, then for an Excel file. This is the workbook it delivered: per-mouse measurements, block means, formulas, two charts. The point is how little effort it took.</aside>
+  <div class="xlapp rise" id="xlapp"></div>
+  <aside class="notes">Next I asked it to analyze and quantify the images and chart the result, then for an Excel file. This is the actual workbook it delivered, and it is live on this slide. Click any number: the formula shows in the bar at the top, so every summary is a working formula. Scroll down for its two charts. Click the tabs at the bottom: Mouse data has the 24 per-mouse measurements with frozen headers; Method and source has its written methods, the source image and its segmentation overlay. Use the minus and plus at bottom right to zoom. The point is how little effort it took.</aside>
 </section>
 
 <!-- MOUSE DEMO 4 -->
@@ -761,6 +753,8 @@
 <script src="js/config.js?v=22f5f014"></script>
 <script src="js/rounds.js?v=736de51e"></script>
 <script src="js/live.js?v=7d553307"></script>
+<script src="js/xl-data.js?v=fa6703bd"></script>
+<script src="js/xl.js?v=2778c3f4"></script>
 <script src="js/deck.js?v=8d9ca6ea"></script>
 </body>
 </html>

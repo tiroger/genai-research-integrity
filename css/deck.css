@@ -902,38 +902,7 @@ section.present .tx mark{background-size:100% 70%}
 .mbox b{position:absolute;left:50%;top:-2px;translate:-50% -100%;white-space:nowrap;background:var(--coral);color:#fff;font:800 18px var(--sans);letter-spacing:.1em;text-transform:uppercase;border-radius:8px 8px 0 0;padding:5px 12px}
 .reveal .slides section .mbox.fragment{opacity:0;scale:1.08;transition:opacity .3s,scale .45s cubic-bezier(.2,1.5,.4,1)}
 .reveal .slides section .mbox.fragment.visible{opacity:1;scale:1}
-.xl{background:#fff;border:1px solid #C9D3DE;border-radius:12px;overflow:hidden;box-shadow:0 10px 26px rgba(11,31,68,.1);font-family:Calibri,"Segoe UI",var(--sans)}
-.xl-bar{background:#1D6F42;color:#fff;font:600 19px var(--sans);padding:10px 16px;display:flex;align-items:center;gap:10px}
-.xl-bar i{width:20px;height:20px;border-radius:4px;background:#fff;opacity:.9}
-.xl table{border-collapse:collapse;width:100%;font-size:23px}
-.xl th{background:#EEF1F4;color:#66707C;font-weight:500;font-size:17px;border:1px solid #D5DBE2;padding:4px 10px;text-align:center}
-.xl tbody th,.xl thead tr+tr th{width:44px}
-.xl td{border:1px solid #E1E6EB;padding:9px 14px;color:#1B2530;white-space:nowrap}
-.xl td.n{text-align:right;font-variant-numeric:tabular-nums}
-.xl thead td{background:#F7F9FB;white-space:normal;font-size:20px;line-height:1.2}
-.xl-tabs{display:flex;gap:2px;background:#EEF1F4;padding:6px 10px 0;border-top:1px solid #D5DBE2}
-.xl-tabs span{font:500 17px var(--sans);color:#55657D;padding:7px 16px;border-radius:6px 6px 0 0}
-.xl-tabs .on{background:#fff;color:#1D6F42;font-weight:700;box-shadow:inset 0 -3px 0 #1D6F42}
-.xl-note{background:#fff;border:1px solid var(--line);border-left:6px solid #1D6F42;border-radius:12px;padding:18px 22px}
-.xl-note .who{display:block;font:800 15px var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
-.xl-note p{margin:0;font:400 24px/1.4 ui-monospace,Menlo,monospace;color:var(--ink)}
-.xl-note mark{background:rgba(242,179,61,.45);color:inherit;padding:0 .1em}
-.twoface{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.twoface>div{border-radius:12px;padding:16px 18px;background:#fff;border:1px solid var(--line);border-top:6px solid var(--coral)}
-.twoface>div+div{border-top-color:#1D6F42}
-.twoface b{display:block;font:800 16px var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
-.twoface span{font-size:24px;line-height:1.3;color:var(--ink)}
-.xl table{font-size:26px}.xl thead td{font-size:22px}.xl-note p{font-size:26px}
 .mfab{width:1150px}
-/* spreadsheet shown on its own */
-.xl.big .xl-bar{font-size:24px;padding:14px 22px}
-.xl.big table{font-size:34px}
-.xl.big th{font-size:21px;padding:6px 12px}
-.xl.big tbody th,.xl.big thead tr+tr th{width:60px}
-.xl.big td{padding:17px 24px}
-.xl.big thead td{font-size:27px}
-.xl.big .xl-tabs{padding:8px 14px 0}
-.xl.big .xl-tabs span{font-size:21px;padding:10px 22px}
 
 /* figure-first slide: title and steps on the left, the figure as large as it goes on the right */
 .figsplit .fs-l{width:740px}
@@ -944,3 +913,46 @@ section.present .tx mark{background-size:100% 70%}
 .figsplit .fs-r{position:absolute;right:72px;top:70px;height:932px;padding:10px;box-sizing:border-box;box-shadow:0 14px 34px rgba(11,31,68,.14)}
 .figsplit .fs-r img{display:block;height:100%;width:auto}
 .figsplit .brand{right:auto;left:72px}
+
+/* interactive workbook (js/xl.js) */
+.xlapp{width:1774px;height:756px;display:flex;flex-direction:column;background:#fff;border:1px solid #C3CDD8;border-radius:12px;overflow:hidden;box-shadow:0 12px 30px rgba(11,31,68,.13);font-family:Arial,"Liberation Sans",Helvetica,sans-serif;color:#1B2530;user-select:none;-webkit-user-select:none}
+.xlapp .xl-bar{flex:none;background:#1D6F42;color:#fff;font:600 19px var(--sans);padding:10px 16px;display:flex;align-items:center;gap:10px}
+.xlapp .xl-bar i{width:20px;height:20px;border-radius:4px;background:#fff;opacity:.9}
+.xl-fx{flex:none;display:flex;align-items:stretch;height:42px;border-bottom:1px solid #C9D1DA;font-size:19px;line-height:42px}
+.xl-name{width:104px;text-align:center;border-right:1px solid #D5DBE2;font-weight:700;color:#1B2530}
+.xl-fxi{width:52px;text-align:center;border-right:1px solid #D5DBE2;font:italic 700 19px/42px Georgia,serif;color:#8A96A5}
+.xl-formula{flex:1;min-width:0;padding:0 14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.xl-formula.f{color:#0B5A2F}
+.xl-view{flex:1;min-height:0;overflow:auto;background:#fff;overscroll-behavior:contain}
+.xl-view::-webkit-scrollbar{width:14px;height:14px}
+.xl-view::-webkit-scrollbar-thumb{background:#BCC5D0;border-radius:7px;border:3px solid #F1F3F6}
+.xl-view::-webkit-scrollbar-thumb:hover{background:#9AA6B4}
+.xl-view::-webkit-scrollbar-track,.xl-view::-webkit-scrollbar-corner{background:#F1F3F6}
+.xl-grid{display:grid;width:max-content}
+.xp{position:relative;overflow:hidden;background:#fff;z-index:1}
+.xp.x-bl{position:sticky;z-index:2}.xp.x-tr{position:sticky;z-index:3}.xp.x-tl{position:sticky;z-index:4}
+.xp.x-rh{position:sticky;z-index:5}.xp.x-ch{position:sticky;z-index:6}.xp.x-rh.x-fr,.xp.x-ch.x-fc{z-index:7}.xp.x-corner{position:sticky;z-index:8}
+.xp.x-rh,.xp.x-ch,.xp.x-corner{background:#EEF1F4}
+.xp.x-corner{border-right:1px solid #C9D1DA;border-bottom:1px solid #C9D1DA;box-sizing:border-box}
+.xp.x-tl,.xp.x-bl{overflow:visible}
+.xl-view.sx .xp.x-tl,.xl-view.sx .xp.x-bl{overflow:hidden}
+.xp.x-fzr::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:#8793A2;z-index:4}
+.xp.x-fzc::before{content:"";position:absolute;top:0;bottom:0;right:0;width:1px;background:#8793A2;z-index:4}
+.xc{position:absolute;box-sizing:border-box;cursor:cell}
+.xt{position:absolute;box-sizing:border-box;display:flex;overflow:hidden;white-space:nowrap;line-height:1.22;pointer-events:none;font-variant-numeric:tabular-nums}
+.xh{position:absolute;box-sizing:border-box;display:flex;align-items:center;justify-content:center;color:#5E6875;border-right:1px solid #D0D7DF;border-bottom:1px solid #D0D7DF}
+.xh.on{background:#D7E6DC;color:#14592F;font-weight:700}
+.xsel{position:absolute;box-sizing:border-box;border:2.5px solid #1D6F42;pointer-events:none;z-index:3}
+.xsel::after{content:"";position:absolute;right:-5px;bottom:-5px;width:7px;height:7px;background:#1D6F42;border:1.5px solid #fff}
+.xd{position:absolute;z-index:2;background:#fff}
+.xd svg,.xd img{display:block;width:100%;height:100%}
+.xd svg text{font-family:Arial,"Liberation Sans",Helvetica,sans-serif}
+.xl-foot{flex:none;display:flex;justify-content:space-between;align-items:stretch;height:44px;background:#EEF1F4;border-top:1px solid #C9D1DA}
+.xl-tabs{display:flex;gap:2px;padding:0 12px}
+.xl-tabs button{appearance:none;border:0;background:none;margin:0;font:500 17px var(--sans);color:#55657D;padding:0 20px;cursor:pointer;border-radius:0 0 7px 7px}
+.xl-tabs button:hover{background:#E2E7EC}
+.xl-tabs button.on{background:#fff;color:#1D6F42;font-weight:700;box-shadow:inset 0 -3px 0 #1D6F42}
+.xl-zoom{display:flex;align-items:center;gap:8px;padding:0 18px;font:600 16px var(--sans);color:#55657D}
+.xl-zoom span{width:54px;text-align:center;font-variant-numeric:tabular-nums}
+.xl-zoom button{appearance:none;width:28px;height:28px;border-radius:50%;border:1px solid #BCC5D0;background:#fff;color:#44536A;font:700 18px/1 var(--sans);cursor:pointer;padding:0}
+.xl-zoom button:hover{background:#E2E7EC}
