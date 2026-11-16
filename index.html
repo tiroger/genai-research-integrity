@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Scientific Research in the Age of Generative AI</title>
 <link rel="stylesheet" href="lib/reveal.css?v=f8e9b506">
-<link rel="stylesheet" href="css/deck.css?v=23bd1870">
+<link rel="stylesheet" href="css/deck.css?v=91985fd4">
 </head>
 <body>
 <div class="reveal"><div class="slides">
@@ -297,8 +297,12 @@
     <div class="msg ai bot rise d2"><div class="bh"><img decoding="async" data-src="assets/bot-claude.png" alt=""><b>Claude</b></div><p class="ans">“LLMs don’t plagiarize in the traditional sense, but they can occasionally reproduce memorized text.”</p><p>And no attribution: they don’t cite sources when drawing on what they learned, which feels plagiarism-adjacent even when the text is original.</p></div>
     <div class="msg ai bot rise d3"><div class="bh"><img decoding="async" data-src="assets/bot-gemini.png" alt=""><b>Gemini</b></div><p class="ans">“Technically, yes, but usually not in the way people think.”</p><p>Distinguish <b>verbatim plagiarism</b> (rare regurgitation, the old threat) from <b>idea laundering</b> (the new threat).</p></div>
   </div>
-  <div class="real fragment fade-up" style="margin-top:24px"><p><span class="realtag">Study</span><br><b>Xu et al., ICSE 2025:</b> testing 14 code-generating models, even the best produced code strikingly similar to existing open-source code in about 1–2% of outputs, and most gave wrong or no license information.</p></div>
-  <aside class="notes">All three hedge the same way: memorization is real but rare; the bigger problem is attribution. Gemini names the new threat, idea laundering, which is the next slide. The Xu study adds code, often under licenses that require attribution.</aside>
+  <div class="studies">
+    <div class="real fragment fade-up"><p><span class="realtag">Study · research ideas</span><br><b>Gupta &amp; Pruthi, 2025:</b> experts judged <b>24%</b> of 50 AI-generated research documents to be paraphrased or significantly borrowed from existing work.</p></div>
+    <div class="real fragment fade-up"><p><span class="realtag">Study · code</span><br><b>Xu et al., ICSE 2025:</b> testing 14 code-generating models, even the best produced code strikingly similar to existing open-source code in about 1–2% of outputs, and most gave wrong or no license information.</p></div>
+  </div>
+  <p class="foot">Gupta T, Pruthi D. “All That Glitters is Not Novel: Plagiarism in AI Generated Research” (2025). Xu W et al., ICSE 2025.</p>
+  <aside class="notes">All three hedge the same way: memorization is real but rare; the bigger problem is attribution. So what does the evidence say? Click: Gupta and Pruthi had experts check 50 AI-generated research documents; they judged 24% to be paraphrased or significantly borrowed from existing work. Click: Xu and colleagues found the same for code, often under licenses that require attribution. Gemini names the new threat, idea laundering, which is the next slide.</aside>
 </section>
 
 <!-- 15 · IDEA LAUNDERING -->
@@ -309,11 +313,9 @@
     <div class="frame rise" style="width:1060px;flex:none"><img decoding="async" data-src="assets/laundry.webp" alt="The generative AI idea laundry: the text is new, the idea is stolen"></div>
     <div class="colx fill" style="gap:24px">
       <div class="msg ai rise d1" style="font-size:26px"><div class="bh sm"><img decoding="async" data-src="assets/bot-gemini.png" alt=""><b>Gemini, continued</b></div><p><b>“Idea laundering” (the real threat):</b> the AI takes a specific idea, method or finding and rewrites it so thoroughly that it evades plagiarism detection.</p><p><b>How it works:</b> “You feed an abstract from a 2023 paper into ChatGPT and ask it to ‘rewrite this for a new proposal.’” The logic and structure stay; every noun and verb changes.</p><span class="nosrc">No reference given</span></div>
-      <div class="real fragment fade-up"><p><span class="realtag">Study</span><br><b>Gupta &amp; Pruthi, 2025:</b> experts judged <b>24%</b> of 50 AI-generated research documents to be paraphrased or significantly borrowed from existing work.</p></div>
     </div>
   </div>
-  <p class="foot">Gupta T, Pruthi D. “All That Glitters is Not Novel: Plagiarism in AI Generated Research” (2025).</p>
-  <aside class="notes">Copy-paste gets caught. Laundering doesn't: the structure survives, the words all change. About a quarter of AI-generated research ideas in the Gupta and Pruthi study were laundered versions of existing work. Notice what Gemini didn't do: it used the term "idea laundering" without saying where it came from.</aside>
+  <aside class="notes">Copy-paste gets caught. Laundering doesn't: the structure survives, the words all change. Notice what Gemini didn't do: it used the term "idea laundering" without saying where it came from.</aside>
 </section>
 
 <!-- 16 · WHERE THE TERM COMES FROM -->
