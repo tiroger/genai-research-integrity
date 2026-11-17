@@ -1053,11 +1053,15 @@ section.present .ladder .flip.dim{opacity:.3;filter:saturate(.4)}
 #ladder .toastie.dim{opacity:.3}
 .print-pdf .ladder .flip.dim,.print-pdf #ladder .toastie.dim{opacity:1!important;filter:none!important}
 
-/* a real headline pinned in the empty corner of the market chart */
-.mclip{position:absolute;left:108px;top:12px;width:720px;z-index:3}
-.mclip .hl.np h3{font-size:45px;line-height:1.1}
-.mclip .hl.np{filter:drop-shadow(0 10px 18px rgba(11,31,68,.16))}
-section.present .mclip .rise{transition-delay:1.1s}
+/* market slide: the two key numbers sit in the chart's empty corner; two real headlines stand beside it */
+.mstats{position:absolute;left:118px;top:8px;display:flex;gap:44px;z-index:2}
+.mstats .stat b{font-size:80px;line-height:1}
+.mstats .stat>span{font-size:23px;margin-top:6px;max-width:300px}
+.mclips{width:590px;flex:none;display:flex;flex-direction:column;gap:26px;padding-top:6px}
+.mclips .hl.np h3{font-size:39px;line-height:1.1}
+.mclips .hl.np{filter:drop-shadow(0 10px 18px rgba(11,31,68,.14))}
+.mclips .hl.np.tilt-r{margin-left:22px;margin-right:-6px}
+section.present .mclips .d5{transition-delay:1s}section.present .mclips .d7{transition-delay:1.5s}
 
 </style>
 </head>
@@ -1125,20 +1129,22 @@ section.present .mclip .rise{transition-delay:1.1s}
 <section>
   <div class="eyebrow">Why it matters</div>
   <h2>AI is becoming central to research</h2>
-  <div class="row2" style="gap:56px">
+  <div class="row2" style="gap:44px">
     <div class="fill" style="position:relative">
       <div class="vchart" id="market"></div>
-      <div class="mclip"><div class="hl np tilt-l rise d6"><div class="k"><b>Stanford Medicine</b> · Sep 17, 2026</div><h3>Virtual biotech company puts thousands of AI scientist agents to work on drug discovery</h3></div></div>
+      <div class="mstats">
+        <div class="stat"><b><span data-count="26.3" data-dec="1" data-pre="$">0</span>B</b><span>AI in biotechnology, forecast for 2033</span></div>
+        <div class="stat"><b><span data-count="19.3" data-dec="1">0</span>%</b><span>growth a year, 2024–2033</span></div>
+      </div>
     </div>
-    <div class="colx" style="width:400px;gap:24px;padding-top:20px">
-      <div class="scard" style="--c:var(--amber)"><div class="stat"><b><span data-count="26.3" data-dec="1" data-pre="$">0</span>B</b><span>AI in biotechnology, forecast for 2033</span></div></div>
-      <div class="scard" style="--c:var(--blue)"><div class="stat"><b><span data-count="19.3" data-dec="1">0</span>%</b><span>Compound annual growth, 2024–2033</span></div></div>
-      <p class="hint" style="font-size:22px">Uses: drug target identification, image screening, drug screening, predictive modeling.</p>
+    <div class="mclips">
+      <div class="hl np tilt-l rise d5"><div class="k"><b>Stanford Medicine</b> · Sep 17, 2026</div><h3>Virtual biotech company puts thousands of AI scientist agents to work on drug discovery</h3></div>
+      <div class="hl np tilt-r rise d7"><div class="k"><b>Fierce Biotech</b> · Oct 29, 2026</div><h3>Flagship brings 3 biotech platforms together to launch AI drug discovery player Etcelera</h3></div>
     </div>
   </div>
   <div class="takehome rise d3">The question isn’t whether to use AI in research. It’s how to use it <em>responsibly</em>.</div>
   <p class="foot">AI in biotechnology market size, US$ billion. Forecast by market.us. Amber bar = this year.</p>
-  <aside class="notes">The headline is from Stanford Medicine this September: James Zou's lab built a “virtual biotech” of about 37,000 AI agents covering the drug-development pipeline, published in Science. This is how important AI already is to research: drug target identification, image screening, drug screening, predictive modeling. It's a forecast, not a fact, but it shows where the field is going (the amber bar is this year). So nothing in this talk says "don't use it." The take-home message is responsible use: AI is here to stay in research, and the question is how to use it well.</aside>
+  <aside class="notes">The headline is from Stanford Medicine this September: James Zou's lab built a “virtual biotech” of about 37,000 AI agents covering the drug-development pipeline, published in Science. Six weeks later, Fierce Biotech: Flagship Pioneering merged three of its companies (Cellarity, Etiome, Empress Therapeutics) into Etcelera, an AI drug discovery company. This is how important AI already is to research: drug target identification, image screening, drug screening, predictive modeling. It's a forecast, not a fact, but it shows where the field is going (the amber bar is this year). So nothing in this talk says "don't use it." The take-home message is responsible use: AI is here to stay in research, and the question is how to use it well.</aside>
 </section>
 
 <!-- 6 · GROWING THREAT -->
