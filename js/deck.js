@@ -517,6 +517,23 @@
     if (e.previousSlide) $$("video", e.previousSlide).forEach(function (v) { v.pause(); });
   });
 
+  /* ---------------- ladder walk-through ----------------
+     ten fragments: odd ones light step i and dim the rest, even ones turn it over; after the last, all lit */
+  (function () {
+    var sec = $("#ladder"); if (!sec) return;
+    var rungs = $$(".ladder .flip", sec), toast = $(".toastie", sec), n = rungs.length;
+    function sync() {
+      var k = $$(".lf.visible", sec).length, cur = Math.ceil(k / 2), walking = k >= 1 && k < 2 * n;
+      rungs.forEach(function (r, i) {
+        r.classList.toggle("on", k >= 2 * (i + 1));
+        r.classList.toggle("dim", walking && i + 1 !== cur);
+      });
+      if (toast) toast.classList.toggle("dim", walking && cur !== 1);
+    }
+    Reveal.on("fragmentshown", sync); Reveal.on("fragmenthidden", sync);
+    Reveal.on("slidechanged", function () { setTimeout(sync, 0); }); Reveal.on("ready", sync);
+  })();
+
   /* ---------------- flip cards ---------------- */
   $$(".flip").forEach(function (f) { f.addEventListener("click", function () { f.classList.toggle("on"); }); });
   Reveal.on("fragmentshown", function (e) { if (e.fragment.classList.contains("flip-all")) $$(".flip", Reveal.getCurrentSlide()).forEach(function (f, i) { setTimeout(function () { f.classList.add("on"); }, i * 90); }); });

@@ -1046,6 +1046,13 @@ section.present .t-head img:nth-child(1){animation-delay:1.6s}section.present .t
 @keyframes tdrop{0%{opacity:0;transform:translateY(-60px)}60%{opacity:1}100%{opacity:1;transform:none}}
 .print-pdf #ladder .t-bot,.print-pdf #ladder .t-head img{opacity:1!important;transform:none!important}
 
+/* ladder walk-through: one step lit at a time, each turning to its catch before the next */
+.ladder .flip{transition:opacity .45s ease,filter .45s ease,transform .6s cubic-bezier(.2,.8,.2,1)}
+section.present .ladder .flip.dim{opacity:.3;filter:saturate(.4)}
+#ladder .toastie{transition:opacity .45s ease}
+#ladder .toastie.dim{opacity:.3}
+.print-pdf .ladder .flip.dim,.print-pdf #ladder .toastie.dim{opacity:1!important;filter:none!important}
+
 </style>
 </head>
 <body>
@@ -1104,8 +1111,8 @@ section.present .t-head img:nth-child(1){animation-delay:1.6s}section.present .t
     </div></div>
   </div>
   <div class="laxis"><span>You do the work</span><i></i><span>It does the work</span></div>
-  <span class="fragment flip-all"></span>
-  <aside class="notes">Start with the toaster on the first step: AI is in everything now, or at least the label is. (Click the toaster to show the full cartoon, with the automation-versus-AI contrast.) Four years ago this was one chatbot. Walk up the ladder: it answers, it reads the literature, it makes finished images, slides and documents, it analyzes data and writes the code, and now there are systems sold as AI scientists: Claude Science, Google's Co-Scientist, Edison's Kosmos. The further right you go, the less of the work you do yourself. Click any step to show its catch, or press next to flip them all. Then say it: the one thing none of them can do is know whether the output is true, or answer for it. Checking is still your job. That gap is where the integrity problems come from. (Names are current as of November 2026: NotebookLM is now Gemini Notebook, and OpenAI shut down Sora in April.)</aside>
+  <span class="fragment lf"></span><span class="fragment lf"></span><span class="fragment lf"></span><span class="fragment lf"></span><span class="fragment lf"></span><span class="fragment lf"></span><span class="fragment lf"></span><span class="fragment lf"></span><span class="fragment lf"></span><span class="fragment lf"></span>
+  <aside class="notes">Start with the toaster on the first step: AI is in everything now, or at least the label is. (Click the toaster to show the full cartoon, with the automation-versus-AI contrast.) Four years ago this was one chatbot. Walk up the ladder: it answers, it reads the literature, it makes finished images, slides and documents, it analyzes data and writes the code, and now there are systems sold as AI scientists: Claude Science, Google's Co-Scientist, Edison's Kosmos. The further right you go, the less of the work you do yourself. Ten presses of next take you up the ladder: one lights a step and dims the rest, the next turns it over to its catch, then on to the next step. After the last one all five catches stay lit. Then say it: the one thing none of them can do is know whether the output is true, or answer for it. Checking is still your job. That gap is where the integrity problems come from. (Names are current as of November 2026: NotebookLM is now Gemini Notebook, and OpenAI shut down Sora in April.)</aside>
 </section>
 
 <!-- 5 · MARKET -->
@@ -4943,6 +4950,23 @@ window.XLBOOK = {"file":"mouse_overlay_analysis.xlsx","sheets":[{"name":"Analysi
   Reveal.on("slidechanged", function (e) {
     if (e.previousSlide) $$("video", e.previousSlide).forEach(function (v) { v.pause(); });
   });
+
+  /* ---------------- ladder walk-through ----------------
+     ten fragments: odd ones light step i and dim the rest, even ones turn it over; after the last, all lit */
+  (function () {
+    var sec = $("#ladder"); if (!sec) return;
+    var rungs = $$(".ladder .flip", sec), toast = $(".toastie", sec), n = rungs.length;
+    function sync() {
+      var k = $$(".lf.visible", sec).length, cur = Math.ceil(k / 2), walking = k >= 1 && k < 2 * n;
+      rungs.forEach(function (r, i) {
+        r.classList.toggle("on", k >= 2 * (i + 1));
+        r.classList.toggle("dim", walking && i + 1 !== cur);
+      });
+      if (toast) toast.classList.toggle("dim", walking && cur !== 1);
+    }
+    Reveal.on("fragmentshown", sync); Reveal.on("fragmenthidden", sync);
+    Reveal.on("slidechanged", function () { setTimeout(sync, 0); }); Reveal.on("ready", sync);
+  })();
 
   /* ---------------- flip cards ---------------- */
   $$(".flip").forEach(function (f) { f.addEventListener("click", function () { f.classList.toggle("on"); }); });

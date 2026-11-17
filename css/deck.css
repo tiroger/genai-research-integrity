@@ -1026,3 +1026,10 @@ section.present .t-head img{animation:cfin .4s ease-out both}
 section.present .t-head img:nth-child(1){animation-delay:1.6s}section.present .t-head img:nth-child(2){animation-delay:1.85s}section.present .t-head img:nth-child(3){animation-delay:2.1s}
 @keyframes tdrop{0%{opacity:0;transform:translateY(-60px)}60%{opacity:1}100%{opacity:1;transform:none}}
 .print-pdf #ladder .t-bot,.print-pdf #ladder .t-head img{opacity:1!important;transform:none!important}
+
+/* ladder walk-through: one step lit at a time, each turning to its catch before the next */
+.ladder .flip{transition:opacity .45s ease,filter .45s ease,transform .6s cubic-bezier(.2,.8,.2,1)}
+section.present .ladder .flip.dim{opacity:.3;filter:saturate(.4)}
+#ladder .toastie{transition:opacity .45s ease}
+#ladder .toastie.dim{opacity:.3}
+.print-pdf .ladder .flip.dim,.print-pdf #ladder .toastie.dim{opacity:1!important;filter:none!important}
