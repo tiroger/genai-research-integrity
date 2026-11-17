@@ -579,7 +579,7 @@
   document.addEventListener("click", function (e) {
     var im = e.target.closest && e.target.closest(".frame img, .zoomer img, .paper img");
     if (!im || im.closest(".game") || im.closest(".cmp") || lb.classList.contains("open")) return;
-    lbOpen(im.currentSrc || im.src);
+    lbOpen(im.getAttribute("data-full") || im.currentSrc || im.src);
   });
   lbStage.addEventListener("wheel", function (e) { e.preventDefault(); lbZoom(e.deltaY < 0 ? 1.15 : 1 / 1.15, e.clientX, e.clientY); }, { passive: false });
   lbStage.addEventListener("dblclick", function (e) { lbZoom(lbS > lbMin * 1.5 ? lbMin / lbS : 2.5, e.clientX, e.clientY); });
