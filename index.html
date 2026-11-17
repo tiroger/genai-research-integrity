@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Scientific Research in the Age of Generative AI</title>
 <link rel="stylesheet" href="lib/reveal.css?v=f8e9b506">
-<link rel="stylesheet" href="css/deck.css?v=44b221b4">
+<link rel="stylesheet" href="css/deck.css?v=03e59d0b">
 </head>
 <body>
 <div class="reveal"><div class="slides">
@@ -33,67 +33,35 @@
   <aside class="notes">Open with the poll. With live voting on, ask people to scan and keep the page open: it follows the slides. Without it, ask for chat replies and click a row to add a hand (shift-click to subtract). Most of these uses are ordinary, and that is the backdrop.</aside>
 </section>
 
-<!-- 3 · LANDSCAPE -->
-<section>
-  <div class="eyebrow">Where we are</div>
-  <h2>The ever-growing AI landscape</h2>
-  <div class="cards land" style="grid-template-columns:1.7fr 1fr .8fr">
-    <div class="scard rise d1" style="--c:var(--blue)"><h3>Text &amp; chat</h3>
-      <div class="logos">
-        <img decoding="async" data-src="assets/logo-chatgpt.webp" style="height:170px" alt="ChatGPT"><img decoding="async" data-src="assets/logo-claude.webp" style="height:86px" alt="Claude">
-        <img decoding="async" data-src="assets/logo-gemini.webp" style="height:150px" alt="Gemini"><img decoding="async" data-src="assets/logo-grok.webp" style="height:104px" alt="Grok">
-        <img decoding="async" data-src="assets/logo-deepseek.webp" style="height:76px" alt="DeepSeek"><img decoding="async" data-src="assets/logo-llama.webp" style="height:160px" alt="LLaMA">
-      </div></div>
-    <div class="scard rise d2" style="--c:var(--amber)"><h3>Images</h3>
-      <div class="logos" style="flex-direction:column;align-items:flex-start;gap:56px;margin-top:20px">
-        <img decoding="async" data-src="assets/logo-midjourney.webp" style="height:110px" alt="Midjourney"><img decoding="async" data-src="assets/logo-dalle.webp" style="height:86px" alt="DALL-E"><img decoding="async" data-src="assets/logo-firefly.webp" style="height:100px" alt="Adobe Firefly">
-      </div></div>
-    <div class="scard rise d3" style="--c:var(--coral)"><h3>Video</h3>
-      <div class="logos" style="flex:1;justify-content:center"><img decoding="async" data-src="assets/logo-sora.webp" style="height:240px" alt="Sora"></div></div>
-  </div>
-  <aside class="notes">Text, images, video, code. The point isn't the brands: it's that every one of these can produce something that looks like research output.</aside>
-</section>
-
-<!-- 4 · WHAT CAN(T) AI DO -->
-<section id="caps">
-  <div class="eyebrow">Capabilities</div>
+<!-- 3 · WHAT AI CAN(T) DO: the ladder (merges the old landscape and capabilities slides) -->
+<section id="ladder">
+  <div class="eyebrow">From chatbot to co-scientist</div>
   <h2>What can(’t) AI do?</h2>
-  <div class="flips">
-    <div class="flip rise d1"><div class="fi">
-      <div class="ff"><div class="ic"><svg viewBox="0 0 24 24"><path d="M4 20h4L19 9l-4-4L4 16z"/><path d="M13 7l4 4"/></svg></div><h3>Generate text</h3><p>Coherent, on-topic prose from a prompt: articles, stories, even code.</p><span class="turn">But… ↻</span></div>
-      <div class="fb"><span class="but">But</span><p>It can invent facts, quotes and citations that sound right.</p></div>
-    </div></div>
-    <div class="flip rise d2"><div class="fi">
-      <div class="ff"><div class="ic"><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h10M4 18h6"/></svg></div><h3>Summarize</h3><p>Long text made short, keeping the key points.</p><span class="turn">But… ↻</span></div>
-      <div class="fb"><span class="but">But</span><p>It can drop the caveats and limitations that matter most.</p></div>
-    </div></div>
-    <div class="flip rise d3"><div class="fi">
-      <div class="ff"><div class="ic"><svg viewBox="0 0 24 24"><path d="M4 5h8M8 3v2m-3 10c2-2 4-6 4-10m-3 4c1 2 3 4 6 5"/><path d="M13 21l4-10 4 10m-7-3h6"/></svg></div><h3>Translate</h3><p>Between languages, bridging gaps between researchers.</p><span class="turn">But… ↻</span></div>
-      <div class="fb"><span class="but">But</span><p>Technical terms and nuance can quietly shift meaning.</p></div>
-    </div></div>
-    <div class="flip rise d4"><div class="fi">
-      <div class="ff"><div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 1 1 3 2.4c-.6.2-.5.8-.5 1.6M12 17h.01"/></svg></div><h3>Answer questions</h3><p>Using what it learned in training.</p><span class="turn">But… ↻</span></div>
+  <div class="ladder">
+    <div class="flip rung rise d1" style="--c:var(--cb);--h:330px"><div class="fi">
+      <div class="ff"><span class="n">It answers</span><h3>Chat</h3><div class="tools"><span class="tchip"><img decoding="async" data-src="assets/mark-chatgpt.webp" alt="">ChatGPT</span><span class="tchip"><img decoding="async" data-src="assets/mark-claude.webp" alt="">Claude</span><span class="tchip"><img decoding="async" data-src="assets/mark-gemini.webp" alt="">Gemini</span><span class="tchip">Copilot</span><span class="tchip"><img decoding="async" data-src="assets/mark-grok.webp" alt="">Grok</span><span class="tchip"><img decoding="async" data-src="assets/mark-deepseek.webp" alt="">DeepSeek</span></div><span class="turn">But… ↻</span></div>
       <div class="fb"><span class="but">But</span><p>It answers just as confidently when it’s wrong.</p></div>
     </div></div>
-    <div class="flip rise d5"><div class="fi">
-      <div class="ff"><div class="ic"><svg viewBox="0 0 24 24"><path d="M4 5h16v10H9l-5 4z"/></svg></div><h3>Chat</h3><p>Conversations that feel human: assistants, support, tutoring.</p><span class="turn">But… ↻</span></div>
-      <div class="fb"><span class="but">But</span><p>It sounds human, but it can’t take responsibility.</p></div>
+    <div class="flip rung rise d2" style="--c:var(--blue);--h:420px"><div class="fi">
+      <div class="ff"><span class="n">It reads</span><h3>Literature &amp; deep research</h3><p>Finds, screens and summarizes papers</p><div class="tools"><span class="tchip">Elicit</span><span class="tchip">Consensus</span><span class="tchip">Scite</span><span class="tchip"><img decoding="async" data-src="assets/mark-gemini.webp" alt="">Gemini Notebook</span><span class="tchip">Perplexity</span></div><span class="turn">But… ↻</span></div>
+      <div class="fb"><span class="but">But</span><p>It can drop the caveats that matter, and cite papers that don’t exist.</p></div>
     </div></div>
-    <div class="flip rise d6"><div class="fi">
-      <div class="ff"><div class="ic"><svg viewBox="0 0 24 24"><path d="M4 7h7M4 12h7M4 17h7"/><path d="M15 7l2 2 3-4M15 15l5 5m0-5l-5 5"/></svg></div><h3>Classify</h3><p>Sorting text into groups, like spam or sentiment.</p><span class="turn">But… ↻</span></div>
-      <div class="fb"><span class="but">But</span><p>It can inherit bias from its training data.</p></div>
-    </div></div>
-    <div class="flip rise d7"><div class="fi">
-      <div class="ff"><div class="ic"><svg viewBox="0 0 24 24"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5M14 4l-4 16"/></svg></div><h3>Write &amp; fix code</h3><p>Across languages, finding and fixing errors.</p><span class="turn">But… ↻</span></div>
-      <div class="fb"><span class="but">But</span><p>It can reproduce licensed code or add subtle bugs.</p></div>
-    </div></div>
-    <div class="flip rise d8"><div class="fi">
-      <div class="ff"><div class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 15l5-5 4 4 3-3 6 6"/></svg></div><h3>Go multimodal</h3><p>Read and produce images, audio and video.</p><span class="turn">But… ↻</span></div>
+    <div class="flip rung rise d3" style="--c:var(--amber);--h:510px"><div class="fi">
+      <div class="ff"><span class="n">It makes</span><h3>Images &amp; documents</h3><p>Figures, video, slides, spreadsheets: finished files from a prompt</p><div class="tools"><span class="tchip"><img decoding="async" data-src="assets/mark-chatgpt.webp" alt="">ChatGPT Images</span><span class="tchip">Nano Banana</span><span class="tchip">Veo</span><span class="tchip"><img decoding="async" data-src="assets/mark-midjourney.webp" alt="">Midjourney</span><span class="tchip">Firefly</span><span class="tchip">Microsoft 365 Copilot</span></div><span class="turn">But… ↻</span></div>
       <div class="fb"><span class="but">But</span><p>It can make realistic images of things that never happened.</p></div>
     </div></div>
+    <div class="flip rung rise d4" style="--c:var(--coral);--h:600px"><div class="fi">
+      <div class="ff"><span class="n">It analyzes</span><h3>Data, code, whole pipelines</h3><p>Runs the statistics and builds the figures</p><div class="tools"><span class="tchip"><img decoding="async" data-src="assets/mark-claude.webp" alt="">Claude Science</span><span class="tchip"><img decoding="async" data-src="assets/mark-claude.webp" alt="">Claude Code</span><span class="tchip">Codex</span><span class="tchip">Copilot Analyst</span></div><span class="turn">But… ↻</span></div>
+      <div class="fb"><span class="but">But</span><p>It can add subtle bugs, and the result still looks polished.</p></div>
+    </div></div>
+    <div class="flip rung rise d5" style="--c:var(--navy);--h:690px"><div class="fi">
+      <div class="ff"><span class="n">It does the science</span><h3>AI scientists &amp; agents</h3><p>Proposes hypotheses, plans experiments, acts on its own</p><div class="tools"><span class="tchip">Google Co-Scientist</span><span class="tchip">Edison Kosmos</span><span class="tchip">Robin</span><span class="tchip">Biomni</span><span class="tchip"><img decoding="async" data-src="assets/mark-chatgpt.webp" alt="">ChatGPT Atlas</span></div><span class="turn">But… ↻</span></div>
+      <div class="fb"><span class="but">But</span><p>It can’t be accountable for any of it. You are.</p></div>
+    </div></div>
   </div>
+  <div class="laxis"><span>You do the work</span><i></i><span>It does the work</span></div>
   <span class="fragment flip-all"></span>
-  <aside class="notes">Eight things these tools do well. Click any card to show its catch, or press next to flip them all at once. Then say it: the one thing they can't do is know whether any of it is true. They predict plausible output; checking it is still your job. That gap is where the integrity problems come from.</aside>
+  <aside class="notes">Four years ago this was one chatbot. Walk up the ladder: it answers, it reads the literature, it makes finished images, slides and documents, it analyzes data and writes the code, and now there are systems sold as AI scientists: Claude Science, Google's Co-Scientist, Edison's Kosmos. The further right you go, the less of the work you do yourself. Click any step to show its catch, or press next to flip them all. Then say it: the one thing none of them can do is know whether the output is true, or answer for it. Checking is still your job. That gap is where the integrity problems come from. (Names are current as of November 2026: NotebookLM is now Gemini Notebook, and OpenAI shut down Sora in April.)</aside>
 </section>
 
 <!-- 5 · MARKET -->
