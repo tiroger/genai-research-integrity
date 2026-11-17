@@ -1062,27 +1062,7 @@ section.present .ladder .flip.dim{opacity:.3;filter:saturate(.4)}
 .mclips .hl.np.tilt-r{margin-left:22px;margin-right:-6px}
 section.present .mclips .d5{transition-delay:1s}section.present .mclips .d7{transition-delay:1.5s}
 
-/* slide 4 -> 5: the two good-news clippings hold still through the fade, then the worrying ones land on top of them */
-#threat .ghost{display:none;left:var(--x);top:var(--y);width:var(--w);rotate:var(--r0);padding:30px 36px 36px;box-sizing:border-box;z-index:0;pointer-events:none}
-#threat .ghost::before{background:var(--grain),radial-gradient(120% 120% at 50% 40%,var(--newsprint) 60%,#E6DCC4 100%)}
-#threat .ghost h3{font:700 39px/1.1 var(--news);letter-spacing:-.01em;color:#191919}
-#threat .ghost.g1{--x:1258px;--y:199px;--w:590px;--r0:-1.4deg}
-#threat .ghost.g2{--x:1280px;--y:503px;--w:574px;--r0:1.2deg}
-#threat.morph-in .ghost{display:flex;animation:ghide .2s linear 1.3s both}
-@keyframes ghide{to{opacity:0}}
-#threat.morph-in .pile{z-index:1}
-#threat.morph-in .pile .hl{will-change:transform,opacity;animation:cland .5s cubic-bezier(.2,.9,.3,1) both}
-#threat.morph-in .pile .hl:nth-child(2){animation-delay:.7s}
-#threat.morph-in .pile .hl:nth-child(4){animation-delay:.9s}
-#threat.morph-in .pile .hl:nth-child(1){animation-delay:1.1s}
-#threat.morph-in .pile .hl:nth-child(3){animation-delay:1.25s}
-@keyframes cland{from{opacity:0;transform:translateY(-36px)}}
-section#threat.morph-in.present .hl mark{transition-delay:2s}
-section#threat.morph-in.present .hl:nth-child(2) mark{transition-delay:2.7s}
-section#threat.morph-in.present .hl:nth-child(3) mark{transition-delay:3.4s}
-section#threat.morph-in.present .hl:nth-child(4) mark{transition-delay:4.1s}
-.print-pdf #threat .ghost{display:none!important}
-/* these clippings move during the 4 -> 5 handoff: a plain box shadow keeps the animation at full frame rate (drop-shadow filters do not) */
+/* clippings on slides 4 and 5 use a plain box shadow (much cheaper to fade than drop-shadow filters) */
 .mclips .hl.np,#threat .hl.np{filter:none;box-shadow:0 16px 26px -12px rgba(11,31,68,.26),0 3px 7px -3px rgba(11,31,68,.18)}
 
 </style>
@@ -1173,8 +1153,6 @@ section#threat.morph-in.present .hl:nth-child(4) mark{transition-delay:4.1s}
 <section id="threat" class="clips">
   <div class="eyebrow">The worry</div>
   <h2>A growing threat?</h2>
-  <div class="hl np tilt-l ghost g1" aria-hidden="true"><div class="k"><b>Stanford Medicine</b> · Sep 17, 2026</div><h3>Virtual biotech company puts thousands of AI scientist agents to work on drug discovery</h3></div>
-  <div class="hl np tilt-r ghost g2" aria-hidden="true"><div class="k"><b>Fierce Biotech</b> · Oct 29, 2026</div><h3>Flagship brings 3 biotech platforms together to launch AI drug discovery player Etcelera</h3></div>
   <div class="cards pile">
     <div class="hl np"><div class="k"><b>Fabrizio Gramuglio</b> · May 21, 2024</div><h3>The <mark>Looming Threat</mark> of Generative AI to Scientific Integrity</h3></div>
     <div class="hl np"><div class="k"><b>Lauren Leffer</b> · March 18, 2024</div><h3>Too Much Trust in AI Poses <mark>Unexpected Threats</mark> to the Scientific Process</h3><p>It’s vital to “keep humans in the loop” to avoid humanizing machine-learning models in research.</p></div>
@@ -4502,9 +4480,6 @@ window.XLBOOK = {"file":"mouse_overlay_analysis.xlsx","sheets":[{"name":"Analysi
       for (i = m; i >= 0; i--) pts.push(o() + "px " + (100 * i / m).toFixed(2) + "%");
       el.style.setProperty("--tear", "polygon(" + pts.join(",") + ")");
     });
-    // the stand-ins on the next slide must have exactly the same torn edge as the clippings they continue
-    var src = document.querySelectorAll(".mclips .hl.np"), gh = document.querySelectorAll("#threat .ghost");
-    for (var g = 0; g < gh.length && g < src.length; g++) gh[g].style.setProperty("--tear", src[g].style.getPropertyValue("--tear"));
   })();
 
   /* ---------------- Reveal ---------------- */
@@ -4989,14 +4964,6 @@ window.XLBOOK = {"file":"mouse_overlay_analysis.xlsx","sheets":[{"name":"Analysi
   });
   Reveal.on("slidechanged", function (e) {
     if (e.previousSlide) $$("video", e.previousSlide).forEach(function (v) { v.pause(); });
-  });
-
-  /* ---------------- slide 4 -> 5 morph: only when arriving forward from the market slide ---------------- */
-  Reveal.on("slidechanged", function (e) {
-    var t = $("#threat"); if (!t) return;
-    var from = e.previousSlide && e.previousSlide.querySelector(".mclips");
-    t.classList.remove("morph-in");
-    if (e.currentSlide === t && from) { void t.offsetWidth; t.classList.add("morph-in"); }
   });
 
   /* ---------------- ladder walk-through ----------------
