@@ -1099,3 +1099,21 @@ section.present .ca .ca-x~.ca-x{animation-delay:2.4s}
 /* a supplied slide shown edge to edge, untouched */
 .reveal .slides section.fullimg{padding:0!important}
 .fullimg>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;cursor:default}
+
+
+/* hallucinations section: types slide */
+.t-hal{--c:#6FC3B2}
+#haltypes h2{margin-bottom:36px}
+#haltypes .ht{display:grid;grid-template-columns:repeat(4,1fr);gap:26px}
+#haltypes .hc{display:flex;flex-direction:column;gap:20px;background:var(--navy2);border:1px solid #24477F;border-radius:16px;padding:30px 28px 32px;box-sizing:border-box;}
+#haltypes .hc h3{font:700 40px/1.1 var(--serif);color:#fff;margin:0 0 4px;min-height:88px}
+#haltypes .hb{position:relative;min-height:172px;box-sizing:border-box;font:400 28px/1.3 var(--sans);border-radius:14px;padding:44px 20px 18px}
+#haltypes .hb span{position:absolute;left:20px;top:16px;font:700 17px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase}
+#haltypes .hb.you{background:rgba(185,217,235,.10);color:#EAF2F8;margin-right:34px}
+#haltypes .hb.you span{color:var(--cb)}
+#haltypes .hb.ai{background:#fff;color:var(--ink);margin-left:34px}
+#haltypes .hb.ai span{color:var(--blue)}
+#haltypes .hx{position:relative;margin:26px 0 0 34px;padding-left:22px;font:700 28px/1.25 var(--sans);color:var(--coral)}
+#haltypes .hx::before{content:"";position:absolute;left:0;top:-46px;width:2px;height:calc(100% + 40px);background:var(--coral)}
+#haltypes .hx::after{content:"";position:absolute;left:-5px;top:-50px;width:12px;height:12px;border-radius:50%;background:var(--coral)}
+#haltypes .hsrc{margin:26px 0 0;font:400 20px/1.3 var(--sans);color:#8FA6C4}

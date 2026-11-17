@@ -1119,6 +1119,24 @@ section.present .ca .ca-x~.ca-x{animation-delay:2.4s}
 .reveal .slides section.fullimg{padding:0!important}
 .fullimg>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;cursor:default}
 
+
+/* hallucinations section: types slide */
+.t-hal{--c:#6FC3B2}
+#haltypes h2{margin-bottom:36px}
+#haltypes .ht{display:grid;grid-template-columns:repeat(4,1fr);gap:26px}
+#haltypes .hc{display:flex;flex-direction:column;gap:20px;background:var(--navy2);border:1px solid #24477F;border-radius:16px;padding:30px 28px 32px;box-sizing:border-box;}
+#haltypes .hc h3{font:700 40px/1.1 var(--serif);color:#fff;margin:0 0 4px;min-height:88px}
+#haltypes .hb{position:relative;min-height:172px;box-sizing:border-box;font:400 28px/1.3 var(--sans);border-radius:14px;padding:44px 20px 18px}
+#haltypes .hb span{position:absolute;left:20px;top:16px;font:700 17px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase}
+#haltypes .hb.you{background:rgba(185,217,235,.10);color:#EAF2F8;margin-right:34px}
+#haltypes .hb.you span{color:var(--cb)}
+#haltypes .hb.ai{background:#fff;color:var(--ink);margin-left:34px}
+#haltypes .hb.ai span{color:var(--blue)}
+#haltypes .hx{position:relative;margin:26px 0 0 34px;padding-left:22px;font:700 28px/1.25 var(--sans);color:var(--coral)}
+#haltypes .hx::before{content:"";position:absolute;left:0;top:-46px;width:2px;height:calc(100% + 40px);background:var(--coral)}
+#haltypes .hx::after{content:"";position:absolute;left:-5px;top:-50px;width:12px;height:12px;border-radius:50%;background:var(--coral)}
+#haltypes .hsrc{margin:26px 0 0;font:400 20px/1.3 var(--sans);color:#8FA6C4}
+
 </style>
 </head>
 <body>
@@ -1671,10 +1689,36 @@ section.present .ca .ca-x~.ca-x{animation-delay:2.4s}
   <aside class="notes">Last, I asked for a figure with representative images, a graph and a legend. It looks publication-ready: panels A, B and C, means and SDs, a methods-style legend. A handful of short requests and no special skill. That is how easy it is.</aside>
 </section>
 
+<!-- HALLUCINATIONS · TYPES (opens the section) -->
+<section class="dark" data-state="dark" id="haltypes">
+  <div class="eyebrow"><span class="tag t-hal">Hallucinations</span></div>
+  <h2>Hallucinations: errors no one asked for</h2>
+  <div class="ht">
+    <div class="hc rise d1"><h3>Factual inaccuracies</h3>
+      <div class="hb you"><span>You</span>When was the DNA double helix published?</div>
+      <div class="hb ai"><span>AI</span>In 1962, by Watson and Crick.</div>
+      <p class="hx">1953. The Nobel Prize came in 1962.</p></div>
+    <div class="hc rise d3"><h3>Fabricated content</h3>
+      <div class="hb you"><span>You</span>Give me a reference on shear stress and KLF2.</div>
+      <div class="hb ai"><span>AI</span>Varga &amp; Okonjo (2023). <i>ATVB</i> 43, 1187–1199.</div>
+      <p class="hx">No such paper.</p></div>
+    <div class="hc rise d5"><h3>Instruction inconsistency</h3>
+      <div class="hb you"><span>You</span>Remove the background from this blot. Nothing else.</div>
+      <div class="hb ai"><span>AI</span>Done. Here is your cleaned blot.</div>
+      <p class="hx">Two faint bands are gone too.</p></div>
+    <div class="hc rise d7"><h3>Over-generalizations</h3>
+      <div class="hb you"><span>You</span>Summarize this study in one line.</div>
+      <div class="hb ai"><span>AI</span>The drug prevents heart disease.</div>
+      <p class="hx">It was tested in 12 mice.</p></div>
+  </div>
+  <p class="hsrc">Types adapted from Romano &amp; Gaskins, “The Reality of AI Hallucinations in 2025.” The exchanges are illustrations.</p>
+  <aside class="notes">New section. Everything in the three acts took a person asking for it. Hallucinations do not: the tool gets it wrong on its own, and it sounds sure. Four kinds you will meet in research. The source table (Romano and Gaskins, drainpipe.io, July 21, 2025) lists eight; the other four are harmful misinformation, nonsensical output, mixed-up timelines, and visual errors like the labels on the rat figure. The four exchanges here are made up to illustrate; they are not real transcripts. Why this matters for integrity: with no intent, the question becomes whether you checked. NIH and ORI said in May 2026 that reckless use of AI can be research misconduct. Next: two real cases, in research data and in the literature.</aside>
+</section>
+
 <!-- 21 · HALLUCINATIONS -->
 <section>
-  <div class="eyebrow"><span class="tag t-lie">Fabrication</span></div>
-  <h2>Hallucinations</h2>
+  <div class="eyebrow"><span class="tag t-hal">Hallucinations</span></div>
+  <h2>A transcription tool that invents speech</h2>
   <div class="row2" style="gap:48px;align-items:center;min-height:760px">
     <div class="colx" style="width:780px;flex:none;gap:40px">
       <div class="hl np tilt-l rise"><div class="k"><b>AP</b> · Garance Burke &amp; Hilke Schellmann · Oct 26, 2024</div><h3 style="font-size:50px">Researchers say an AI-powered transcription tool used in hospitals invents things no one ever said</h3></div>
@@ -1689,12 +1733,12 @@ section.present .ca .ca-x~.ca-x{animation-delay:2.4s}
       <div class="txsrc rise d2">Examples from Koenecke (Cornell) &amp; Sloane (UVA), reported by AP</div>
     </div>
   </div>
-  <aside class="notes">The last kind of fabrication: nobody asks for it. The tool makes things up on its own. OpenAI's Whisper transcription tool invents text. In AP's reporting: a University of Michigan researcher found hallucinations in 8 of every 10 public-meeting transcripts he checked; a machine learning engineer found them in about half of 100+ hours; one developer in nearly every one of 26,000 transcripts. Koenecke and Sloane found 187 hallucinations in 13,000+ clear, short audio clips, and nearly 40% were harmful because the speaker could be misrepresented. OpenAI itself warns against using it in high-risk domains, yet 30,000+ clinicians and 40 health systems use a Whisper-based tool, and it's widely used to transcribe research interviews. Click: that tool, Nabla, deletes the original audio. You can't catch errors if you take away the ground truth. Keep your raw data.</aside>
+  <aside class="notes">First real case: research data. OpenAI's Whisper transcription tool invents text. In AP's reporting: a University of Michigan researcher found hallucinations in 8 of every 10 public-meeting transcripts he checked; a machine learning engineer found them in about half of 100+ hours; one developer in nearly every one of 26,000 transcripts. Koenecke and Sloane found 187 hallucinations in 13,000+ clear, short audio clips, and nearly 40% were harmful because the speaker could be misrepresented. OpenAI itself warns against using it in high-risk domains, yet 30,000+ clinicians and 40 health systems use a Whisper-based tool, and it's widely used to transcribe research interviews. Click: that tool, Nabla, deletes the original audio. You can't catch errors if you take away the ground truth. Keep your raw data.</aside>
 </section>
 
 <!-- AI INVENTS CITATIONS -->
 <section>
-  <div class="eyebrow"><span class="tag t-lie">Fabrication</span></div>
+  <div class="eyebrow"><span class="tag t-hal">Hallucinations</span></div>
   <h2>AI invents citations, and it’s getting more common</h2>
   <div class="row2" style="gap:40px;align-items:center;min-height:780px">
     <div class="colx cites" style="width:600px;flex:none;gap:22px">
@@ -1725,7 +1769,7 @@ section.present .ca .ca-x~.ca-x{animation-delay:2.4s}
 
 <!-- FAKE CITATIONS RECKLESS -->
 <section>
-  <div class="eyebrow"><span class="tag t-lie">Fabrication</span></div>
+  <div class="eyebrow"><span class="tag t-hal">Hallucinations</span></div>
   <h2>Fake citations: reckless?</h2>
   <div class="row2 hal" style="gap:48px;align-items:center;min-height:760px">
     <div class="colx" style="width:900px;flex:none">
