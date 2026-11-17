@@ -31,6 +31,9 @@
       for (i = m; i >= 0; i--) pts.push(o() + "px " + (100 * i / m).toFixed(2) + "%");
       el.style.setProperty("--tear", "polygon(" + pts.join(",") + ")");
     });
+    // the stand-ins on the next slide must have exactly the same torn edge as the clippings they continue
+    var src = document.querySelectorAll(".mclips .hl.np"), gh = document.querySelectorAll("#threat .ghost");
+    for (var g = 0; g < gh.length && g < src.length; g++) gh[g].style.setProperty("--tear", src[g].style.getPropertyValue("--tear"));
   })();
 
   /* ---------------- Reveal ---------------- */
