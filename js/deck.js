@@ -518,17 +518,13 @@
   });
 
   /* ---------------- ladder walk-through ----------------
-     ten fragments: odd ones light step i and dim the rest, even ones turn it over; after the last, all lit */
+     all five steps show from the start; each of five fragments turns the next step over to its catch */
   (function () {
     var sec = $("#ladder"); if (!sec) return;
-    var rungs = $$(".ladder .flip", sec), toast = $(".toastie", sec), n = rungs.length;
+    var rungs = $$(".ladder .flip", sec);
     function sync() {
-      var k = $$(".lf.visible", sec).length, cur = Math.ceil(k / 2), walking = k >= 1 && k < 2 * n;
-      rungs.forEach(function (r, i) {
-        r.classList.toggle("on", k >= 2 * (i + 1));
-        r.classList.toggle("dim", walking && i + 1 !== cur);
-      });
-      if (toast) toast.classList.toggle("dim", walking && cur !== 1);
+      var k = $$(".lf.visible", sec).length;
+      rungs.forEach(function (r, i) { r.classList.toggle("on", k >= i + 1); r.classList.remove("dim"); });
     }
     Reveal.on("fragmentshown", sync); Reveal.on("fragmenthidden", sync);
     Reveal.on("slidechanged", function () { setTimeout(sync, 0); }); Reveal.on("ready", sync);
