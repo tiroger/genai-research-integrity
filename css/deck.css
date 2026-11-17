@@ -1133,3 +1133,13 @@ section.present .ca .ca-x~.ca-x{animation-delay:2.4s}
 #haltypes.present .hm.ai{transition-delay:calc(var(--d) + .8s)}
 #haltypes.present .hv{transition-delay:calc(var(--d) + 1.35s)}
 .print-pdf #haltypes .hc,.print-pdf #haltypes .hm,.print-pdf #haltypes .hv{opacity:1!important;transform:none!important}
+
+
+/* ladder: the last catch is the point of the talk, so it gets its own treatment */
+.ladder .fb.key{background:var(--amber);border-color:var(--amber);box-shadow:0 10px 24px rgba(242,179,61,.32)}
+.ladder .fb.key .but{color:var(--navy);opacity:.75}
+.ladder .fb.key p{color:var(--navy);font:600 34px/1.22 var(--sans)}
+.ladder .fb.key .you{font:700 76px/1 var(--serif);letter-spacing:-.02em;margin-top:26px;white-space:nowrap}
+.ladder .flip .fb.key .you{opacity:0;transform:translateY(14px) scale(.92);transform-origin:left bottom}
+.ladder .flip.on .fb.key .you{opacity:1;transform:none;transition:opacity .5s ease .6s,transform .6s cubic-bezier(.2,1.4,.4,1) .6s}
+.print-pdf .ladder .fb.key .you{opacity:1!important;transform:none!important}
