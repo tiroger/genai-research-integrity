@@ -1746,7 +1746,7 @@ section.present .ca .ca-x~.ca-x{animation-delay:2.4s}
           <li><span class="t">Varga, M. &amp; Okonjo, T. (2023). Shear-stress priming of endothelial KLF2 in arteriovenous fistulas. <i>Arterioscler Thromb Vasc Biol</i> 43, 1187–1199.</span><span class="nsp">No such paper</span></li>
           <li><span class="t">Lindqvist, A. et al. (2024). AI-assisted hemodynamic monitoring after cardiac surgery. <i>Intensive Care Med</i> 50, 412–420.</span><span class="nsp">No such paper</span></li>
           <li><span class="t">Haddad, R. &amp; Peres, J. (2022). Pericyte loss and capillary rarefaction in early sepsis. <i>Circ Res</i> 131(4), 288–301.</span><span class="nsp">No such paper</span></li>
-        </ol><span class="fragment glitch-go" data-fragment-index="1"></span></div>
+        </ol><span class="glitch-auto"></span></div>
       <div class="ministats rise d2">
         <div><b><span data-count="2.5" data-dec="1">0</span>M</b><span>papers checked</span></div>
         <div><b><span data-count="4046">0</span></b><span>fake references found</span></div>
@@ -1764,7 +1764,7 @@ section.present .ca .ca-x~.ca-x{animation-delay:2.4s}
       <div class="credit">Chart redrawn from <i>Fortune</i> (Tristan Bove, May 24, 2026), values read from the published chart. Data: Topaz et al., <i>The Lancet</i>, 2026.</div></div>
     </div>
   </div>
-  <aside class="notes">AI tools invent citations: references that look exactly like real ones (these three are invented for the slide). Click: none of them exist. And it's accelerating. Maxim Topaz's team at Columbia checked about 2.5 million PubMed Central papers and 97 million references, and flagged 4,046 fabricated references across 2,810 papers. The rate was flat until mid-2024, then climbed fast; Fortune reports more than 12-fold in three years. Chart redrawn from Fortune's (Tristan Bove), data from Topaz et al. in The Lancet; quarterly values read off their chart, so approximate.</aside>
+  <aside class="notes">AI tools invent citations: references that look exactly like real ones (these three are invented for the slide). After a moment they strike themselves out: none of them exist. And it's accelerating. Maxim Topaz's team at Columbia checked about 2.5 million PubMed Central papers and 97 million references, and flagged 4,046 fabricated references across 2,810 papers. The rate was flat until mid-2024, then climbed fast; Fortune reports more than 12-fold in three years. Chart redrawn from Fortune's (Tristan Bove), data from Topaz et al. in The Lancet; quarterly values read off their chart, so approximate.</aside>
 </section>
 
 <!-- FAKE CITATIONS RECKLESS -->
@@ -5322,15 +5322,20 @@ window.XLBOOK = {"file":"mouse_overlay_analysis.xlsx","sheets":[{"name":"Analysi
     });
   }
 
+  var glitchT = 0;
   function flairSlide(sl) {
     if (!sl) return;
     typeSlide(sl);
     $$(".pdrop", sl).forEach(function (b) { var fr = b.closest(".fragment"); if (fr && fr.classList.contains("visible")) { clearInterval(b._iv); b.classList.add("hit"); $(".spec b", b).textContent = "#180"; $(".pv b", b).textContent = "0.047"; } else resetP(b); });
     sl.classList.toggle("glitched", !!$(".glitch-go.visible", sl));
+    /* references strike themselves out 1.5 s after the slide appears, no click needed */
+    clearTimeout(glitchT);
+    if ($(".glitch-auto", sl)) glitchT = setTimeout(function () { if (Reveal.getCurrentSlide() === sl) sl.classList.add("glitched"); }, 1500);
     if ($(".recap", sl)) recap();
   }
   Reveal.on("slidechanged", function (e) {
     if (e.previousSlide) $$(".msg[data-type]", e.previousSlide).forEach(resetType);
+    if (e.previousSlide && $(".glitch-auto", e.previousSlide)) e.previousSlide.classList.remove("glitched");
     flairSlide(e.currentSlide);
   });
   Reveal.on("ready", function (e) { flairSlide(e.currentSlide); });
