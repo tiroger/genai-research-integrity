@@ -1086,3 +1086,12 @@ section.present .ca-c.c2{animation-delay:1.8s}section.present .ca-c.c3{animation
 section.present .ca .ca-x~.ca-x{animation-delay:2.4s}
 #add1 .takehome{margin-top:24px}
 .print-pdf .cd-bar>b,.print-pdf .cd-noise,.print-pdf .ca-c,.print-pdf .ca-x{transform:none!important;opacity:1!important}
+
+/* the question slide: one question, three ways it could go wrong */
+#theq .q-h{font-size:88px;line-height:1.06;max-width:1560px;margin:56px 0 64px}
+#theq .q3{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+#theq .q{position:relative;background:var(--navy2);border:1px solid #24477F;border-radius:16px;padding:40px 40px 42px;min-height:440px;box-sizing:border-box;display:flex;flex-direction:column;gap:22px}
+#theq .qn{position:absolute;right:34px;top:22px;font:700 110px/1 var(--serif);color:rgba(185,217,235,.18)}
+#theq .q svg{width:150px;height:150px;fill:none;stroke:var(--cb);stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
+#theq .q svg .hi{stroke:var(--amber)}
+#theq .q h3{font:700 48px/1.12 var(--serif);color:#fff;margin:auto 0 0}
