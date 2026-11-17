@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Scientific Research in the Age of Generative AI</title>
 <link rel="stylesheet" href="lib/reveal.css?v=f8e9b506">
-<link rel="stylesheet" href="css/deck.css?v=5291ae0b">
+<link rel="stylesheet" href="css/deck.css?v=aa7ce798">
 </head>
 <body>
 <div class="reveal"><div class="slides">
@@ -717,6 +717,28 @@
   </div>
   <div class="meta"><img decoding="async" data-src="assets/logo-white.png" alt="Columbia Research, Office of Research Compliance and Training" style="height:52px"></div>
   <aside class="notes">Recap in one breath: fast-moving, blurry at the edges, but five things are settled. The take-home: use AI, and use it responsibly. Open for questions.</aside>
+</section>
+
+<!-- ADDENDUM 1 · TWO PROBLEMS: CONTEXT DILUTION, INTER-CAMPAIGN AMNESIA -->
+<section id="add1">
+  <div class="eyebrow">Addendum</div>
+  <h2>Two problems that make AI a difficult lab partner</h2>
+  <div class="cards two" style="gap:28px;margin-top:6px">
+    <div class="scard addc rise d1" style="--c:var(--amber)">
+      <span class="ad-k">Within one session</span>
+      <h3>Context dilution</h3>
+      <div class="cd"><div class="cd-key"><b></b>Your protocol<i></i>Everything else in the conversation</div><div class="cd-row r1"><span class="cd-l">Start</span><div class="cd-bar"><b style="width:46%"></b><div class="cd-noise"><i></i><i></i><i></i><i></i><i></i></div></div></div><div class="cd-row r2"><span class="cd-l">Later</span><div class="cd-bar"><b style="width:14%"></b><div class="cd-noise"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div></div><div class="cd-row r3"><span class="cd-l">Much later</span><div class="cd-bar"><b style="width:3%"></b><div class="cd-noise"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div></div></div>
+      <p class="ad-p">The protocol is still there. It is a shrinking share of what the model is attending to.</p>
+    </div>
+    <div class="scard addc rise d2" style="--c:var(--coral)">
+      <span class="ad-k">Between sessions</span>
+      <h3>Inter-campaign amnesia</h3>
+      <div class="ca"><div class="ca-c c1"><span class="ca-h">Campaign 1</span><div class="ca-page"><p class="q"><b>?</b>Try lot B…</p><p class="no"><b>✗</b>Lot B fails</p><p class="ok"><b>✓</b>Lot A works</p></div></div><i class="ca-x"></i><div class="ca-c c2"><span class="ca-h">Campaign 2</span><div class="ca-page"><p class="q"><b>?</b>Try lot B…</p><p class="no"><b>✗</b>Lot B fails</p></div></div><i class="ca-x"></i><div class="ca-c c3"><span class="ca-h">Campaign 3</span><div class="ca-page"><p class="q"><b>?</b>Try lot B…</p></div></div></div>
+      <p class="ad-p">Each new campaign starts from a blank page, so it can repeat the last one’s mistakes.</p>
+    </div>
+  </div>
+  <div class="takehome rise d3">An experiment has to hold its protocol and build on the last run. By default, an LLM does <em>neither</em>.</div>
+  <aside class="notes">Two limits that matter if you try to use an LLM the way you would run an experiment. One: context dilution, inside a single session. Everything you and the model have said sits in one window. Early on, your protocol is a big share of it. Hours later it is a sliver among thousands of lines of results, code and chatter, and the model follows it less reliably. Liu and colleagues showed the related “lost in the middle” effect: models use information at the start and end of a long context better than information buried in the middle. Two: inter-campaign amnesia, between sessions. A campaign here is one run of experiments. When it ends, what was learned is gone unless someone, or some tool, wrote it down; the next campaign can walk straight back into the same failed condition. The example on the slide is made up. “By default” matters: memory features, lab notebooks and written protocols help, but you have to set them up and check them. Science needs both a stable protocol and a cumulative record, and neither is built in.</aside>
 </section>
 
 </div></div>
