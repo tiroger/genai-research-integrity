@@ -1043,3 +1043,27 @@ section.present .ladder .flip.dim{opacity:.3;filter:saturate(.4)}
 .mclips .hl.np{filter:drop-shadow(0 10px 18px rgba(11,31,68,.14))}
 .mclips .hl.np.tilt-r{margin-left:22px;margin-right:-6px}
 section.present .mclips .d5{transition-delay:1s}section.present .mclips .d7{transition-delay:1.5s}
+
+/* slide 4 -> 5: the two good-news clippings stay put through the fade; their text fades, the paper glides into the pile, and the worrying headlines appear on it */
+#threat .ghost{display:none;left:var(--x);top:var(--y);width:var(--w);rotate:var(--r0);padding:30px 36px 36px;box-sizing:border-box;z-index:6;pointer-events:none;filter:drop-shadow(0 10px 18px rgba(11,31,68,.14))}
+#threat .ghost::before{background:var(--grain),radial-gradient(120% 120% at 50% 40%,var(--newsprint) 60%,#E6DCC4 100%)}
+#threat .ghost h3{font:700 39px/1.1 var(--news);letter-spacing:-.01em;color:#191919}
+#threat .ghost.g1{--x:1258px;--y:199px;--w:590px;--r0:-1.4deg;--tx:-179px;--ty:34.5px;--s:1.6;--r:2.2deg}
+#threat .ghost.g2{--x:1280px;--y:503px;--w:574px;--r0:1.2deg;--tx:-163px;--ty:98px;--s:1.575;--r:-2.4deg}
+#threat.morph-in .ghost{display:flex;animation:gmorph 1s cubic-bezier(.55,0,.2,1) .75s both}
+#threat.morph-in .ghost>*{animation:gtxt .4s ease-out .6s both}
+@keyframes gmorph{70%{opacity:1}100%{transform:translate(var(--tx),var(--ty)) scale(var(--s));rotate:var(--r);opacity:0}}
+@keyframes gtxt{to{opacity:0}}
+#threat.morph-in .pile .hl:nth-child(2){--tx:179px;--ty:-34.5px;--s:.625;--r0:-1.4deg;animation:cmorph 1s cubic-bezier(.55,0,.2,1) .75s both}
+#threat.morph-in .pile .hl:nth-child(4){--tx:163px;--ty:-98px;--s:.635;--r0:1.2deg;animation:cmorph 1s cubic-bezier(.55,0,.2,1) .75s both}
+@keyframes cmorph{0%{transform:translate(var(--tx),var(--ty)) scale(var(--s));rotate:var(--r0);opacity:0}40%{opacity:1}}
+#threat.morph-in .pile .hl:nth-child(2)>*,#threat.morph-in .pile .hl:nth-child(4)>*{animation:ctxt .5s ease-out 1.5s both}
+@keyframes ctxt{from{opacity:0}}
+#threat.morph-in .pile .hl:nth-child(1){animation:cin .6s ease-out 1.5s both}
+#threat.morph-in .pile .hl:nth-child(3){animation:cin .6s ease-out 1.7s both}
+@keyframes cin{from{opacity:0;transform:translateY(22px)}}
+section#threat.morph-in.present .hl mark{transition-delay:2.5s}
+section#threat.morph-in.present .hl:nth-child(2) mark{transition-delay:3.2s}
+section#threat.morph-in.present .hl:nth-child(3) mark{transition-delay:3.9s}
+section#threat.morph-in.present .hl:nth-child(4) mark{transition-delay:4.6s}
+.print-pdf #threat .ghost{display:none!important}

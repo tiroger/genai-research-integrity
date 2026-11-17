@@ -517,6 +517,14 @@
     if (e.previousSlide) $$("video", e.previousSlide).forEach(function (v) { v.pause(); });
   });
 
+  /* ---------------- slide 4 -> 5 morph: only when arriving forward from the market slide ---------------- */
+  Reveal.on("slidechanged", function (e) {
+    var t = $("#threat"); if (!t) return;
+    var from = e.previousSlide && e.previousSlide.querySelector(".mclips");
+    t.classList.remove("morph-in");
+    if (e.currentSlide === t && from) { void t.offsetWidth; t.classList.add("morph-in"); }
+  });
+
   /* ---------------- ladder walk-through ----------------
      ten fragments: odd ones light step i and dim the rest, even ones turn it over; after the last, all lit */
   (function () {
