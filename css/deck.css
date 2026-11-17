@@ -1095,3 +1095,7 @@ section.present .ca .ca-x~.ca-x{animation-delay:2.4s}
 #theq .q svg{width:150px;height:150px;fill:none;stroke:var(--cb);stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
 #theq .q svg .hi{stroke:var(--amber)}
 #theq .q h3{font:700 48px/1.12 var(--serif);color:#fff;margin:auto 0 0}
+
+/* a supplied slide shown edge to edge, untouched */
+.reveal .slides section.fullimg{padding:0!important}
+.fullimg>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;cursor:default}
